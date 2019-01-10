@@ -10,7 +10,7 @@ const Svg = styled.svg`
   margin-top: 51px;
   width: 100%;
   height: 100%;
-  background-color: gray;
+  background-color: rgb(94, 103, 112);
 `;
 
 function childPath(d) {
@@ -108,7 +108,7 @@ class Tree extends React.Component {
       .enter()
       .append("path")
       .attr("d", childPath)
-      .attr("stroke", "#aaa")
+      .attr("stroke", "#AEACA2")
       .attr("stroke-width", 2)
       .attr("fill", "none");
   }

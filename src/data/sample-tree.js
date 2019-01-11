@@ -1,56 +1,169 @@
 export default {
-  name: "A1",
+  forenames: "George L",
+  surname: "Appleton",
+  gender: "Male",
+  birth: {
+    year: 1874,
+    month: "Jun",
+    day: 12
+  },
+  death: {
+    year: 1912,
+    month: "Apr",
+    day: 6
+  },
   children: [
     {
-      name: "B1",
+      forenames: "Clara",
+      surname: "Appleton",
+      gender: "Female",
+      birth: {
+        year: 1894,
+        month: "Jun",
+        day: 12
+      },
+      death: {
+        year: 1902,
+        month: "Apr",
+        day: 6
+      },
       children: [
         {
-          name: "C1",
-          value: 100
+          forenames: "Peter",
+          surname: "Smith",
+          gender: "Male"
         },
         {
-          name: "C2",
-          value: 300,
+          forenames: "John",
+          surname: "Smith",
+          gender: "Male",
           children: [
             {
-              name: "F1",
-              value: 100
+              forenames: "Fanny",
+              surname: "Smith",
+              gender: "Female",
+              birth: {
+                year: 1874,
+                month: "Jun",
+                day: 12
+              },
+              death: {
+                year: 1912,
+                month: "Apr",
+                day: 6
+              }
             }
           ]
         },
         {
-          name: "C3",
-          value: 200
+          forenames: "Clara-Jane",
+          surname: "Smith",
+          gender: "Female",
+          birth: {
+            year: 1874,
+            month: "Jun",
+            day: 12
+          },
+          death: {
+            year: 1912,
+            month: "Apr",
+            day: 6
+          }
         }
       ]
     },
     {
-      name: "B2",
-      value: 200,
+      forenames: "Edward F",
+      gender: "Male",
       children: [
         {
-          name: "D1",
-          value: 100
+          forenames: "Fanny K",
+          surname: "Appleton",
+          gender: "Female",
+          birth: {
+            year: 1874,
+            month: "Jun",
+            day: 12
+          },
+          death: {
+            year: 1912,
+            month: "Apr",
+            day: 6
+          }
         },
         {
-          name: "D2",
-          value: 300
+          forenames: "Aaron",
+          surname: "Appleton",
+          gender: "Male",
+          birth: {
+            year: 1874,
+            month: "Jun",
+            day: 12
+          },
+          death: {
+            year: 1912,
+            month: "Apr",
+            day: 6
+          }
         },
         {
-          name: "D3",
-          value: 200,
+          forenames: "Alphonso J",
+          surname: "Appleton",
+          gender: "Male",
+          birth: {
+            year: 1874,
+            month: "Jun",
+            day: 12
+          },
+          death: {
+            year: 1912,
+            month: "Apr",
+            day: 6
+          }
+        },
+        {
+          forenames: "Mille Rose",
+          surname: "Appleton",
+          birth: {
+            year: 1874,
+            month: "Jun",
+            day: 12
+          },
+          death: {
+            year: 1912,
+            month: "Apr",
+            day: 6
+          },
           children: [
             {
-              name: "E1",
+              forenames: "Charles",
+              gender: "Male",
               value: 100
             },
             {
-              name: "E2",
+              forenames: "Katelyn",
               value: 300
             }
           ]
         }
       ]
+    },
+    {
+      forenames: "Victor",
+      gender: "Male",
+      birth: {
+        year: 1897,
+        month: "Jun",
+        day: 12
+      }
+    },
+    {
+      forenames: "Anne",
+      birth: {
+        year: 1899,
+        month: "Jun",
+        day: 12
+      }
     }
   ]
 };

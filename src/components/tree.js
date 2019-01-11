@@ -19,7 +19,7 @@ function childPath(d) {
     d.source.x +
     "," +
     d.source.y +
-    "v100" +
+    "v160" +
     "H" +
     d.target.x +
     "V" +
@@ -44,7 +44,7 @@ class Tree extends React.Component {
     return (
       <div>
         <Svg ref={el => (this.svgEl = el)}>
-          <g transform="translate(10, 10)">
+          <g transform="translate(500, 10) scale(0.9)">
             <g className="links" />
             <g className="nodes" />
           </g>
@@ -55,7 +55,13 @@ class Tree extends React.Component {
 
   updateChart() {
     const root = d3.hierarchy(this.state.data);
-    const tree = d3.tree().size([800, 400]);
+    const tree = d3
+      .tree()
+      .size([800, 500])
+      .nodeSize([100, 180])
+      .separation(function(a, b) {
+        return a.parent == b.parent ? 1 : 1.5;
+      });
 
     tree(root);
 
@@ -68,39 +74,76 @@ class Tree extends React.Component {
       .attr("class", "node");
 
     node
-      .append("circle")
-      .attr("cx", function(d) {
-        return d.x;
-      })
-      .attr("cy", function(d) {
-        return d.y;
-      })
-      .attr("r", 4)
-      .attr("fill", "purple");
-
-    node
       .append("rect")
       .attr("x", function(d) {
-        return d.x - 30;
+        return d.x - 45;
       })
       .attr("y", function(d) {
-        return d.y;
+        return d.y + 90;
       })
-      .attr("width", 60)
-      .attr("height", 80)
-      .attr("fill", "#b1e2e2");
+      .attr("width", 90)
+      .attr("height", 50)
+      .attr("fill", "white");
 
     node
       .append("image")
       .attr("x", function(d) {
-        return d.x - 25;
+        return d.x - 45;
       })
       .attr("y", function(d) {
-        return d.y + 5;
+        return d.y;
       })
-      .attr("width", 50)
-      .attr("height", 70)
-      .attr("href", "person.png");
+      .attr("width", 90)
+      .attr("height", 90)
+      .attr("href", function(d) {
+        return d.data.gender == "Male" ? "male.png" : "female.png";
+      });
+
+    node
+      .append("text")
+      .attr("x", function(node) {
+        return node.x;
+      })
+      .attr("y", function(node) {
+        return node.y + 104;
+      })
+      .attr("text-anchor", "middle")
+      .attr("font-size", "12px")
+      .attr("font-weight", "600")
+      .text(function(node) {
+        return node.data.forenames;
+      });
+    node
+      .append("text")
+      .attr("x", function(node) {
+        return node.x;
+      })
+      .attr("y", function(node) {
+        return node.y + 118;
+      })
+      .attr("text-anchor", "middle")
+      .attr("font-size", "12px")
+      .attr("font-weight", "600")
+      .text(function(node) {
+        return node.data.surname;
+      });
+    node
+      .append("text")
+      .attr("x", function(node) {
+        return node.x;
+      })
+      .attr("y", function(node) {
+        return node.y + 134;
+      })
+      .attr("text-anchor", "middle")
+      .attr("font-size", "11px")
+      .text(function(node) {
+        const birth = node.data.birth ? node.data.birth.year.toString() : "";
+        const death = node.data.death
+          ? " - " + node.data.death.year.toString()
+          : "";
+        return birth + death;
+      });
 
     d3.select("svg g.links")
       .selectAll("line.link")

@@ -33,11 +33,23 @@ class Tree extends React.Component {
   };
 
   componentDidMount() {
-    const svg = d3.select("g.container").call(
-      d3.zoom().on("zoom", function() {
-        svg.attr("transform", d3.event.transform);
-      })
-    );
+    const svg = d3
+      .select("svg")
+      .call(
+        d3.zoom().on("zoom", function() {
+          svg.attr("transform", d3.event.transform);
+        })
+      )
+      .append("g")
+      .attr("id", "tree-container");
+
+    d3.select("#tree-container")
+      .append("g")
+      .attr("class", "links");
+    d3.select("#tree-container")
+      .append("g")
+      .attr("class", "nodes");
+
     this.updateChart();
   }
 
@@ -48,12 +60,7 @@ class Tree extends React.Component {
   render() {
     return (
       <div>
-        <Svg ref={el => (this.svgEl = el)}>
-          <g className="container">
-            <g className="links" />
-            <g className="nodes" />
-          </g>
-        </Svg>
+        <Svg ref={el => (this.svgEl = el)} />
       </div>
     );
   }

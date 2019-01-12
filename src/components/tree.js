@@ -33,6 +33,11 @@ class Tree extends React.Component {
   };
 
   componentDidMount() {
+    const svg = d3.select("g.container").call(
+      d3.zoom().on("zoom", function() {
+        svg.attr("transform", d3.event.transform);
+      })
+    );
     this.updateChart();
   }
 
@@ -44,7 +49,7 @@ class Tree extends React.Component {
     return (
       <div>
         <Svg ref={el => (this.svgEl = el)}>
-          <g transform="translate(500, 10) scale(0.9)">
+          <g className="container">
             <g className="links" />
             <g className="nodes" />
           </g>

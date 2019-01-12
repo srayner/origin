@@ -32,13 +32,20 @@ class Tree extends React.Component {
     data: data
   };
 
+  delta() {
+    return (-d3.event.deltaY * (d3.event.deltaMode ? 120 : 1)) / 100;
+  }
+
   componentDidMount() {
     const svg = d3
       .select("svg")
       .call(
-        d3.zoom().on("zoom", function() {
-          svg.attr("transform", d3.event.transform);
-        })
+        d3
+          .zoom()
+          .wheelDelta(this.delta)
+          .on("zoom", function() {
+            svg.attr("transform", d3.event.transform);
+          })
       )
       .append("g")
       .attr("id", "tree-container");
@@ -69,7 +76,6 @@ class Tree extends React.Component {
     const root = d3.hierarchy(this.state.data);
     const tree = d3
       .tree()
-      .size([800, 500])
       .nodeSize([100, 180])
       .separation(function(a, b) {
         return a.parent == b.parent ? 1 : 1.5;

@@ -163,7 +163,20 @@ export default {
         year: 1899,
         month: "Jun",
         day: 12
-      }
+      },
+      children: [
+        {
+          forenames: "Albert John",
+          surname: "Jones",
+          gender: "Male",
+          birth: {
+            year: 1921
+          },
+          death: {
+            year: 2001
+          }
+        }
+      ]
     }
   ]
 };

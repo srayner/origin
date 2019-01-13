@@ -8,15 +8,21 @@ import Person from "../person/person";
 import Tree from "../tree/tree";
 import Results from "../search/results";
 import Profile from "../user/profile";
+import Menu from "./menu";
 
 const Container = styled.div`
   font-family: "Roboto", sans-serif;
 `;
 
-const Heading = styled.h1`
-  margin: 0;
-  padding: 10px;
+const TitleBar = styled.header`
+  display: flex;
   background-color: #111;
+`;
+
+const Heading = styled.h1`
+  display: inline-block;
+  margin: 0 20px 0 10px;
+  padding: 5px;
   color: white;
   font-family: "Lora";
   font-size: 24px;
@@ -29,10 +35,11 @@ class App extends Component {
     return (
       <Router>
         <Container>
-          <header>
+          <TitleBar>
             <Heading>Nucleus Genealogy</Heading>
-          </header>
-          <Route path="/" exact component={Home} />
+            <Menu />
+          </TitleBar>
+          <Route exact path="/" exact component={Home} />
           <Route path="/sign-up" exact component={SignUp} />
           <Route path="/login" exact component={Login} />
           <Route path="/person" exact component={Person} />

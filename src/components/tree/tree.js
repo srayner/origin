@@ -7,7 +7,7 @@ const Svg = styled.svg`
   position: absolute;
   top: 0;
   left: 0;
-  margin-top: 51px;
+  margin-top: 46px;
   width: 100%;
   height: 100%;
   background-color: rgb(94, 103, 112);
@@ -78,7 +78,7 @@ class Tree extends React.Component {
       .tree()
       .nodeSize([100, 180])
       .separation(function(a, b) {
-        return a.parent == b.parent ? 1 : 1.5;
+        return a.parent === b.parent ? 1 : 1.5;
       });
 
     tree(root);
@@ -114,7 +114,7 @@ class Tree extends React.Component {
       .attr("width", 90)
       .attr("height", 90)
       .attr("href", function(d) {
-        return d.data.gender == "Male" ? "male.png" : "female.png";
+        return d.data.gender === "Male" ? "male.png" : "female.png";
       });
 
     node

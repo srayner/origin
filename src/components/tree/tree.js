@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import data from "../data/sample-tree";
+import data from "../../data/sample-tree";
 import * as d3 from "d3";
 
 const Svg = styled.svg`

@@ -37,17 +37,23 @@ class Tree extends React.Component {
   }
 
   componentDidMount() {
+    var zoom = d3
+      .zoom()
+      .wheelDelta(this.delta)
+      .on("zoom", handleZoom);
+
+    function handleZoom() {
+      if (svg) {
+        svg.attr("transform", d3.event.transform);
+      }
+    }
+
     const svg = d3
       .select("svg")
-      .call(
-        d3
-          .zoom()
-          .wheelDelta(this.delta)
-          .on("zoom", function() {
-            svg.attr("transform", d3.event.transform);
-          })
-      )
+      .call(zoom)
+      .call(zoom.transform, d3.zoomIdentity.translate(700, 50).scale(0.8))
       .append("g")
+      .attr("transform", "translate(700,50)scale(.8,.8)")
       .attr("id", "tree-container");
 
     d3.select("#tree-container")

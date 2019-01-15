@@ -1,60 +1,42 @@
 export default {
-  unions: {
-    u1: {
-      mother: p1,
-      father: p2,
-      marriage: {
-        year: 1894,
-        month: "Apr"
-      }
+  families: {
+    f1: {
+      year: 1820
+    },
+    f2: {
+      year: 1830
     }
   },
   people: {
     p1: {
-      forenames: "George L",
-      surname: "Appleton",
-      gender: "Female",
-      birth: {
-        year: 1874,
-        month: "Jun",
-        day: 12
-      },
-      death: {
-        year: 1912,
-        month: "Apr",
-        day: 6
-      }
+      name: "Fred",
+      birthYear: 1800,
+      spouseFamiliies: ["f1", "f2"]
     },
     p2: {
-      forenames: "George L",
-      surname: "Appleton",
-      gender: "Male",
-      birth: {
-        year: 1874,
-        month: "Jun",
-        day: 12
-      },
-      death: {
-        year: 1912,
-        month: "Apr",
-        day: 6
-      }
+      name: "Wilma",
+      birthYear: 1801,
+      spouceFamilies: ["f1"]
     },
     p3: {
-      forenames: "Clara",
-      surname: "Appleton",
-      gender: "Female",
-      birth: {
-        year: 1894,
-        month: "Jun",
-        day: 12
-      },
-      death: {
-        year: 1902,
-        month: "Apr",
-        day: 6
-      },
-      union: "u1"
+      name: "Sandra",
+      birthYear: 1802,
+      spouceFamiles: ["f2"]
+    },
+    p4: {
+      name: "Peter",
+      birthYear: 1821,
+      parents: "f1"
+    },
+    p5: {
+      name: "Joline",
+      birthYear: 1825,
+      parents: "f1"
+    },
+    p6: {
+      name: "Alexander",
+      birthYear: 1822,
+      parents: "f2"
     }
   }
 };

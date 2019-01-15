@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Algorithm</title>
+    <style>
+      svg {
+        background-color: gray;
+        width: 1000px;
+        height: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <svg id="canvas"><g id="people"></g></svg>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script>
+      var families = {
+        f1: { id: "f1", father: "p1", mother: "p2" },
+        f2: { id: "f2", father: "p3", mother: "p4" },
+        f3: { id: "f3", father: "p5", mother: "p6" },
+        f4: { id: "f4", father: "p7", mother: "p8" },
+        f5: { id: "f5", father: "p9", mother: "p10" },
+        f6: { id: "f6", father: "p12", mother: "p13" },
+        f7: { id: "f7", father: "p13", mother: "p14" }
+      };
+
+      var people = {
+        p1: { name: "p1", parents: null },
+        p2: { name: "p2", parents: null },
+        p3: { name: "p3", parents: null },
+        p4: { name: "p4", parents: null },
+        p5: { name: "p5", parents: null },
+        p6: { name: "p6", parents: null },
+        p7: { name: "p7", parents: "f1" },
+        p8: { name: "p8", parents: "f2" },
+        p9: { name: "p9", parents: null },
+        p10: { name: "p10", parents: "f3" },
+        p11: { name: "p11", parents: "f3" },
+        p12: { name: "p12", parents: "f3" },
+        p13: { name: "p13", parents: "f4" },
+        p14: { name: "p14", parents: null },
+        p15: { name: "p15", parents: "f5" },
+        p16: { name: "p16", parents: "f6" },
+        p17: { name: "p17", parents: "f7" }
+      };
+
+      var maxX = 0;
+      var maxY = 50;
+      var familiesAdded = {};
+      var peopleAdded = {};
+
+      function locationOccupied(id, x, y) {
+        var result = false;
+        Object.keys(peopleAdded).forEach(key => {
+          if (
+            peopleAdded[key].x === x &&
+            peopleAdded[key].y === y &&
+            key !== id
+          ) {
+            result = true;
+          }
+        });
+
+        return result;
+      }
+
+      function addFamily(f) {
+        console.log("add family");
+        console.log(f);
+
+        // Already added?
+        console.log("already added?");
+        if (familiesAdded[f.id]) {
+          console.log("yes");
+          return familiesAdded[f.id];
+        }
+        console.log("no");
+
+        // ensure father exists
+        var father = addPerson(people[f.father]);
+        var family = { x: father.x + 25, y: father.y };
+
+        // Add family node to right of father
+        d3.select("g")
+          .append("circle")
+          .attr("r", 10)
+          .attr("cx", family.x)
+          .attr("cy", family.y)
+          .attr("stroke", "black")
+          .attr("fill", "transparent");
+        d3.select("g")
+          .append("text")
+          .attr("x", family.x)
+          .attr("y", family.y + 4)
+          .attr("text-anchor", "middle")
+          .attr("font-size", "12px")
+          .attr("font-weight", "600")
+          .text(f.id);
+
+        // mother exists?
+        console.log("mother exists?");
+        if (!peopleAdded[f.mother]) {
+          console.log("no, add mother");
+          addPerson(people[f.mother]);
+        }
+        console.log("yes");
+
+        familiesAdded[f.id] = family;
+        return family;
+      }
+
+      function addPerson(p) {
+        console.log("add person");
+        console.log(p);
+
+        // Already added?
+        console.log("already added?");
+        if (peopleAdded[p.name]) {
+          console.log("yes");
+          return peopleAdded[p.name];
+        }
+        console.log("no");
+
+        // Has family?
+        var person = {};
+        if (!p.parents) {
+          console.log("add to free space");
+          person.x = maxX + 50;
+          person.y = maxY;
+        } else {
+          var family = addFamily(families[p.parents]);
+          console.log("add below family");
+          person.x = family.x;
+          person.y = family.y + 50;
+        }
+
+        // Move person to the right of the location is occupied.
+        while (locationOccupied(p.id, person.x, person.y)) {
+          person.x += 50;
+        }
+
+        d3.select("g")
+          .append("text")
+          .attr("x", person.x)
+          .attr("y", person.y)
+          .attr("text-anchor", "middle")
+          .attr("font-size", "12px")
+          .attr("font-weight", "600")
+          .text(p.name);
+
+        peopleAdded[p.name] = person;
+        maxX = x > maxX ? x : maxX;
+        maxY = y > maxY ? y : maxY;
+        return person;
+      }
+
+      function addPeople() {
+        Object.keys(people).map(key => {
+          x = maxX + 50;
+          y = maxY;
+          addPerson(people[key], x, y);
+        });
+      }
+
+      addPeople();
+      console.log(peopleAdded);
+    </script>
+  </body>
+</html>

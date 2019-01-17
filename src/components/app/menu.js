@@ -33,13 +33,6 @@ const StyledLink = styled(NavLink)`
   }
 `;
 
-const StyledItem = styled.span`
-  display: inline-block;
-  margin: 4px 0 0 0;
-  padding: 10px;
-  color: white;
-`;
-
 const Menu = props => {
   console.log(props);
   return (

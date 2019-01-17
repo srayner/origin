@@ -4,14 +4,12 @@
     <title>Algorithm</title>
     <style>
       svg {
-        background-color: gray;
+        background-color: rgb(94, 103, 112);
       }
     </style>
   </head>
   <body>
-    <svg id="canvas" width="1000" height="500" viewBox="-500 -250 1000 500">
-      <g id="people"></g>
-    </svg>
+    <svg id="canvas" width="1000" height="500"><g id="people"></g></svg>
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script>
       var families = {
@@ -30,48 +28,357 @@
       };
 
       var people = {
-        p1: { name: "p1", gender: "male", parents: null, spouces: ["f1"] },
-        p2: { name: "p2", gender: "female", parents: null, spouces: ["f1"] },
-        p3: { name: "p3", gender: "male", parents: null, spouces: ["f2"] },
-        p4: { name: "p4", gender: "female", parents: null, spouces: ["f2"] },
-        p5: { name: "p5", gender: "male", parents: null, spouces: ["f3"] },
-        p6: { name: "p6", gender: "female", parents: null, spouces: ["f3"] },
-        p7: { name: "p7", gender: "male", parents: "f1", spouces: ["f4"] },
-        p8: { name: "p8", gender: "female", parents: "f2", spouces: ["f4"] },
-        p9: { name: "p9", gender: "male", parents: null, spouces: ["f5"] },
-        p10: { name: "p10", gender: "female", parents: "f3", spouces: ["f5"] },
-        p11: { name: "p11", gender: "female", parents: "f3", spouces: [] },
-        p12: { name: "p12", gender: "male", parents: "f3", spouces: ["f6"] },
+        p1: {
+          id: "p1",
+          name: "John",
+          gender: "male",
+          parents: null,
+          spouces: ["f1"]
+        },
+        p2: {
+          id: "p2",
+          name: "Sarah",
+          gender: "female",
+          parents: null,
+          spouces: ["f1"]
+        },
+        p3: {
+          id: "p3",
+          name: "William",
+          gender: "male",
+          parents: null,
+          spouces: ["f2"]
+        },
+        p4: {
+          id: "p4",
+          name: "Joanne",
+          gender: "female",
+          parents: null,
+          spouces: ["f2"]
+        },
+        p5: {
+          id: "p5",
+          name: "Henry",
+          gender: "male",
+          parents: null,
+          spouces: ["f3"]
+        },
+        p6: {
+          id: "p6",
+          name: "Amberlyn",
+          gender: "female",
+          parents: null,
+          spouces: ["f3"]
+        },
+        p7: {
+          id: "p7",
+          name: "Lucus",
+          gender: "male",
+          parents: "f1",
+          spouces: ["f4"]
+        },
+        p8: {
+          id: "p8",
+          name: "Caroline",
+          gender: "female",
+          parents: "f2",
+          spouces: ["f4"]
+        },
+        p9: {
+          id: "p9",
+          name: "Wilfred",
+          gender: "male",
+          parents: null,
+          spouces: ["f5"]
+        },
+        p10: {
+          id: "p10",
+          name: "Anne",
+          gender: "female",
+          parents: "f3",
+          spouces: ["f5"]
+        },
+        p11: {
+          id: "p11",
+          name: "Sharlene",
+          gender: "female",
+          parents: "f3",
+          spouces: []
+        },
+        p12: {
+          id: "p12",
+          name: "Charles",
+          gender: "male",
+          parents: "f3",
+          spouces: ["f6"]
+        },
         p13: {
-          name: "p13",
+          id: "p13",
+          name: "Jayne",
           gender: "female",
           parents: "f4",
           spouces: ["f6", "f7"]
         },
-        p14: { name: "p14", gender: "male", parents: null, spouces: ["f7"] },
-        p15: { name: "p15", gender: "male", parents: "f5", spouces: [] },
-        p16: { name: "p16", gender: "female", parents: "f6", spouces: [] },
-        p17: { name: "p17", gender: "male", parents: "f7", spouces: [] }
+        p14: {
+          id: "p14",
+          name: "Frederick",
+          gender: "male",
+          parents: null,
+          spouces: ["f7"]
+        },
+        p15: {
+          id: "p15",
+          name: "Jonathon",
+          gender: "male",
+          parents: "f5",
+          spouces: []
+        },
+        p16: {
+          id: "p16",
+          name: "Alexandra",
+          gender: "female",
+          parents: "f6",
+          spouces: []
+        },
+        p17: {
+          id: "p17",
+          name: "Stephen",
+          gender: "male",
+          parents: "f7",
+          spouces: []
+        }
       };
 
-      var curX = -400;
-      var curY = 0;
-      var familiesAdded = {};
-      var peopleAdded = {};
+      const pitchX = 100;
+      const pitchY = 200;
 
-      function locationOccupied(id, x, y) {
-        var result = false;
-        Object.keys(peopleAdded).forEach(key => {
-          if (
-            peopleAdded[key].x === x &&
-            peopleAdded[key].y === y &&
-            key !== id
-          ) {
-            result = true;
+      // Main.
+      positionPerson(people["p1"], 0, 0); // Positioning one person should ripple through and position all people.
+      spreadNodes(); // Adjusts x and y values so that nodes don't colide.
+      pullSpoucesClose();
+      addLinksToSVG(); // Add all links to SVG
+      addNodesToSVG(); // Adds all nodes to the SVG
+
+      function pullSpoucesClose() {
+        Object.keys(families).map(key => {
+          const family = families[key];
+          const father = people[family.father];
+          if (father.x < family.x) {
+            father.x = family.x - pitchX;
+          } else {
+            father.x = family.x + pitchX;
+          }
+          const mother = people[family.mother];
+          if (mother.x < family.x) {
+            mother.x = family.x - pitchX;
+          } else {
+            mother.x = family.x + pitchX;
           }
         });
-        Object.keys(familiesAdded).forEach(key => {
-          if (familiesAdded[key].x === x && familiesAdded[key].y === y) {
+      }
+
+      /**
+       * Position spouses
+       */
+      function positionSpouses(person, x, y) {
+        person.spouces.map((key, index) => {
+          if (index % 2 === 0) {
+            const inversion = person.gender === "male" ? 1 : -1;
+            positionFamily(families[key], x + pitchX, y, inversion); // to the right of person
+          } else {
+            const inversion = person.gender === "male" ? -1 : 1;
+            positionFamily(families[key], x - pitchX, y, inversion); // to the left of person
+          }
+        });
+      }
+
+      /*
+       * Positions a family node
+       */
+      function positionFamily(family, x, y, inverted = 1) {
+        console.log("position family " + family.id + " @" + x + ", " + y);
+
+        // already positioned?
+        if (family.positioned) {
+          console.log("already positioned");
+          return;
+        }
+
+        // Add family node to specified position
+        family.x = x;
+        family.y = y;
+        family.positioned = true;
+
+        // ensure mother and father exist
+        positionPerson(people[family.father], x - pitchX * inverted, y);
+        positionPerson(people[family.mother], x + pitchX * inverted, y);
+
+        // add any potential children
+        family.children.map((key, index) => {
+          positionPerson(people[key], x, y + pitchY);
+        });
+      }
+
+      /*
+       * Position a person
+       */
+      function positionPerson(person, x, y) {
+        console.log("positioning person " + person.id + "@" + x + "," + y);
+
+        // already positioned?
+        if (person.positioned) {
+          console.log("already positioned");
+          return;
+        }
+
+        // position person
+        person.x = x;
+        person.y = y;
+        person.positioned = true;
+        curX = curX + 100;
+
+        // position parents if we know about them
+        if (person.parents) {
+          positionFamily(families[person.parents], x, y - pitchY); // above this person
+        }
+
+        // position any potential spouses.
+        positionSpouses(person, x, y);
+      }
+
+      /*
+       * Adds all nodes to the SVG
+       */
+      function addNodesToSVG() {
+        Object.keys(people).map(key => {
+          d3.select("g")
+            .append("text")
+            .attr("x", people[key].x)
+            .attr("y", people[key].y)
+            .attr("text-anchor", "middle")
+            .attr("font-size", "12px")
+            .attr("font-weight", "600")
+            .text(people[key].id);
+        });
+        Object.keys(families).map(key => {
+          d3.select("g")
+            .append("circle")
+            .attr("r", 3)
+            .attr("cx", families[key].x)
+            .attr("cy", families[key].y)
+            .attr("stroke", "gray")
+            .attr("fill", "gray");
+        });
+      }
+
+      function addLinksToSVG() {
+        Object.keys(families).map(key => {
+          family = families[key];
+          father = people[family.father];
+          mother = people[family.mother];
+          addLink(family, father, "father");
+          addLink(family, mother, "mother");
+          family.children.map(key => {
+            const child = people[key];
+            addLink(family, child, "child");
+          });
+        });
+      }
+
+      function childPath(family, child) {
+        return (
+          "M" +
+          family.x +
+          "," +
+          family.y +
+          "v160" +
+          "H" +
+          child.x +
+          "V" +
+          child.y
+        );
+      }
+
+      function parentPath(family, parent) {
+        return "M" + family.x + "," + family.y + "H" + parent.x;
+      }
+
+      function addLink(source, target, type) {
+        if (type === "child") {
+          d3.select("g")
+            .append("path")
+            .attr("d", childPath(source, target))
+            .attr("stroke", "#AEACA2")
+            .attr("stroke-width", 2)
+            .attr("fill", "none");
+        } else {
+          const stroke = target.gender === "male" ? "#68c2c2" : "#f58888";
+          d3.select("g")
+            .append("path")
+            .attr("d", parentPath(source, target))
+            .attr("stroke", stroke)
+            .attr("stroke-width", 2)
+            .attr("fill", "none");
+        }
+      }
+
+      /*
+       * Spreads out people so that they are not coliding
+       */
+      function spreadNodes() {
+        Object.keys(people).map(key => {
+          const person = people[key];
+          while (peopleColiding(person)) {
+            shiftOtherNodes(person);
+          }
+        });
+      }
+
+      /*
+       * Spreads out families so that they are not coliding.
+       */
+      function spreadFamilies() {
+        Object.keys(families).map(key => {
+          family = families[key];
+          while (familyColiding(family)) {
+            shiftOtherFamilies(family);
+          }
+        });
+      }
+
+      /*
+       * Tests if a specific family is coliding with any others.
+       */
+      function familyColiding(family) {
+        var result = false;
+        Object.keys(families).map(key => {
+          other = families[key];
+          console.log(Math.abs(family.x - other.x));
+          if (
+            Math.abs(family.x - other.x) < 3 * pitchX &&
+            family.y === other.y &&
+            family.id !== other.id
+          ) {
+            console.log("collision: " + family.id + " " + other.id);
+            //result = true;
+          }
+        });
+        return result;
+      }
+
+      /*
+       * Tests if a specific person is coliding with any others.
+       */
+      function peopleColiding(person) {
+        var result = false;
+        Object.keys(people).map(key => {
+          other = people[key];
+          if (
+            person.x === other.x &&
+            person.y === other.y &&
+            person.id < other.id
+          ) {
+            console.log("Collision: " + person.id + " " + other.id);
             result = true;
           }
         });
@@ -79,107 +386,58 @@
         return result;
       }
 
-      function addSpouces(p, x, y) {
-        p.spouces.map((key, index) => {
-          if (index % 2 === 0) {
-            addFamilyNode(families[key], x + 50, y); // to the right of person
-          } else {
-            addFamilyNode(families[key], x - 50, y); // to the left of person
+      /*
+       * Shifts all other families with same Y and larger X.
+       */
+      function shiftOtherFamilies(family) {
+        Object.keys(families).map(key => {
+          f1 = families[key];
+          if (f1.id !== family.id && (f1.y = family.y) && f1.x > family.x) {
+            shiftFamily(f1);
           }
         });
       }
 
-      function addChildren(f, x, y) {
-        f.children.map((key, index) => {
-          addPersonNode(people[key], x, y);
-        });
-      }
+      function shiftOtherNodes(person) {
+        console.log("shifting");
 
-      function addFamilyNode(f, x, y) {
-        console.log("add family @ " + x + ", " + y);
-        console.log(f);
-
-        // Already added?
-        if (familiesAdded[f.id]) {
-          console.log("already added, returning...");
-          return familiesAdded[f.id];
-        }
-
-        // Add family node to specified position
-        var family = { x, y };
-        d3.select("g")
-          .append("circle")
-          .attr("r", 10)
-          .attr("cx", family.x)
-          .attr("cy", family.y)
-          .attr("stroke", "black")
-          .attr("fill", "transparent");
-        d3.select("g")
-          .append("text")
-          .attr("x", family.x)
-          .attr("y", family.y + 4)
-          .attr("text-anchor", "middle")
-          .attr("font-size", "12px")
-          .attr("font-weight", "600")
-          .text(f.id);
-        familiesAdded[f.id] = family;
-
-        // ensure mother and father exist
-        var father = addPersonNode(people[f.father], x - 50, y);
-        var mother = addPersonNode(people[f.mother], x + 50, y);
-
-        // add any potential children
-        addChildren(f, family.x, family.y + 50);
-
-        return family;
-      }
-
-      function addPersonNode(p, x, y) {
-        console.log("add person @ " + x + ", " + y);
-        console.log(p);
-
-        // Already added?
-        if (peopleAdded[p.name]) {
-          console.log("already added, returning person...");
-          return peopleAdded[p.name];
-        }
-
-        // Move person to the right if the location is occupied.
-        var person = { x, y };
-        while (locationOccupied(p.id, person.x, person.y)) {
-          person.x += 50;
-        }
-
-        // Add the personNode
-        d3.select("g")
-          .append("text")
-          .attr("x", person.x)
-          .attr("y", person.y)
-          .attr("text-anchor", "middle")
-          .attr("font-size", "12px")
-          .attr("font-weight", "600")
-          .text(p.name);
-        peopleAdded[p.name] = person;
-        curX = curX + 100;
-
-        // Has parent family?
-        if (p.parents) {
-          addFamilyNode(families[p.parents], x, y - 50); // above this person
-        }
-
-        // Add any potential spouces
-        addSpouces(p, x, y);
-
-        return person;
-      }
-
-      function addPeople() {
+        // Shift other people
         Object.keys(people).map(key => {
-          addPersonNode(people[key], curX, curY);
+          const other = people[key];
+          if (
+            other.y === person.y &&
+            other.x >= person.x &&
+            other.id !== person.id
+          ) {
+            other.x += pitchX;
+          }
+        });
+
+        // Shift other families
+        Object.keys(families).map(key => {
+          const other = families[key];
+          if (other.y === person.y && other.x >= person.x) {
+            other.x += pitchX;
+          }
         });
       }
 
-      addPeople();
+      function shiftPerson(person) {
+        person.x += pitchX;
+        person.spouces.map(key => {
+          const family = families[key];
+          family.x += pitchX;
+        });
+      }
+
+      /*
+       * Shifts the family along with the mother and father to the left.
+       */
+      function shiftFamily(family) {
+        family.x += pitchX;
+        people[family.father].x += pitchX;
+        people[family.mother].x += pitchX;
+      }
     </script>
   </body>
 </html>

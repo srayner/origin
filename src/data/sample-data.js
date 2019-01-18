@@ -1,5 +1,10 @@
 export const families = {
-  f1: { id: "f1", father: "p1", mother: "p2", children: ["p7"] },
+  f1: {
+    id: "f1",
+    father: "p1",
+    mother: "p2",
+    children: ["p7", "p18", "p19"]
+  },
   f2: { id: "f2", father: "p3", mother: "p4", children: ["p8"] },
   f3: {
     id: "f3",
@@ -16,121 +21,346 @@ export const families = {
 export const people = {
   p1: {
     id: "p1",
-    name: "John",
+    forenames: "John",
+    surname: "Appleton",
     gender: "male",
     parents: null,
-    spouces: ["f1"]
+    spouces: ["f1"],
+    birth: {
+      year: 1874,
+      month: "Jun",
+      day: 12
+    },
+    death: {
+      year: 1912,
+      month: "Apr",
+      day: 6
+    }
   },
   p2: {
     id: "p2",
-    name: "Sarah",
+    forenames: "Sarah",
+    surname: "Keys",
     gender: "female",
     parents: null,
-    spouces: ["f1"]
+    spouces: ["f1"],
+    birth: {
+      year: 1876,
+      month: "May",
+      day: 23
+    },
+    death: {
+      year: 1922,
+      month: "Feb",
+      day: 16
+    }
   },
   p3: {
     id: "p3",
-    name: "William",
+    forenames: "William",
+    surname: "Appleton",
     gender: "male",
     parents: null,
-    spouces: ["f2"]
+    spouces: ["f2"],
+    birth: {
+      year: 1874,
+      month: "Jun",
+      day: 12
+    },
+    death: {
+      year: 1912,
+      month: "Apr",
+      day: 6
+    }
   },
   p4: {
     id: "p4",
-    name: "Joanne",
+    forenames: "Joanne",
+    surname: "Appleton",
     gender: "female",
     parents: null,
-    spouces: ["f2"]
+    spouces: ["f2"],
+    birth: {
+      year: 1874,
+      month: "Jun",
+      day: 12
+    },
+    death: {
+      year: 1912,
+      month: "Apr",
+      day: 6
+    }
   },
   p5: {
     id: "p5",
-    name: "Henry",
+    forenames: "Henry",
+    surname: "Appleton",
     gender: "male",
     parents: null,
-    spouces: ["f3"]
+    spouces: ["f3"],
+    birth: {
+      year: 1874,
+      month: "Jun",
+      day: 12
+    },
+    death: {
+      year: 1912,
+      month: "Apr",
+      day: 6
+    }
   },
   p6: {
     id: "p6",
-    name: "Amberlyn",
+    forenames: "Amberlyn",
+    surname: "James",
     gender: "female",
     parents: null,
-    spouces: ["f3"]
+    spouces: ["f3"],
+    birth: {
+      year: 1874,
+      month: "Jun",
+      day: 12
+    },
+    death: {
+      year: 1912,
+      month: "Apr",
+      day: 6
+    }
   },
   p7: {
     id: "p7",
-    name: "Lucus",
+    forenames: "Lucus",
+    surname: "Appleton",
     gender: "male",
     parents: "f1",
-    spouces: ["f4"]
+    spouces: ["f4"],
+    birth: {
+      year: 1874,
+      month: "Jun",
+      day: 12
+    },
+    death: {
+      year: 1912,
+      month: "Apr",
+      day: 6
+    }
   },
   p8: {
     id: "p8",
-    name: "Caroline",
+    forenames: "Caroline",
+    surname: "Appleton",
     gender: "female",
     parents: "f2",
-    spouces: ["f4"]
+    spouces: ["f4"],
+    birth: {
+      year: 1874,
+      month: "Jun",
+      day: 12
+    },
+    death: {
+      year: 1912,
+      month: "Apr",
+      day: 6
+    }
   },
   p9: {
     id: "p9",
-    name: "Wilfred",
+    forenames: "Wilfred",
+    surname: "Appleton",
     gender: "male",
     parents: null,
-    spouces: ["f5"]
+    spouces: ["f5"],
+    birth: {
+      year: 1874,
+      month: "Jun",
+      day: 12
+    },
+    death: {
+      year: 1912,
+      month: "Apr",
+      day: 6
+    }
   },
   p10: {
     id: "p10",
-    name: "Anne",
+    forenames: "Anne",
+    surname: "Appleton",
     gender: "female",
     parents: "f3",
-    spouces: ["f5"]
+    spouces: ["f5"],
+    birth: {
+      year: 1874,
+      month: "Jun",
+      day: 12
+    },
+    death: {
+      year: 1912,
+      month: "Apr",
+      day: 6
+    }
   },
   p11: {
     id: "p11",
-    name: "Sharlene",
+    forenames: "Sharlene",
+    surname: "Appleton",
     gender: "female",
     parents: "f3",
-    spouces: []
+    spouces: [],
+    birth: {
+      year: 1874,
+      month: "Jun",
+      day: 12
+    },
+    death: {
+      year: 1912,
+      month: "Apr",
+      day: 6
+    }
   },
   p12: {
     id: "p12",
-    name: "Charles",
+    forenames: "Charles",
+    surname: "Appleton",
     gender: "male",
     parents: "f3",
-    spouces: ["f6"]
+    spouces: ["f6"],
+    birth: {
+      year: 1874,
+      month: "Jun",
+      day: 12
+    },
+    death: {
+      year: 1912,
+      month: "Apr",
+      day: 6
+    }
   },
   p13: {
     id: "p13",
-    name: "Jayne",
+    forenames: "Jayne",
+    surname: "Appleton",
     gender: "female",
     parents: "f4",
-    spouces: ["f6", "f7"]
+    spouces: ["f6", "f7"],
+    birth: {
+      year: 1874,
+      month: "Jun",
+      day: 12
+    },
+    death: {
+      year: 1912,
+      month: "Apr",
+      day: 6
+    }
   },
   p14: {
     id: "p14",
-    name: "Frederick",
+    forenames: "Frederick",
+    surname: "Appleton",
     gender: "male",
     parents: null,
-    spouces: ["f7"]
+    spouces: ["f7"],
+    birth: {
+      year: 1874,
+      month: "Jun",
+      day: 12
+    },
+    death: {
+      year: 1912,
+      month: "Apr",
+      day: 6
+    }
   },
   p15: {
     id: "p15",
-    name: "Jonathon",
+    forenames: "Jonathon",
+    surname: "Appleton",
     gender: "male",
     parents: "f5",
-    spouces: []
+    spouces: [],
+    birth: {
+      year: 1874,
+      month: "Jun",
+      day: 12
+    },
+    death: {
+      year: 1912,
+      month: "Apr",
+      day: 6
+    }
   },
   p16: {
     id: "p16",
-    name: "Alexandra",
+    forenames: "Alexandra",
+    surname: "Appleton",
     gender: "female",
     parents: "f6",
-    spouces: []
+    spouces: [],
+    birth: {
+      year: 1874,
+      month: "Jun",
+      day: 12
+    },
+    death: {
+      year: 1912,
+      month: "Apr",
+      day: 6
+    }
   },
   p17: {
     id: "p17",
-    name: "Stephen",
+    forenames: "Stephen",
+    surname: "Appleton",
     gender: "male",
     parents: "f7",
-    spouces: []
+    spouces: [],
+    birth: {
+      year: 1874,
+      month: "Jun",
+      day: 12
+    },
+    death: {
+      year: 1912,
+      month: "Apr",
+      day: 6
+    }
+  },
+
+  p18: {
+    id: "p18",
+    forenames: "Extra person",
+    surname: "Appleton",
+    gender: "male",
+    parents: "f1",
+    spouces: [],
+    birth: {
+      year: 1874,
+      month: "Jun",
+      day: 12
+    },
+    death: {
+      year: 1912,
+      month: "Apr",
+      day: 6
+    }
+  },
+
+  p19: {
+    id: "p19",
+    forenames: "Extra person",
+    surname: "Appleton",
+    gender: "male",
+    parents: "f1",
+    spouces: [],
+    birth: {
+      year: 1874,
+      month: "Jun",
+      day: 12
+    },
+    death: {
+      year: 1912,
+      month: "Apr",
+      day: 6
+    }
   }
 };

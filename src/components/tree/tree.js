@@ -33,9 +33,9 @@ class Tree extends React.Component {
     const svg = d3
       .select("svg")
       .call(zoom)
-      .call(zoom.transform, d3.zoomIdentity.translate(700, 50).scale(0.8))
+      .call(zoom.transform, d3.zoomIdentity.translate(450, 120).scale(0.9))
       .append("g")
-      .attr("transform", "translate(700,50)scale(.8,.8)")
+      .attr("transform", "translate(450,120)scale(.9,.9)")
       .attr("id", "tree-container");
 
     d3.select("#tree-container")

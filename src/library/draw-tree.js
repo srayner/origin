@@ -6,23 +6,67 @@ let families = null;
 export default function drawTree(tree) {
   people = tree.people;
   families = tree.families;
-  addNodesToSVG();
   addLinksToSVG();
+  addNodesToSVG();
 }
 
 /*
  * Adds all nodes to the SVG
  */
 function addNodesToSVG() {
+  const node = d3.select("g.nodes");
+  console.log(node);
   Object.keys(people).forEach(key => {
-    d3.select("g")
+    const person = people[key];
+    if (!person.positioned) {
+      return;
+    }
+
+    node
+      .append("rect")
+      .attr("x", person.x - 45)
+      .attr("y", person.y - 25)
+      .attr("width", 90)
+      .attr("height", 50)
+      .attr("fill", "white");
+
+    // image
+    node
+      .append("image")
+      .attr("x", person.x - 45)
+      .attr("y", person.y - 115)
+      .attr("width", 90)
+      .attr("height", 90)
+      .attr("href", person.gender === "male" ? "male.png" : "female.png");
+
+    // forenames
+    node
       .append("text")
-      .attr("x", people[key].x)
-      .attr("y", people[key].y)
+      .attr("x", person.x)
+      .attr("y", person.y - 11)
       .attr("text-anchor", "middle")
       .attr("font-size", "12px")
       .attr("font-weight", "600")
-      .text(people[key].id);
+      .text(person.forenames);
+
+    // surname
+    node
+      .append("text")
+      .attr("x", person.x)
+      .attr("y", person.y + 3)
+      .attr("text-anchor", "middle")
+      .attr("font-size", "12px")
+      .attr("font-weight", "600")
+      .text(person.surname);
+
+    // lifespan
+    node
+      .append("text")
+      .attr("x", person.x)
+      .attr("y", person.y + 20)
+      .attr("text-anchor", "middle")
+      .attr("font-size", "11px")
+      .text(getLifeSpan(person));
   });
   Object.keys(families).forEach(key => {
     d3.select("g")
@@ -50,7 +94,7 @@ function addLinksToSVG() {
 }
 
 function childPath(family, child) {
-  return "M" + family.x + "," + family.y + "v160H" + child.x + "V" + child.y;
+  return "M" + family.x + "," + family.y + "v55H" + child.x + "V" + child.y;
 }
 
 function parentPath(family, parent) {
@@ -59,7 +103,7 @@ function parentPath(family, parent) {
 
 function addLink(source, target, type) {
   if (type === "child") {
-    d3.select("g")
+    d3.select("g.links")
       .append("path")
       .attr("d", childPath(source, target))
       .attr("stroke", "#AEACA2")
@@ -67,11 +111,17 @@ function addLink(source, target, type) {
       .attr("fill", "none");
   } else {
     const stroke = target.gender === "male" ? "#68c2c2" : "#f58888";
-    d3.select("g")
+    d3.select("g.links")
       .append("path")
       .attr("d", parentPath(source, target))
       .attr("stroke", stroke)
       .attr("stroke-width", 2)
       .attr("fill", "none");
   }
+}
+
+function getLifeSpan(person) {
+  const birth = person.birth ? person.birth.year.toString() : "";
+  const death = person.death ? " - " + person.death.year.toString() : "";
+  return birth + death;
 }

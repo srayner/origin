@@ -58,7 +58,7 @@ export const people = {
   p3: {
     id: "p3",
     forenames: "William",
-    surname: "Appleton",
+    surname: "Fletcher",
     gender: "male",
     parents: null,
     spouces: ["f2"],
@@ -76,7 +76,7 @@ export const people = {
   p4: {
     id: "p4",
     forenames: "Joanne",
-    surname: "Appleton",
+    surname: "Baynes",
     gender: "female",
     parents: null,
     spouces: ["f2"],
@@ -94,7 +94,7 @@ export const people = {
   p5: {
     id: "p5",
     forenames: "Henry",
-    surname: "Appleton",
+    surname: "Coats",
     gender: "male",
     parents: null,
     spouces: ["f3"],
@@ -148,7 +148,7 @@ export const people = {
   p8: {
     id: "p8",
     forenames: "Caroline",
-    surname: "Appleton",
+    surname: "Fletcher",
     gender: "female",
     parents: "f2",
     spouces: ["f4"],
@@ -166,7 +166,7 @@ export const people = {
   p9: {
     id: "p9",
     forenames: "Wilfred",
-    surname: "Appleton",
+    surname: "Akred",
     gender: "male",
     parents: null,
     spouces: ["f5"],
@@ -184,7 +184,7 @@ export const people = {
   p10: {
     id: "p10",
     forenames: "Anne",
-    surname: "Appleton",
+    surname: "Coats",
     gender: "female",
     parents: "f3",
     spouces: ["f5"],
@@ -202,7 +202,7 @@ export const people = {
   p11: {
     id: "p11",
     forenames: "Sharlene",
-    surname: "Appleton",
+    surname: "Coats",
     gender: "female",
     parents: "f3",
     spouces: [],
@@ -220,7 +220,7 @@ export const people = {
   p12: {
     id: "p12",
     forenames: "Charles",
-    surname: "Appleton",
+    surname: "Coats",
     gender: "male",
     parents: "f3",
     spouces: ["f6"],
@@ -256,7 +256,7 @@ export const people = {
   p14: {
     id: "p14",
     forenames: "Frederick",
-    surname: "Appleton",
+    surname: "Swanson",
     gender: "male",
     parents: null,
     spouces: ["f7"],
@@ -274,7 +274,7 @@ export const people = {
   p15: {
     id: "p15",
     forenames: "Jonathon",
-    surname: "Appleton",
+    surname: "Akred",
     gender: "male",
     parents: "f5",
     spouces: [],
@@ -292,7 +292,7 @@ export const people = {
   p16: {
     id: "p16",
     forenames: "Alexandra",
-    surname: "Appleton",
+    surname: "Coats",
     gender: "female",
     parents: "f6",
     spouces: [],
@@ -310,7 +310,7 @@ export const people = {
   p17: {
     id: "p17",
     forenames: "Stephen",
-    surname: "Appleton",
+    surname: "Swanson",
     gender: "male",
     parents: "f7",
     spouces: [],
@@ -328,7 +328,7 @@ export const people = {
 
   p18: {
     id: "p18",
-    forenames: "Extra person",
+    forenames: "John Alan",
     surname: "Appleton",
     gender: "male",
     parents: "f1",
@@ -347,7 +347,7 @@ export const people = {
 
   p19: {
     id: "p19",
-    forenames: "Extra person",
+    forenames: "George W",
     surname: "Appleton",
     gender: "male",
     parents: "f1",

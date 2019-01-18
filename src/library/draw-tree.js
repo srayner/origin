@@ -4,17 +4,29 @@ import { start } from "pretty-error";
 let people = null;
 let families = null;
 
-export default function drawTree(tree) {
+export default function drawTree(tree, clickHandler) {
   people = tree.people;
   families = tree.families;
   addLinksToSVG();
-  addNodesToSVG();
+  addNodesToSVG(clickHandler);
+}
+
+function mouseOver(d, i) {
+  console.log(this);
+  console.log(i);
+  d3.select(this).attr("stroke", "orange");
+}
+
+function mouseOut(d, i) {
+  console.log(d);
+  console.log(i);
+  d3.select(this).attr("stroke", "transparent");
 }
 
 /*
  * Adds all nodes to the SVG
  */
-function addNodesToSVG() {
+function addNodesToSVG(clickHandler) {
   const node = d3.select("g.nodes");
   console.log(node);
   Object.keys(people).forEach(key => {
@@ -68,7 +80,23 @@ function addNodesToSVG() {
       .attr("text-anchor", "middle")
       .attr("font-size", "11px")
       .text(getLifeSpan(person));
+
+    // overlay
+    node
+      .append("rect")
+      .attr("x", person.x - 46)
+      .attr("y", person.y - 116)
+      .attr("width", 92)
+      .attr("height", 142)
+      .attr("stroke-width", 3)
+      .attr("fill", "transparent")
+      .on("click", () => {
+        clickHandler(person);
+      })
+      .on("mouseover", mouseOver)
+      .on("mouseout", mouseOut);
   });
+
   Object.keys(families).forEach(key => {
     d3.select("g")
       .append("circle")

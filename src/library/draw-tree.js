@@ -1,4 +1,5 @@
 import * as d3 from "d3";
+import { start } from "pretty-error";
 
 let people = null;
 let families = null;
@@ -94,7 +95,13 @@ function addLinksToSVG() {
 }
 
 function childPath(family, child) {
-  return "M" + family.x + "," + family.y + "v55H" + child.x + "V" + child.y;
+  const d = Math.sign(child.x - family.x);
+  const l1 = "M" + family.x + "," + family.y + "v50";
+  const l2 = "l" + 5 * d + ",5";
+  const l3 = "h" + (child.x - family.x - 10 * d);
+  const l4 = "L" + child.x + "," + (family.y + 60);
+  const l5 = "V" + child.y;
+  return l1 + l2 + l3 + l4 + l5;
 }
 
 function parentPath(family, parent) {

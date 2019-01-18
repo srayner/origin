@@ -25,7 +25,7 @@ const StyledLink = styled(NavLink)`
   color: #ddd;
   text-decoration: none;
   &.active {
-    border-color: #36c942;
+    border-color: orange;
     color: white;
   }
   :hover {

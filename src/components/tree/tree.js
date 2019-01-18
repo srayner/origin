@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import * as d3 from "d3";
 import updateTree from "../../library/tree";
+import { withRouter } from "react-router-dom";
 
 const Svg = styled.svg`
   position: absolute;
@@ -17,6 +18,10 @@ class Tree extends React.Component {
   delta() {
     return (-d3.event.deltaY * (d3.event.deltaMode ? 120 : 1)) / 100;
   }
+
+  treeClick = person => {
+    this.props.history.push("/person/" + person.id);
+  };
 
   componentDidMount() {
     var zoom = d3
@@ -45,11 +50,11 @@ class Tree extends React.Component {
       .append("g")
       .attr("class", "nodes");
 
-    updateTree();
+    updateTree(this.treeClick);
   }
 
   componentDidUpdate() {
-    updateTree();
+    updateTree(this.treeClick);
   }
 
   render() {
@@ -61,4 +66,4 @@ class Tree extends React.Component {
   }
 }
 
-export default Tree;
+export default withRouter(Tree);

@@ -1,5 +1,4 @@
 import * as d3 from "d3";
-import { start } from "pretty-error";
 
 let people = null;
 let families = null;

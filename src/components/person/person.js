@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import PersonDetails from "./person-detail";
 import PersonRelationships from "./person-relationships";
 import PersonTitle from "./person-title";
+import PersonMenu from "./person-menu";
 
 const Container = styled.div`
   margin: 10px 15px;
@@ -34,6 +35,7 @@ class Person extends React.Component {
     return (
       <div>
         <PersonTitle person={person} />
+        <PersonMenu />
         <Container>
           <PersonDetails person={person} />
           <PersonRelationships

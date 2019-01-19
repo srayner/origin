@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import PersonDetails from "./person-detail";
 
 class Person extends React.Component {
   render() {
@@ -11,12 +12,7 @@ class Person extends React.Component {
     return (
       <div>
         <h1>Person</h1>
-        <dl>
-          <dt>Forenames</dt>
-          <dd>{person.forenames}</dd>
-          <dt>Surname</dt>
-          <dd>{person.surname}</dd>
-        </dl>
+        <PersonDetails person={person} />
       </div>
     );
   }

@@ -1,8 +1,12 @@
 import React from "react";
-
+import styled from "styled-components";
 import Text from "../ui/text";
 import Label from "../ui/label";
 import Radio from "../ui/radio";
+
+const Row = styled.div`
+  display: flex;
+`;
 
 class PersonDetail extends React.Component {
   dateAsText(dateObject) {
@@ -15,10 +19,16 @@ class PersonDetail extends React.Component {
     const death = this.dateAsText(person.death);
     return (
       <div>
-        <Label>Forenames</Label>
-        <Text value={person.forenames} />
-        <Label>Surname</Label>
-        <Text value={person.surname} />
+        <Row>
+          <div>
+            <Label>Forenames</Label>
+            <Text value={person.forenames} />
+          </div>
+          <div>
+            <Label>Surname</Label>
+            <Text value={person.surname} />
+          </div>
+        </Row>
         <Radio name="gender" value="male" checked={person.gender === "male"}>
           Male
         </Radio>
@@ -29,14 +39,26 @@ class PersonDetail extends React.Component {
         >
           Female
         </Radio>
-        <Label>Birth Date</Label>
-        <Text value={birth} />
-        <Label>Birth Place</Label>
-        <Text value={person.birth.place} />
-        <Label>Death Date</Label>
-        <Text value={death} />
-        <Label>Death Place</Label>
-        <Text value={person.death.place} />
+        <Row>
+          <div>
+            <Label>Birth Date</Label>
+            <Text value={birth} />
+          </div>
+          <div>
+            <Label>Birth Place</Label>
+            <Text value={person.birth.place} />
+          </div>
+        </Row>
+        <Row>
+          <div>
+            <Label>Death Date</Label>
+            <Text value={death} />
+          </div>
+          <div>
+            <Label>Death Place</Label>
+            <Text value={person.death.place} />
+          </div>
+        </Row>
       </div>
     );
   }

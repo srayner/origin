@@ -3,20 +3,17 @@ import styled from "styled-components";
 import Text from "../ui/text";
 import Label from "../ui/label";
 import Radio from "../ui/radio";
+import { dateAsText } from "../../library/person";
 
 const Row = styled.div`
   display: flex;
 `;
 
 class PersonDetail extends React.Component {
-  dateAsText(dateObject) {
-    return dateObject.day + " " + dateObject.month + " " + dateObject.year;
-  }
-
   render() {
     const { person } = this.props;
-    const birth = this.dateAsText(person.birth);
-    const death = this.dateAsText(person.death);
+    const birth = dateAsText(person.birth);
+    const death = dateAsText(person.death);
     return (
       <div>
         <Row>

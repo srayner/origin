@@ -32,15 +32,17 @@ class Person extends React.Component {
 
     console.log(children);
     return (
-      <Container>
+      <div>
         <PersonTitle person={person} />
-        <PersonDetails person={person} />
-        <PersonRelationships
-          father={father}
-          mother={mother}
-          children={children}
-        />
-      </Container>
+        <Container>
+          <PersonDetails person={person} />
+          <PersonRelationships
+            father={father}
+            mother={mother}
+            children={children}
+          />
+        </Container>
+      </div>
     );
   }
 }

@@ -1,8 +1,5 @@
 import React from "react";
-
-const fullName = person => {
-  return person ? person.forenames + " " + person.surname : "unknown";
-};
+import { fullName } from "../../library/person";
 
 const PersonRelationships = props => {
   const father = fullName(props.father);

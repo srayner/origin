@@ -1,6 +1,6 @@
-import { people } from "../data/sample-data";
+import { people as initialState } from "../data/sample-data";
 
-const tree = (state = people, action) => {
+const people = (state = initialState, action) => {
   switch (action.type) {
     case "PERSON_EDIT": {
       const { updatedPerson } = action.payload;
@@ -11,4 +11,4 @@ const tree = (state = people, action) => {
   }
 };
 
-export default tree;
+export default people;

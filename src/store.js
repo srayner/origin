@@ -1,10 +1,12 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
-import tree from "./reducers/tree";
+import people from "./reducers/people";
+import families from "./reducers/families";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // eslint-disable-line
 const rootReducer = combineReducers({
-  tree
+  families,
+  people
 });
 const store = createStore(
   rootReducer,

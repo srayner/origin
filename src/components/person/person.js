@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import PersonDetails from "./person-detail";
 import PersonRelationships from "./person-relationships";
+import PersonTitle from "./person-title";
 
 const Container = styled.div`
   margin: 10px 15px;
@@ -32,7 +33,7 @@ class Person extends React.Component {
     console.log(children);
     return (
       <Container>
-        <h1>Person</h1>
+        <PersonTitle person={person} />
         <PersonDetails person={person} />
         <PersonRelationships
           father={father}

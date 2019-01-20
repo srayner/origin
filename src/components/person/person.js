@@ -5,8 +5,16 @@ import PersonDetails from "./person-detail";
 import PersonRelationships from "./person-relationships";
 import PersonTitle from "./person-title";
 import PersonMenu from "./person-menu";
+import FloatingButton from "../ui/floating-button";
+import { startEditing } from "../../actions/person";
+import Modal from "../ui/modal";
 
 const Container = styled.div`
+  position: relative;
+  margin: 0;
+`;
+
+const DetailContainer = styled.div`
   margin: 10px 15px;
 `;
 
@@ -31,20 +39,30 @@ class Person extends React.Component {
       });
     }
 
-    console.log(children);
+    const modal = this.props.editing ? <Modal /> : null;
+
     return (
-      <div>
+      <Container>
+        <FloatingButton
+          top="10px"
+          right="10px"
+          onClick={() => {
+            this.props.startEditing();
+          }}
+        >
+          Edit
+        </FloatingButton>
         <PersonTitle person={person} />
         <PersonMenu />
-        <Container>
+        <DetailContainer>
           <PersonDetails person={person} />
           <PersonRelationships
             father={father}
             mother={mother}
             children={children}
           />
-        </Container>
-      </div>
+        </DetailContainer>
+      </Container>
     );
   }
 }
@@ -57,7 +75,11 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    startEditing: () => {
+      dispatch(startEditing());
+    }
+  };
 };
 
 export default connect(

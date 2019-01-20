@@ -25,13 +25,13 @@ const Date = styled.div`
 `;
 
 const PersonTitle = props => {
-  const img = props.person.gender == "male" ? "/male.png" : "/female.png";
+  const img = props.person.gender === "male" ? "/male.png" : "/female.png";
   const fullname = fullName(props.person);
   const birth = dateAsText(props.person.birth);
   const death = dateAsText(props.person.death);
   return (
     <Container>
-      <img src={img} />
+      <img alt="person" src={img} />
       <div>
         <FullName>{fullname}</FullName>
         <Date>BIRTH {birth}</Date>

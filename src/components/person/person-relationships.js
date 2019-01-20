@@ -4,9 +4,9 @@ import { fullName } from "../../library/person";
 const PersonRelationships = props => {
   const father = fullName(props.father);
   const mother = fullName(props.mother);
-  const children = props.children.map(person => {
+  const children = props.children.map((person, index) => {
     const fullname = fullName(person);
-    return <div>{fullname}</div>;
+    return <div key={index}>{fullname}</div>;
   });
   return (
     <div>

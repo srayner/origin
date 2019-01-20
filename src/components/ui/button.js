@@ -1,5 +1,21 @@
 import styled from "styled-components";
 
+export const Button = styled.button`
+  border-radius: 3px;
+  border: 1px solid #aaa;
+  font-size: 14px;
+  padding: 5px 10px;
+  min-width: 70px;
+  margin: 0 5px 10px 5px;
+  &:focus {
+    outline: none;
+  }
+`;
+
+export const PrimaryButton = styled(Button)`
+  background-color: orange;
+`;
+
 export const LargeCloseButton = styled.button`
   border: none;
   border-radius: 50%;

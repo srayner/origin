@@ -25,14 +25,16 @@ const Content = styled.section`
   padding: 20px;
   border: 1px solid #888;
   border-radius: 6px;
-  width: 70%;
+  width: ${props => {
+    return props.width !== undefined ? props.width : "70%";
+  }};
   position: relative;
 `;
 
-const modal = ({ handleClose, children }) => {
+const modal = ({ width, handleClose, children }) => {
   return (
     <Container>
-      <Content>
+      <Content width={width}>
         <LargeCloseButton onClick={handleClose}>
           <FontAwesomeIcon icon={faTimes} />
         </LargeCloseButton>

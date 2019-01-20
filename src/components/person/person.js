@@ -6,8 +6,10 @@ import PersonRelationships from "./person-relationships";
 import PersonTitle from "./person-title";
 import PersonMenu from "./person-menu";
 import FloatingButton from "../ui/floating-button";
-import { startEditing } from "../../actions/person";
+import { startEditing, cancelEditing, endEditing } from "../../actions/person";
 import Modal from "../ui/modal";
+import { Button, PrimaryButton } from "../ui/button";
+import ButtonGroup from "../ui/button-group";
 
 const Container = styled.div`
   position: relative;
@@ -39,7 +41,27 @@ class Person extends React.Component {
       });
     }
 
-    const modal = this.props.editing ? <Modal /> : null;
+    const modal = this.props.editingPerson ? (
+      <Modal width="50%" handleClose={this.props.cancelEditing}>
+        <PersonDetails person={this.props.editingPerson} />
+        <ButtonGroup>
+          <PrimaryButton
+            onClick={() => {
+              this.props.endEditing();
+            }}
+          >
+            OK
+          </PrimaryButton>
+          <Button
+            onClick={() => {
+              this.props.cancelEditing();
+            }}
+          >
+            Cancel
+          </Button>
+        </ButtonGroup>
+      </Modal>
+    ) : null;
 
     return (
       <Container>
@@ -47,7 +69,7 @@ class Person extends React.Component {
           top="10px"
           right="10px"
           onClick={() => {
-            this.props.startEditing();
+            this.props.startEditing({ ...person });
           }}
         >
           Edit
@@ -62,6 +84,7 @@ class Person extends React.Component {
             children={children}
           />
         </DetailContainer>
+        {modal}
       </Container>
     );
   }
@@ -69,6 +92,7 @@ class Person extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    editingPerson: state.person.person,
     people: state.people,
     families: state.families
   };
@@ -76,8 +100,14 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    startEditing: () => {
-      dispatch(startEditing());
+    startEditing: person => {
+      dispatch(startEditing(person));
+    },
+    cancelEditing: () => {
+      dispatch(cancelEditing());
+    },
+    endEditing: () => {
+      dispatch(endEditing());
     }
   };
 };

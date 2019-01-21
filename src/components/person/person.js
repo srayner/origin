@@ -47,6 +47,7 @@ class Person extends React.Component {
       <Modal width="50%" handleClose={this.props.cancelEditing}>
         <PersonDetails
           person={this.props.editingPerson}
+          cancelEditing={this.props.cancelEditing}
           endEditing={this.props.endEditing}
         />
       </Modal>

@@ -14,6 +14,7 @@ const Radio = props => {
         name={props.name}
         value={props.value}
         checked={props.checked}
+        onChange={props.onChange}
       />
       {props.children}
     </Label>

@@ -26,6 +26,12 @@ class PersonDetail extends React.Component {
     this.setState({ surname });
   };
 
+  onChangeGender = event => {
+    const gender = event.target.value;
+    console.log(gender);
+    this.setState({ gender });
+  };
+
   render() {
     const { person } = this.props;
     const birth = dateAsText(person.birth);
@@ -45,13 +51,19 @@ class PersonDetail extends React.Component {
             <Text value={this.state.surname} onChange={this.onChangeSurname} />
           </div>
         </Row>
-        <Radio name="gender" value="male" checked={person.gender === "male"}>
+        <Radio
+          name="gender"
+          value="male"
+          checked={this.state.gender === "male"}
+          onChange={this.onChangeGender}
+        >
           Male
         </Radio>
         <Radio
           name="gender"
           value="female"
-          checked={person.gender === "female"}
+          checked={this.state.gender === "female"}
+          onChange={this.onChangeGender}
         >
           Female
         </Radio>

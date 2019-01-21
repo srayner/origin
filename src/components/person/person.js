@@ -8,8 +8,6 @@ import PersonMenu from "./person-menu";
 import FloatingButton from "../ui/floating-button";
 import { startEditing, cancelEditing, endEditing } from "../../actions/person";
 import Modal from "../ui/modal";
-import { Button, PrimaryButton } from "../ui/button";
-import ButtonGroup from "../ui/button-group";
 
 const Container = styled.div`
   position: relative;
@@ -21,6 +19,10 @@ const DetailContainer = styled.div`
 `;
 
 class Person extends React.Component {
+  fullName(person) {
+    return person ? person.forenames + " " + person.surname : "unknown";
+  }
+
   render() {
     const person = this.props.people[this.props.match.params.personId];
     let father = null;
@@ -43,26 +45,14 @@ class Person extends React.Component {
 
     const modal = this.props.editingPerson ? (
       <Modal width="50%" handleClose={this.props.cancelEditing}>
-        <PersonDetails person={this.props.editingPerson} />
-        <ButtonGroup>
-          <PrimaryButton
-            onClick={() => {
-              this.props.endEditing();
-            }}
-          >
-            OK
-          </PrimaryButton>
-          <Button
-            onClick={() => {
-              this.props.cancelEditing();
-            }}
-          >
-            Cancel
-          </Button>
-        </ButtonGroup>
+        <PersonDetails
+          person={this.props.editingPerson}
+          endEditing={this.props.endEditing}
+        />
       </Modal>
     ) : null;
 
+    const name = this.fullName(person);
     return (
       <Container>
         <FloatingButton
@@ -77,7 +67,12 @@ class Person extends React.Component {
         <PersonTitle person={person} />
         <PersonMenu />
         <DetailContainer>
-          <PersonDetails person={person} />
+          <div>
+            <dl>
+              <dt>Name:</dt>
+              <dd>{name}</dd>
+            </dl>
+          </div>
           <PersonRelationships
             father={father}
             mother={mother}
@@ -106,8 +101,8 @@ const mapDispatchToProps = dispatch => {
     cancelEditing: () => {
       dispatch(cancelEditing());
     },
-    endEditing: () => {
-      dispatch(endEditing());
+    endEditing: updatedPerson => {
+      dispatch(endEditing(updatedPerson));
     }
   };
 };

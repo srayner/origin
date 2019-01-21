@@ -11,8 +11,9 @@ export function cancelEditing() {
   };
 }
 
-export function endEditing() {
+export function endEditing(updatedPerson) {
   return {
-    type: "PERSON_EDIT_END"
+    type: "PERSON_EDIT_END",
+    payload: { updatedPerson }
   };
 }

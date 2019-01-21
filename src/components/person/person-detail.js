@@ -4,12 +4,28 @@ import Text from "../ui/text";
 import Label from "../ui/label";
 import Radio from "../ui/radio";
 import { dateAsText } from "../../library/person";
+import { Button, PrimaryButton } from "../ui/button";
+import ButtonGroup from "../ui/button-group";
 
 const Row = styled.div`
   display: flex;
 `;
 
 class PersonDetail extends React.Component {
+  state = {
+    ...this.props.person
+  };
+
+  onChangeForenames = event => {
+    const forenames = event.target.value;
+    this.setState({ forenames });
+  };
+
+  onChangeSurname = event => {
+    const surname = event.target.value;
+    this.setState({ surname });
+  };
+
   render() {
     const { person } = this.props;
     const birth = dateAsText(person.birth);
@@ -19,11 +35,14 @@ class PersonDetail extends React.Component {
         <Row>
           <div>
             <Label>Forenames</Label>
-            <Text value={person.forenames} />
+            <Text
+              value={this.state.forenames}
+              onChange={this.onChangeForenames}
+            />
           </div>
           <div>
             <Label>Surname</Label>
-            <Text value={person.surname} />
+            <Text value={this.state.surname} onChange={this.onChangeSurname} />
           </div>
         </Row>
         <Radio name="gender" value="male" checked={person.gender === "male"}>
@@ -56,6 +75,22 @@ class PersonDetail extends React.Component {
             <Text value={person.death.place} />
           </div>
         </Row>
+        <ButtonGroup>
+          <PrimaryButton
+            onClick={() => {
+              this.props.endEditing({ ...this.state });
+            }}
+          >
+            OK
+          </PrimaryButton>
+          <Button
+            onClick={() => {
+              this.props.cancelEditing();
+            }}
+          >
+            Cancel
+          </Button>
+        </ButtonGroup>
       </div>
     );
   }

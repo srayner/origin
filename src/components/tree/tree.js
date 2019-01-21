@@ -3,6 +3,7 @@ import styled from "styled-components";
 import * as d3 from "d3";
 import updateTree from "../../library/tree";
 import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 
 const Svg = styled.svg`
   position: absolute;
@@ -22,6 +23,11 @@ class Tree extends React.Component {
   treeClick = person => {
     this.props.history.push("/person/" + person.id);
   };
+
+  renderTree() {
+    const { people, families } = this.props;
+    updateTree(people, families, this.treeClick);
+  }
 
   componentDidMount() {
     var zoom = d3
@@ -50,11 +56,11 @@ class Tree extends React.Component {
       .append("g")
       .attr("class", "nodes");
 
-    updateTree(this.treeClick);
+    this.renderTree();
   }
 
   componentDidUpdate() {
-    updateTree(this.treeClick);
+    this.renderTree();
   }
 
   render() {
@@ -66,4 +72,16 @@ class Tree extends React.Component {
   }
 }
 
-export default withRouter(Tree);
+const mapStateToProps = state => {
+  return {
+    people: state.people,
+    families: state.families
+  };
+};
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    null
+  )(Tree)
+);

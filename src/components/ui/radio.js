@@ -6,10 +6,15 @@ const Label = styled.label`
   margin: 0 5px 20px 5px;
 `;
 
+const Input = styled.input`
+  margin: 1px 5px 0 1px;
+  vertical-align: top;
+`;
+
 const Radio = props => {
   return (
     <Label>
-      <input
+      <Input
         type="radio"
         name={props.name}
         value={props.value}

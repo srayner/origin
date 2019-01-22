@@ -11,6 +11,12 @@ const Row = styled.div`
   display: flex;
 `;
 
+const VerticleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+`;
+
 class PersonDetail extends React.Component {
   state = {
     ...this.props.person
@@ -28,8 +34,12 @@ class PersonDetail extends React.Component {
 
   onChangeGender = event => {
     const gender = event.target.value;
-    console.log(gender);
     this.setState({ gender });
+  };
+
+  onChangeStatus = event => {
+    const status = event.target.value;
+    this.setState({ status });
   };
 
   onChangeBirthPlace = event => {
@@ -61,22 +71,46 @@ class PersonDetail extends React.Component {
             <Text value={this.state.surname} onChange={this.onChangeSurname} />
           </div>
         </Row>
-        <Radio
-          name="gender"
-          value="male"
-          checked={this.state.gender === "male"}
-          onChange={this.onChangeGender}
-        >
-          Male
-        </Radio>
-        <Radio
-          name="gender"
-          value="female"
-          checked={this.state.gender === "female"}
-          onChange={this.onChangeGender}
-        >
-          Female
-        </Radio>
+        <Row>
+          <VerticleContainer>
+            <Label>Gender</Label>
+            <Radio
+              name="gender"
+              value="male"
+              checked={this.state.gender === "male"}
+              onChange={this.onChangeGender}
+            >
+              Male
+            </Radio>
+            <Radio
+              name="gender"
+              value="female"
+              checked={this.state.gender === "female"}
+              onChange={this.onChangeGender}
+            >
+              Female
+            </Radio>
+          </VerticleContainer>
+          <VerticleContainer>
+            <Label>Status</Label>
+            <Radio
+              name="status"
+              value="alive"
+              checked={this.state.status === "alive"}
+              onChange={this.onChangeStatus}
+            >
+              Alive
+            </Radio>
+            <Radio
+              name="status"
+              value="deceased"
+              checked={this.state.status === "deceased"}
+              onChange={this.onChangeStatus}
+            >
+              Deceased
+            </Radio>
+          </VerticleContainer>
+        </Row>
         <Row>
           <div>
             <Label>Birth Date</Label>

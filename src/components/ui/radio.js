@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Label = styled.label`
   display: inline-block;
-  margin: 0 5px 20px 5px;
+  margin: 0 5px 5px 5px;
 `;
 
 const Input = styled.input`

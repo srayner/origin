@@ -32,6 +32,16 @@ class PersonDetail extends React.Component {
     this.setState({ gender });
   };
 
+  onChangeBirthPlace = event => {
+    const birthPlace = event.target.value;
+    this.setState({ birthPlace });
+  };
+
+  onChangeDeathPlace = event => {
+    const deathPlace = event.target.value;
+    this.setState({ deathPlace });
+  };
+
   render() {
     const { person } = this.props;
     const birth = dateAsText(person.birth);
@@ -74,7 +84,10 @@ class PersonDetail extends React.Component {
           </div>
           <div>
             <Label>Birth Place</Label>
-            <Text value={person.birth.place} />
+            <Text
+              value={person.birthPlace}
+              onChange={this.onChangeBirthPlace}
+            />
           </div>
         </Row>
         <Row>
@@ -84,7 +97,10 @@ class PersonDetail extends React.Component {
           </div>
           <div>
             <Label>Death Place</Label>
-            <Text value={person.death.place} />
+            <Text
+              value={person.deathPlace}
+              onChange={this.onChangeDeathPlace}
+            />
           </div>
         </Row>
         <ButtonGroup>

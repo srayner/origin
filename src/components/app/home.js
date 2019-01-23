@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Panel from "../ui/panel";
+import TreesPanel from "../home/trees-panel";
 
 const Container = styled.div`
   margin: 0;
@@ -25,6 +26,7 @@ const Home = props => {
           people to grow your tree.
         </p>
       </Panel>
+      <TreesPanel />
     </Container>
   );
 };

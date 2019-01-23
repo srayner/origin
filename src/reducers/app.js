@@ -1,6 +1,7 @@
 const initialState = {
   trees: {},
-  addingTree: false
+  addingTree: false,
+  editingTree: false
 };
 
 const app = (state = initialState, action) => {
@@ -14,6 +15,9 @@ const app = (state = initialState, action) => {
       const { tree } = action.payload;
       const trees = { ...state.trees, [tree.name]: tree };
       return { ...state, trees, addingTree: false };
+    case "EDIT_TREE_START": {
+      return { ...state, editingTree: true };
+    }
     default:
       return state;
   }

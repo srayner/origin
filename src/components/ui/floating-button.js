@@ -9,6 +9,7 @@ const Container = styled.div`
   right: ${props => {
     return props.right;
   }};
+  z-index: 1;
 `;
 
 const Button = styled.button`

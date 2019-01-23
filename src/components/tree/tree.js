@@ -4,6 +4,8 @@ import * as d3 from "d3";
 import updateTree from "../../library/tree";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import FloatingButton from "../ui/floating-button";
+import { editTreeStart } from "../../actions/app";
 
 const Svg = styled.svg`
   position: absolute;
@@ -66,6 +68,15 @@ class Tree extends React.Component {
   render() {
     return (
       <div>
+        <FloatingButton
+          top="56px"
+          right="10px"
+          onClick={() => {
+            this.props.editTreeStart();
+          }}
+        >
+          Edit Tree
+        </FloatingButton>
         <Svg ref={el => (this.svgEl = el)} />
       </div>
     );
@@ -79,9 +90,15 @@ const mapStateToProps = state => {
   };
 };
 
+const mapDispatchToProps = dispatch => {
+  return {
+    editTreeStart: () => dispatch(editTreeStart())
+  };
+};
+
 export default withRouter(
   connect(
     mapStateToProps,
-    null
+    mapDispatchToProps
   )(Tree)
 );

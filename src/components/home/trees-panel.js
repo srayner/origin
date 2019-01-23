@@ -9,20 +9,40 @@ const Icon = styled(FontAwesomeIcon)`
 `;
 
 const Link = styled.span`
+  margin-bottom: 10px;
   &:hover {
     color: orange;
     cursor: pointer;
   }
 `;
 
+const Trees = styled.ul`
+  margin: 0;
+  padding: 0;
+`;
+
+const Tree = styled.li`
+  margin: 0;
+  padding: 5px 0;
+  list-style: none;
+`;
+
 const TreesPanel = props => {
+  const trees = Object.keys(props.trees).map((key, index) => {
+    return <Tree key={index}>{props.trees[key].name}</Tree>;
+  });
   return (
     <Panel>
       <h2>Trees</h2>
-      <Link>
+      <Link
+        onClick={() => {
+          props.onNewTree();
+        }}
+      >
         <Icon icon={faPlus} />
         Add new tree
       </Link>
+      <Trees>{trees}</Trees>
     </Panel>
   );
 };

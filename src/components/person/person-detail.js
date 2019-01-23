@@ -52,6 +52,52 @@ class PersonDetail extends React.Component {
     this.setState({ deathPlace });
   };
 
+  onChangeBirthDate = event => {
+    const values = event.target.value.split(" ");
+    let day, month, year;
+    switch (values.length) {
+      case 1:
+        day = null;
+        month = null;
+        year = values[0];
+      case 2:
+        day = null;
+        month = values[0];
+        year = values[1];
+      case 3:
+        day = values[0];
+        month = values[1];
+        year = values[2];
+    }
+  };
+
+  validDay = day => {
+    return day >= 1 && day <= 31;
+  };
+
+  validMonth = month => {
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ];
+    return months.indexOf(month) !== -1;
+  };
+
+  validYear = year => {
+    const currentYear = new Date().getFullYear();
+    return year >= 1 && year <= currentYear;
+  };
+
   render() {
     const { person } = this.props;
     const birth = dateAsText(person.birth);

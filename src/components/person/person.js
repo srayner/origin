@@ -8,6 +8,7 @@ import PersonMenu from "./person-menu";
 import FloatingButton from "../ui/floating-button";
 import { startEditing, cancelEditing, endEditing } from "../../actions/person";
 import Modal from "../ui/modal";
+import LifeStory from "./life-story";
 
 const Container = styled.div`
   position: relative;
@@ -69,10 +70,7 @@ class Person extends React.Component {
         <PersonMenu />
         <DetailContainer>
           <div>
-            <dl>
-              <dt>Name:</dt>
-              <dd>{name}</dd>
-            </dl>
+            <LifeStory person={person} />
           </div>
           <PersonRelationships
             father={father}

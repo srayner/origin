@@ -6,7 +6,7 @@ export const Button = styled.button`
   font-size: 14px;
   padding: 5px 10px;
   min-width: 70px;
-  margin: 0 5px 10px 5px;
+  margin: 0 5px;
   &:focus {
     outline: none;
   }

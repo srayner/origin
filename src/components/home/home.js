@@ -2,9 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import Panel from "../ui/panel";
+import PanelHeader from "../ui/panel-header";
 import TreesPanel from "./trees-panel";
 import { addTreeStart, addTreeCancel, addTreeEnd } from "../../actions/app";
 import NewTreeModal from "./new-tree-modal";
+import Search from "./search";
+import Indexes from "./indexes";
 
 const Container = styled.div`
   margin: 0;
@@ -27,7 +30,7 @@ const Home = props => {
     <Container>
       <h1>Home</h1>
       <Panel>
-        <h2>Getting started</h2>
+        <PanelHeader>Getting started</PanelHeader>
         <p>
           Build and manage family trees by entering what you alredy know
           manually, then searching the avaiable indexes to find and add more
@@ -40,6 +43,8 @@ const Home = props => {
         </p>
       </Panel>
       <TreesPanel trees={props.trees} onNewTree={props.addTreeStart} />
+      <Search />
+      <Indexes />
       {modal}
     </Container>
   );

@@ -1,3 +1,16 @@
+import api from "../data/api";
+
+export function loadTrees() {
+  return dispatch => {
+    api.indexTrees().then(trees => {
+      dispatch({
+        type: "LOAD_TREES_END",
+        payload: { trees }
+      });
+    });
+  };
+}
+
 export function addTreeStart() {
   return { type: "ADD_TREE_START" };
 }
@@ -8,6 +21,7 @@ export function addTreeCancel() {
 
 export function addTreeEnd(treeName) {
   const tree = { name: treeName };
+  api.postTree(tree);
   return {
     type: "ADD_TREE_END",
     payload: { tree }
@@ -24,6 +38,7 @@ export function editTreeCancel() {
 
 export function editTreeEnd(treeName) {
   const tree = { name: treeName };
+  api.patchTree(tree);
   return {
     type: "EDIT_TREE_END",
     payload: { tree }

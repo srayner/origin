@@ -5,7 +5,7 @@ import updateTree from "../../library/tree";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import FloatingButton from "../ui/floating-button";
-import { editTreeStart } from "../../actions/app";
+import { editTreeStart } from "../../actions/trees";
 
 const Svg = styled.svg`
   position: absolute;

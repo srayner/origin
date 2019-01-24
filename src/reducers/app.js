@@ -6,6 +6,13 @@ const initialState = {
 
 const app = (state = initialState, action) => {
   switch (action.type) {
+    case "LOAD_TREES_END": {
+      const trees = action.payload.trees.reduce(function(acc, cur, i) {
+        acc[cur.id] = cur;
+        return acc;
+      }, {});
+      return { ...state, trees };
+    }
     case "ADD_TREE_START": {
       return { ...state, addingTree: true };
     }

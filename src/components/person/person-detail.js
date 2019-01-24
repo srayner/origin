@@ -60,15 +60,23 @@ class PersonDetail extends React.Component {
         day = null;
         month = null;
         year = values[0];
+        break;
       case 2:
         day = null;
         month = values[0];
         year = values[1];
+        break;
       case 3:
         day = values[0];
         month = values[1];
         year = values[2];
+        break;
+      default:
+        day = null;
+        month = null;
+        year = null;
     }
+    return this.validDay(day) && this.validMonth(month) && this.validYear(year);
   };
 
   validDay = day => {

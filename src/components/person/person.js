@@ -54,7 +54,6 @@ class Person extends React.Component {
       </Modal>
     ) : null;
 
-    const name = this.fullName(person);
     return (
       <Container>
         <FloatingButton

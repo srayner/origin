@@ -34,7 +34,6 @@ const StyledLink = styled(NavLink)`
 `;
 
 const Menu = props => {
-  console.log(props);
   return (
     <Container>
       <Item>

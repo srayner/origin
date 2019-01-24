@@ -8,6 +8,7 @@ import { addTreeStart, addTreeCancel, addTreeEnd } from "../../actions/app";
 import NewTreeModal from "./new-tree-modal";
 import Search from "./search";
 import Indexes from "./indexes";
+import { Button } from "../ui/button";
 
 const Container = styled.div`
   margin: 0;
@@ -45,6 +46,8 @@ const Home = props => {
       <TreesPanel trees={props.trees} onNewTree={props.addTreeStart} />
       <Search />
       <Indexes />
+      <Button>Import</Button>
+      <Button>Export</Button>
       {modal}
     </Container>
   );

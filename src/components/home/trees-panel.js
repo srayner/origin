@@ -35,13 +35,18 @@ const Tree = styled.li`
   }
 `;
 
+const StyledLink = styled(NavLink)`
+  color: steelblue;
+  text-decoration: none;
+`;
+
 const TreesPanel = props => {
   const trees = Object.keys(props.trees).map((key, index) => {
     return (
       <Tree key={index}>
-        <NavLink to={"/tree/" + props.trees[key].id}>
+        <StyledLink to={"/tree/" + props.trees[key].id}>
           {props.trees[key].name}
-        </NavLink>
+        </StyledLink>
       </Tree>
     );
   });

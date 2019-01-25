@@ -27,6 +27,7 @@ class Tree extends React.Component {
   };
 
   renderTree() {
+    console.log("render tree");
     const { people, families } = this.props;
     updateTree(people, families, this.treeClick);
   }

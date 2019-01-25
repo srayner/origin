@@ -43,7 +43,7 @@ class App extends Component {
           <Route path="/sign-up" exact component={SignUp} />
           <Route path="/login" exact component={Login} />
           <Route path="/person/:personId" exact component={Person} />
-          <Route path="/tree" exact component={Tree} />
+          <Route path="/tree/:treeId" exact component={Tree} />
           <Route path="/results" exact component={Results} />
           <Route path="/profile" exact component={Profile} />
         </Container>

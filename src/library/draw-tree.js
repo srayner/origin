@@ -49,7 +49,7 @@ function addNodesToSVG(clickHandler) {
       .attr("y", person.y - 115)
       .attr("width", 90)
       .attr("height", 90)
-      .attr("href", person.gender === "male" ? "male.png" : "female.png");
+      .attr("href", person.gender === "male" ? "/male.png" : "/female.png");
 
     // forenames
     node

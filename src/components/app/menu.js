@@ -41,7 +41,7 @@ const Menu = props => {
           Home
         </StyledLink>
       </Item>
-      <StyledLink exact to="/tree">
+      <StyledLink exact to="/tree/xxx">
         Tree
       </StyledLink>
       <Item>

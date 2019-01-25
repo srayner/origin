@@ -5,6 +5,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import BlackButton from "../ui/black-button";
 import Link from "../ui/link";
+import { NavLink } from "react-router-dom";
 
 const Icon = styled(FontAwesomeIcon)`
   margin-right: 3px;
@@ -38,7 +39,9 @@ const TreesPanel = props => {
   const trees = Object.keys(props.trees).map((key, index) => {
     return (
       <Tree key={index}>
-        <Link>{props.trees[key].name}</Link>
+        <NavLink to={"/tree/" + props.trees[key].id}>
+          {props.trees[key].name}
+        </NavLink>
       </Tree>
     );
   });

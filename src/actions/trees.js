@@ -1,4 +1,5 @@
 import api from "../data/api";
+const uuidv4 = require("uuid/v4");
 
 export function loadTrees() {
   return dispatch => {
@@ -20,7 +21,7 @@ export function addTreeCancel() {
 }
 
 export function addTreeEnd(treeName) {
-  const tree = { name: treeName };
+  const tree = { id: uuidv4(), name: treeName };
   api.postTree(tree);
   return {
     type: "ADD_TREE_END",

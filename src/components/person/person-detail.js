@@ -2,19 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import Text from "../ui/text";
 import Label from "../ui/label";
+import VerticalText from "../ui/vertical-text";
 import Radio from "../ui/radio";
 import { dateAsText } from "../../library/person";
 import { Button, PrimaryButton } from "../ui/button";
 import ButtonGroup from "../ui/button-group";
-
-const Row = styled.div`
-  display: flex;
-`;
+import FormRow from "../ui/form-row";
 
 const VerticleContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin: 20px 5px;
 `;
 
 class PersonDetail extends React.Component {
@@ -112,20 +110,19 @@ class PersonDetail extends React.Component {
     const death = dateAsText(person.death);
     return (
       <div>
-        <Row>
-          <div>
-            <Label>Forenames</Label>
-            <Text
-              value={this.state.forenames}
-              onChange={this.onChangeForenames}
-            />
-          </div>
-          <div>
-            <Label>Surname</Label>
-            <Text value={this.state.surname} onChange={this.onChangeSurname} />
-          </div>
-        </Row>
-        <Row>
+        <FormRow>
+          <VerticalText
+            caption="Forenames"
+            value={this.state.forenames}
+            onChange={this.onChangeForenames}
+          />
+          <VerticalText
+            caption="Surname"
+            value={this.state.surname}
+            onChange={this.onChangeSurname}
+          />
+        </FormRow>
+        <FormRow>
           <VerticleContainer>
             <Label>Gender</Label>
             <Radio
@@ -164,33 +161,23 @@ class PersonDetail extends React.Component {
               Deceased
             </Radio>
           </VerticleContainer>
-        </Row>
-        <Row>
-          <div>
-            <Label>Birth Date</Label>
-            <Text value={birth} />
-          </div>
-          <div>
-            <Label>Birth Place</Label>
-            <Text
-              value={person.birthPlace}
-              onChange={this.onChangeBirthPlace}
-            />
-          </div>
-        </Row>
-        <Row>
-          <div>
-            <Label>Death Date</Label>
-            <Text value={death} />
-          </div>
-          <div>
-            <Label>Death Place</Label>
-            <Text
-              value={person.deathPlace}
-              onChange={this.onChangeDeathPlace}
-            />
-          </div>
-        </Row>
+        </FormRow>
+        <FormRow>
+          <VerticalText caption="Birth Date" value={birth} />
+          <VerticalText
+            caption="Birth Place"
+            value={person.birthPlace}
+            onChange={this.onChangeBirthPlace}
+          />
+        </FormRow>
+        <FormRow>
+          <VerticalText caption="Death Date" value={death} />
+          <VerticalText
+            caption="Death Place"
+            value={person.deathPlace}
+            onChange={this.onChangeDeathPlace}
+          />
+        </FormRow>
         <ButtonGroup>
           <PrimaryButton
             onClick={() => {

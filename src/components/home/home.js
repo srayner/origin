@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import Panel from "../ui/panel";
-import PanelHeader from "../ui/panel-header";
 import TreesPanel from "./trees-panel";
 import {
   loadTrees,
@@ -14,11 +12,29 @@ import NewTreeModal from "./new-tree-modal";
 import Search from "./search";
 import Indexes from "./indexes";
 import { Button } from "../ui/button";
+import GettingStartedPanel from "./getting-started-panel";
 
 const Container = styled.div`
-  margin: 0;
+  margin: 0 auto;
   padding: 10px;
   background-color: #eee;
+  max-width: 1024px;
+`;
+
+const Row = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+`;
+
+const Col = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+`;
+
+const FixedCol = styled(Col)`
+  flex: 0 0 340px;
 `;
 
 class Home extends React.Component {
@@ -43,23 +59,17 @@ class Home extends React.Component {
 
     return (
       <Container>
-        <h1>Home</h1>
-        <Panel>
-          <PanelHeader>Getting started</PanelHeader>
-          <p>
-            Build and manage family trees by entering what you alredy know
-            manually, then searching the avaiable indexes to find and add more
-            people.
-          </p>
-          <p>
-            Start by creating a new person, and specify you want a new tree.
-            Then add another person either as a parent, spouse or child. Add
-            more people to grow your tree.
-          </p>
-        </Panel>
-        <TreesPanel trees={trees} onNewTree={addTreeStart} />
-        <Search />
-        <Indexes />
+        <Row>
+          <Col>
+            <GettingStartedPanel />
+            <TreesPanel trees={trees} onNewTree={addTreeStart} />
+          </Col>
+          <FixedCol>
+            <Search />
+            <Indexes />
+          </FixedCol>
+        </Row>
+
         <Button>Import</Button>
         <Button>Export</Button>
         {modal}

@@ -33,6 +33,10 @@ class Api {
     });
   }
 
+  getTree(treeId) {
+    return axios.get(this.baseUri + "/trees/" + treeId, this.getOptions);
+  }
+
   postTree(tree) {
     return axios.post(
       this.baseUri + "/trees",

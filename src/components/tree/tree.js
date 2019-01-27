@@ -5,7 +5,7 @@ import updateTree from "../../library/tree";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import FloatingButton from "../ui/floating-button";
-import { editTreeStart } from "../../actions/trees";
+import { loadTree, editTreeStart } from "../../actions/trees";
 
 const Svg = styled.svg`
   position: absolute;
@@ -33,6 +33,10 @@ class Tree extends React.Component {
   }
 
   componentDidMount() {
+    const { treeId } = this.props.match.params;
+    this.props.loadTree(treeId);
+    console.log(treeId);
+
     var zoom = d3
       .zoom()
       .wheelDelta(this.delta)
@@ -71,6 +75,15 @@ class Tree extends React.Component {
       <div>
         <FloatingButton
           top="56px"
+          left="10px"
+          onClick={() => {
+            this.props.editTreeStart();
+          }}
+        >
+          Tree Name
+        </FloatingButton>
+        <FloatingButton
+          top="56px"
           right="10px"
           onClick={() => {
             this.props.editTreeStart();
@@ -93,6 +106,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    loadTree: treeId => dispatch(loadTree(treeId)),
     editTreeStart: () => dispatch(editTreeStart())
   };
 };

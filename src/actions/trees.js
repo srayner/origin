@@ -1,6 +1,18 @@
 import api from "../data/api";
 const uuidv4 = require("uuid/v4");
 
+export function loadTree(treeId) {
+  return dispatch => {
+    api.getTree(treeId).then(tree => {
+      console.log(tree);
+      dispatch({
+        type: "LOAD_TREE_END",
+        payload: { tree }
+      });
+    });
+  };
+}
+
 export function loadTrees() {
   return dispatch => {
     api.indexTrees().then(trees => {

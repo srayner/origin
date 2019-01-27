@@ -6,6 +6,9 @@ const Container = styled.div`
   top: ${props => {
     return props.top;
   }};
+  left: ${props => {
+    return props.left;
+  }};
   right: ${props => {
     return props.right;
   }};
@@ -29,7 +32,7 @@ const Button = styled.button`
 
 const FloatingButton = props => {
   return (
-    <Container top={props.top} right={props.right}>
+    <Container top={props.top} right={props.right} left={props.left}>
       <Button onClick={props.onClick}>{props.children}</Button>
     </Container>
   );

@@ -71,6 +71,7 @@ class Tree extends React.Component {
   }
 
   render() {
+    const treeName = this.props.tree ? this.props.tree.name : "";
     return (
       <div>
         <FloatingButton
@@ -80,7 +81,7 @@ class Tree extends React.Component {
             this.props.editTreeStart();
           }}
         >
-          Tree Name
+          {treeName}
         </FloatingButton>
         <FloatingButton
           top="56px"
@@ -99,6 +100,7 @@ class Tree extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    tree: state.app.tree,
     people: state.people,
     families: state.families
   };

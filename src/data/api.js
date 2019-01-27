@@ -33,8 +33,15 @@ class Api {
     });
   }
 
-  getTree(treeId) {
-    return axios.get(this.baseUri + "/trees/" + treeId, this.getOptions);
+  async getTree(treeId) {
+    const response = await axios.get(
+      this.baseUri + "/trees/" + treeId,
+      this.getOptions
+    );
+    const tree = response.data;
+    tree.id = tree._id;
+    delete tree._id;
+    return tree;
   }
 
   postTree(tree) {
@@ -47,7 +54,7 @@ class Api {
     );
   }
 
-  pathBoard(tree) {
+  patchTree(tree) {
     return axios.patch(
       this.baseUri + "/trees/" + tree.id,
       {

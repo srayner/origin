@@ -5,14 +5,15 @@ import { Button, PrimaryButton } from "../ui/button";
 import Modal from "../ui/modal";
 
 class TreeModal extends React.Component {
-  state = { name: "" };
+  state = { ...this.props.tree };
 
   onNameChange = event => {
+    console.log(this.state);
     this.setState({ name: event.target.value });
   };
 
   onSubmit = event => {
-    this.props.onSubmit(this.state.name);
+    this.props.onSubmit(this.state);
   };
 
   render() {
@@ -21,7 +22,7 @@ class TreeModal extends React.Component {
       <Modal handleClose={handleClose}>
         <h1>{heading}</h1>
         <Label>Tree Name</Label>
-        <Text value={this.state.treeName} onChange={this.onNameChange} />
+        <Text value={this.state.name} onChange={this.onNameChange} />
         <PrimaryButton onClick={this.onSubmit}>OK</PrimaryButton>
         <Button onClick={handleClose}>Cancel</Button>
       </Modal>

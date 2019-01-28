@@ -49,8 +49,7 @@ export function editTreeCancel() {
   return { type: "EDIT_TREE_CANCEL" };
 }
 
-export function editTreeEnd(treeName) {
-  const tree = { name: treeName };
+export function editTreeEnd(tree) {
   api.patchTree(tree);
   return {
     type: "EDIT_TREE_END",

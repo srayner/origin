@@ -24,13 +24,18 @@ const app = (state = initialState, action) => {
       return { ...state, addingTree: false };
     case "ADD_TREE_END":
       const { tree } = action.payload;
-      const trees = { ...state.trees, [tree.name]: tree };
+      const trees = { ...state.trees, [tree.id]: tree };
       return { ...state, trees, addingTree: false };
     case "EDIT_TREE_START": {
       return { ...state, editingTree: true };
     }
     case "EDIT_TREE_CANCEL": {
       return { ...state, editingTree: false };
+    }
+    case "EDIT_TREE_END": {
+      const { tree } = action.payload;
+      const trees = { ...state.trees, [tree.id]: tree };
+      return { ...state, trees, editingTree: false };
     }
     default:
       return state;

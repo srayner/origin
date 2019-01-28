@@ -29,6 +29,9 @@ const app = (state = initialState, action) => {
     case "EDIT_TREE_START": {
       return { ...state, editingTree: true };
     }
+    case "EDIT_TREE_CANCEL": {
+      return { ...state, editingTree: false };
+    }
     default:
       return state;
   }

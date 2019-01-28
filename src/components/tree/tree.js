@@ -5,7 +5,8 @@ import updateTree from "../../library/tree";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import FloatingButton from "../ui/floating-button";
-import { loadTree, editTreeStart } from "../../actions/trees";
+import { loadTree, editTreeStart, editTreeCancel } from "../../actions/trees";
+import TreeModal from "./tree-modal";
 
 const Svg = styled.svg`
   position: absolute;
@@ -72,6 +73,15 @@ class Tree extends React.Component {
 
   render() {
     const treeName = this.props.tree ? this.props.tree.name : "";
+    let modal = null;
+    if (this.props.editingTree) {
+      modal = (
+        <TreeModal
+          heading="Edit tree"
+          handleClose={this.props.editTreeCancel}
+        />
+      );
+    }
     return (
       <div>
         <FloatingButton
@@ -93,6 +103,7 @@ class Tree extends React.Component {
           Edit Tree
         </FloatingButton>
         <Svg ref={el => (this.svgEl = el)} />
+        {modal}
       </div>
     );
   }
@@ -100,6 +111,7 @@ class Tree extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    editingTree: state.app.editingTree,
     tree: state.app.tree,
     people: state.people,
     families: state.families
@@ -109,7 +121,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     loadTree: treeId => dispatch(loadTree(treeId)),
-    editTreeStart: () => dispatch(editTreeStart())
+    editTreeStart: () => dispatch(editTreeStart()),
+    editTreeCancel: () => {
+      dispatch(editTreeCancel());
+    }
   };
 };
 

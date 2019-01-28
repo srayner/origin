@@ -8,7 +8,7 @@ import {
   addTreeCancel,
   addTreeEnd
 } from "../../actions/trees";
-import NewTreeModal from "./new-tree-modal";
+import TreeModal from "../tree/tree-modal";
 import Search from "./search";
 import Indexes from "./indexes";
 import { Button } from "../ui/button";
@@ -53,7 +53,11 @@ class Home extends React.Component {
     let modal = null;
     if (addingTree) {
       modal = (
-        <NewTreeModal onSubmit={addTreeEnd} handleClose={addTreeCancel} />
+        <TreeModal
+          heading="Add new tree"
+          onSubmit={addTreeEnd}
+          handleClose={addTreeCancel}
+        />
       );
     }
 

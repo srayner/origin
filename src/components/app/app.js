@@ -9,6 +9,9 @@ import Tree from "../tree/tree";
 import Results from "../search/results";
 import Profile from "../user/profile";
 import Menu from "./menu";
+import logo from "../../resources/tree.png";
+import theme from "../../data/theme";
+import { ThemeProvider } from "styled-components";
 
 const Container = styled.div`
   font-family: "Roboto", sans-serif;
@@ -16,18 +19,27 @@ const Container = styled.div`
 
 const TitleBar = styled.header`
   display: flex;
-  background-color: #111;
+  background-color: ${props => props.theme.shadow};
 `;
 
 const Heading = styled.h1`
   display: inline-block;
-  margin: 0 20px 0 10px;
+  margin: 0 10px 0 0px;
   padding: 5px;
-  color: white;
-  font-family: "Lora";
+  color: ${props => props.theme.ash};
+  font-family: "Cardo";
   font-size: 24px;
   font-style: italic;
-  font-weight: 300;
+  font-weight: 600;
+`;
+
+const F = styled.span`
+  color: ${props => props.theme.dandilion};
+`;
+
+const Logo = styled.img`
+  margin: 5px;
+  height: 32px;
 `;
 
 class App extends Component {
@@ -35,10 +47,15 @@ class App extends Component {
     return (
       <Router>
         <Container>
-          <TitleBar>
-            <Heading>Nucleus Genealogy</Heading>
-            <Menu />
-          </TitleBar>
+          <ThemeProvider theme={theme}>
+            <TitleBar>
+              <Logo src={logo} />
+              <Heading>
+                <F>De</F>scent
+              </Heading>
+              <Menu />
+            </TitleBar>
+          </ThemeProvider>
           <Route path="/" exact component={Home} />
           <Route path="/sign-up" exact component={SignUp} />
           <Route path="/login" exact component={Login} />

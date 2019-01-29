@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
+import theme from "../../data/theme";
 
 const Container = styled.ul`
   display: flex;
@@ -22,10 +24,10 @@ const StyledLink = styled(NavLink)`
   border: none;
   border-bottom: 4px solid;
   border-color: transparent;
-  color: #ddd;
+  color: ${props => props.theme.ash};
   text-decoration: none;
   &.active {
-    border-color: orange;
+    border-color: ${props => props.theme.dandilion};
     color: white;
   }
   :hover {
@@ -35,19 +37,21 @@ const StyledLink = styled(NavLink)`
 
 const Menu = props => {
   return (
-    <Container>
-      <Item>
-        <StyledLink exact to="/">
-          Home
+    <ThemeProvider theme={theme}>
+      <Container>
+        <Item>
+          <StyledLink exact to="/">
+            Home
+          </StyledLink>
+        </Item>
+        <StyledLink exact to="/tree/xxx">
+          Tree
         </StyledLink>
-      </Item>
-      <StyledLink exact to="/tree/xxx">
-        Tree
-      </StyledLink>
-      <Item>
-        <StyledLink to="/profile">Profile</StyledLink>
-      </Item>
-    </Container>
+        <Item>
+          <StyledLink to="/profile">Profile</StyledLink>
+        </Item>
+      </Container>
+    </ThemeProvider>
   );
 };
 

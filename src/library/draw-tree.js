@@ -1,4 +1,5 @@
 import * as d3 from "d3";
+import theme from "../data/theme";
 
 let people = null;
 let families = null;
@@ -13,7 +14,7 @@ export default function drawTree(tree, clickHandler) {
 function mouseOver(d, i) {
   console.log(this);
   console.log(i);
-  d3.select(this).attr("stroke", "orange");
+  d3.select(this).attr("stroke", theme.dandilion);
 }
 
 function mouseOut(d, i) {

@@ -12,6 +12,8 @@ import {
   editTreeEnd
 } from "../../actions/trees";
 import TreeModal from "./tree-modal";
+import { ThemeProvider } from "styled-components";
+import theme from "../../data/theme";
 
 const Svg = styled.svg`
   position: absolute;
@@ -20,7 +22,7 @@ const Svg = styled.svg`
   margin-top: 46px;
   width: 100%;
   height: 100%;
-  background-color: rgb(94, 103, 112);
+  background-color: ${props => props.theme.carbon};
 `;
 
 class Tree extends React.Component {
@@ -90,28 +92,30 @@ class Tree extends React.Component {
       );
     }
     return (
-      <div>
-        <FloatingButton
-          top="56px"
-          left="10px"
-          onClick={() => {
-            this.props.editTreeStart();
-          }}
-        >
-          {treeName}
-        </FloatingButton>
-        <FloatingButton
-          top="56px"
-          right="10px"
-          onClick={() => {
-            this.props.editTreeStart();
-          }}
-        >
-          Edit Tree
-        </FloatingButton>
-        <Svg ref={el => (this.svgEl = el)} />
-        {modal}
-      </div>
+      <ThemeProvider theme={theme}>
+        <div>
+          <FloatingButton
+            top="56px"
+            left="10px"
+            onClick={() => {
+              this.props.editTreeStart();
+            }}
+          >
+            {treeName}
+          </FloatingButton>
+          <FloatingButton
+            top="56px"
+            right="10px"
+            onClick={() => {
+              this.props.editTreeStart();
+            }}
+          >
+            Edit Tree
+          </FloatingButton>
+          <Svg ref={el => (this.svgEl = el)} />
+          {modal}
+        </div>
+      </ThemeProvider>
     );
   }
 }

@@ -1,10 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { fullName, dateAsText } from "../../library/person";
+import { ThemeProvider } from "styled-components";
+import theme from "../../data/theme";
 
 const Container = styled.div`
   height: 100px;
-  background-color: #5e6770;
+  background-color: ${props => props.theme.carbon};
   display: flex;
   justify-content: center;
   padding: 20px;
@@ -30,14 +32,16 @@ const PersonTitle = props => {
   const birth = dateAsText(props.person.birth);
   const death = dateAsText(props.person.death);
   return (
-    <Container>
-      <img alt="person" src={img} />
-      <div>
-        <FullName>{fullname}</FullName>
-        <Date>BIRTH {birth}</Date>
-        <Date>DEATH {death}</Date>
-      </div>
-    </Container>
+    <ThemeProvider theme={theme}>
+      <Container>
+        <img alt="person" src={img} />
+        <div>
+          <FullName>{fullname}</FullName>
+          <Date>BIRTH {birth}</Date>
+          <Date>DEATH {death}</Date>
+        </div>
+      </Container>
+    </ThemeProvider>
   );
 };
 

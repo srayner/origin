@@ -3,11 +3,10 @@ const uuidv4 = require("uuid/v4");
 
 export function loadTree(treeId) {
   return dispatch => {
-    api.getTree(treeId).then(tree => {
-      console.log(tree);
+    api.getTree(treeId).then(data => {
       dispatch({
         type: "LOAD_TREE_END",
-        payload: { tree }
+        payload: data
       });
     });
   };

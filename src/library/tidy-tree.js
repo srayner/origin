@@ -6,8 +6,10 @@ export default function tidy(tree) {
   people = tree.people;
   families = tree.families;
   pitchX = tree.pitchX;
-  spreadNodes();
-  pullSpoucesClose();
+  if (people !== undefined) {
+    spreadNodes();
+    pullSpoucesClose();
+  }
 }
 /*
  * Spreads out people so that they are not coliding

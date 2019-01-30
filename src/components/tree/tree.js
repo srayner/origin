@@ -35,7 +35,6 @@ class Tree extends React.Component {
   };
 
   renderTree() {
-    console.log("render tree");
     const { people, families } = this.props;
     updateTree(people, families, this.treeClick);
   }
@@ -124,8 +123,8 @@ const mapStateToProps = state => {
   return {
     editingTree: state.app.editingTree,
     tree: state.app.tree,
-    people: state.people,
-    families: state.families
+    people: state.app.people,
+    families: state.app.families
   };
 };
 

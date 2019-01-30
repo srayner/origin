@@ -34,14 +34,42 @@ class Api {
   }
 
   async getTree(treeId) {
-    const response = await axios.get(
+    let response;
+
+    // Tree name
+    response = await axios.get(
       this.baseUri + "/trees/" + treeId,
       this.getOptions
     );
     const tree = response.data;
     tree.id = tree._id;
     delete tree._id;
-    return tree;
+
+    // People
+    response = await axios.get(
+      this.baseUri + "/people?treeId=" + treeId,
+      this.getOptions
+    );
+    const people = response.data.reduce(function(acc, cur, i) {
+      cur.id = cur._id;
+      delete cur._id;
+      acc[cur.id] = cur;
+      return acc;
+    }, {});
+
+    // Families
+    response = await axios.get(
+      this.baseUri + "/families?treeId=" + treeId,
+      this.getOptions
+    );
+    const families = response.data.reduce(function(acc, cur, i) {
+      cur.id = cur._id;
+      delete cur._id;
+      acc[cur.id] = cur;
+      return acc;
+    }, {});
+
+    return { tree, people, families };
   }
 
   postTree(tree) {

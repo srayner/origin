@@ -7,8 +7,8 @@ const initialState = {
 const app = (state = initialState, action) => {
   switch (action.type) {
     case "LOAD_TREE_END": {
-      const { tree } = action.payload;
-      return { ...state, tree };
+      const { tree, people, families } = action.payload;
+      return { ...state, tree, people, families };
     }
     case "LOAD_TREES_END": {
       const trees = action.payload.trees.reduce(function(acc, cur, i) {

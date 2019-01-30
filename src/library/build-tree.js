@@ -8,7 +8,10 @@ export default function buildTree(tree) {
   families = tree.families;
   pitchX = tree.pitchX;
   pitchY = tree.pitchY;
-  positionPerson(people["p1"], 0, 0);
+  if (people && Object.keys(people).length !== 0) {
+    const rootPerson = people[Object.keys(people)[0]];
+    positionPerson(rootPerson, 0, 0);
+  }
 }
 
 /**

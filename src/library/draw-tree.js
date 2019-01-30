@@ -28,7 +28,11 @@ function mouseOut(d, i) {
  */
 function addNodesToSVG(clickHandler) {
   const node = d3.select("g.nodes");
+  node.selectAll("*").remove();
   console.log(node);
+  if (!people) {
+    return;
+  }
   Object.keys(people).forEach(key => {
     const person = people[key];
     if (!person.positioned) {
@@ -98,7 +102,7 @@ function addNodesToSVG(clickHandler) {
   });
 
   Object.keys(families).forEach(key => {
-    d3.select("g")
+    d3.select("g.links")
       .append("circle")
       .attr("r", 3)
       .attr("cx", families[key].x)
@@ -109,6 +113,12 @@ function addNodesToSVG(clickHandler) {
 }
 
 function addLinksToSVG() {
+  if (!families) {
+    return;
+  }
+  d3.select("g.links")
+    .selectAll("*")
+    .remove();
   Object.keys(families).forEach(key => {
     const family = families[key];
     const father = people[family.father];

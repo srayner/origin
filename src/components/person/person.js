@@ -86,8 +86,8 @@ class Person extends React.Component {
 const mapStateToProps = state => {
   return {
     editingPerson: state.person.person,
-    people: state.app.people,
-    families: state.app.families
+    people: state.people,
+    families: state.families
   };
 };
 

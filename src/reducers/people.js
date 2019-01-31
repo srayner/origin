@@ -1,7 +1,9 @@
-import { people as initialState } from "../data/sample-data";
-
-const people = (state = initialState, action) => {
+const people = (state = {}, action) => {
   switch (action.type) {
+    case "LOAD_TREE_END": {
+      const { people } = action.payload;
+      return { ...people };
+    }
     case "PERSON_EDIT_END": {
       const { updatedPerson } = action.payload;
       return { ...state, [updatedPerson.id]: updatedPerson };

@@ -1,6 +1,10 @@
 import api from "../data/api";
 const uuidv4 = require("uuid/v4");
 
+/**
+ * Load a single tree
+ * @param {string} treeId The tree's unique identifier.
+ */
 export function loadTree(treeId) {
   return dispatch => {
     api.getTree(treeId).then(data => {

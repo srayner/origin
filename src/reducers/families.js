@@ -1,8 +1,10 @@
-import { families as initialState } from "../data/sample-data";
-
-const families = (state = initialState, action) => {
+const families = (state = {}, action) => {
   switch (action.type) {
-    case "FAMILY_EDIT": {
+    case "LOAD_TREE_END": {
+      const { families } = action.payload;
+      return { ...families };
+    }
+    case "FAMILY_EDIT_END": {
       const { updatedFamily } = action.payload;
       return { ...state, [updatedFamily.id]: updatedFamily };
     }

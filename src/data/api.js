@@ -92,6 +92,14 @@ class Api {
     );
   }
 
+  patchPerson(person) {
+    return axios.patch(
+      this.baseUri + "/people/" + person.id,
+      { ...person },
+      this.getOptions()
+    );
+  }
+
   deleteTree(treeId) {
     return axios.delete(this.baseUri + "/trees/" + treeId, this.getOptions());
   }

@@ -82,6 +82,14 @@ class Api {
     );
   }
 
+  postFamily(family) {
+    return axios.post(
+      this.baseUri + "/families",
+      { ...family },
+      this.getOptions()
+    );
+  }
+
   patchTree(tree) {
     return axios.patch(
       this.baseUri + "/trees/" + tree.id,
@@ -96,6 +104,14 @@ class Api {
     return axios.patch(
       this.baseUri + "/people/" + person.id,
       { ...person },
+      this.getOptions()
+    );
+  }
+
+  patchFamily(family) {
+    return axios.patch(
+      this.baseUri + "/families/" + family.id,
+      { ...family },
       this.getOptions()
     );
   }

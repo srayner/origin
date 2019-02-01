@@ -1,6 +1,7 @@
 const initialState = {
   trees: {},
   addingTree: false,
+  addingRelation: false,
   editingTree: false
 };
 
@@ -36,6 +37,13 @@ const app = (state = initialState, action) => {
       const { tree } = action.payload;
       const trees = { ...state.trees, [tree.id]: tree };
       return { ...state, trees, editingTree: false };
+    }
+    case "ADD_FATHER_START": {
+      return { ...state, addingRelation: "father" };
+    }
+    case "ADD_FATHER_CANCEL":
+    case "ADD_FATHER_END": {
+      return { ...state, addingRelation: false };
     }
     default:
       return state;

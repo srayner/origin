@@ -3,5 +3,8 @@ export function fullName(person) {
 }
 
 export function dateAsText(dateObject) {
+  if (!dateObject) {
+    return "";
+  }
   return dateObject.day + " " + dateObject.month + " " + dateObject.year;
 }

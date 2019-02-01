@@ -9,6 +9,11 @@ import FloatingButton from "../ui/floating-button";
 import { startEditing, cancelEditing, endEditing } from "../../actions/person";
 import Modal from "../ui/modal";
 import LifeStory from "./life-story";
+import {
+  addFatherStart,
+  addFatherCancel,
+  addFatherEnd
+} from "../../actions/add-father";
 
 const Container = styled.div`
   position: relative;
@@ -20,6 +25,11 @@ const DetailContainer = styled.div`
 `;
 
 class Person extends React.Component {
+  addFather = (child, father) => {
+    const family = child.parents ? this.props.families[child.parents] : null;
+    this.props.addFatherEnd(child, father, family);
+  };
+
   fullName(person) {
     return person ? person.forenames + " " + person.surname : "unknown";
   }
@@ -44,15 +54,29 @@ class Person extends React.Component {
       });
     }
 
-    const modal = this.props.editingPerson ? (
-      <Modal width="50%" handleClose={this.props.cancelEditing}>
-        <PersonDetails
-          person={this.props.editingPerson}
-          cancelEditing={this.props.cancelEditing}
-          endEditing={this.props.endEditing}
-        />
-      </Modal>
-    ) : null;
+    let modal = null;
+    if (this.props.editingPerson) {
+      modal = (
+        <Modal width="50%" handleClose={this.props.cancelEditing}>
+          <PersonDetails
+            person={this.props.editingPerson}
+            cancelEditing={this.props.cancelEditing}
+            endEditing={this.props.endEditing}
+          />
+        </Modal>
+      );
+    }
+    if (this.props.addingRelation == "father") {
+      modal = (
+        <Modal width="50%" handleClose={this.props.addFatherCancel}>
+          <PersonDetails
+            person={{ gender: "male" }}
+            cancelEditing={this.props.addFatherCancel}
+            endEditing={father => this.addFather(person, father)}
+          />
+        </Modal>
+      );
+    }
 
     return (
       <Container>
@@ -76,6 +100,10 @@ class Person extends React.Component {
             mother={mother}
             children={children}
           />
+          <button onClick={() => this.props.addFatherStart()}>
+            Add Father
+          </button>
+          <button>Add Mother</button>
         </DetailContainer>
         {modal}
       </Container>
@@ -85,6 +113,7 @@ class Person extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    addingRelation: state.app.addingRelation,
     editingPerson: state.person.person,
     people: state.people,
     families: state.families
@@ -101,6 +130,15 @@ const mapDispatchToProps = dispatch => {
     },
     endEditing: updatedPerson => {
       dispatch(endEditing(updatedPerson));
+    },
+    addFatherStart: () => {
+      dispatch(addFatherStart());
+    },
+    addFatherCancel: () => {
+      dispatch(addFatherCancel());
+    },
+    addFatherEnd: (child, father, family) => {
+      dispatch(addFatherEnd(child, father, family));
     }
   };
 };

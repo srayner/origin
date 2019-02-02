@@ -27,8 +27,6 @@ class Api {
       this.getOptions()
     );
     return response.data.map(tree => {
-      tree.id = tree._id;
-      delete tree._id;
       return tree;
     });
   }
@@ -73,13 +71,7 @@ class Api {
   }
 
   postTree(tree) {
-    return axios.post(
-      this.baseUri + "/trees",
-      {
-        name: tree.name
-      },
-      this.getOptions()
-    );
+    return axios.post(this.baseUri + "/trees", { ...tree }, this.getOptions());
   }
 
   postFamily(family) {

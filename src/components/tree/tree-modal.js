@@ -8,7 +8,6 @@ class TreeModal extends React.Component {
   state = { ...this.props.tree };
 
   onNameChange = event => {
-    console.log(this.state);
     this.setState({ name: event.target.value });
   };
 

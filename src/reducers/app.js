@@ -13,7 +13,7 @@ const app = (state = initialState, action) => {
     }
     case "LOAD_TREES_END": {
       const trees = action.payload.trees.reduce(function(acc, cur, i) {
-        acc[cur.id] = cur;
+        acc[cur._id] = cur;
         return acc;
       }, {});
       return { ...state, trees };
@@ -25,7 +25,7 @@ const app = (state = initialState, action) => {
       return { ...state, addingTree: false };
     case "ADD_TREE_END":
       const { tree } = action.payload;
-      const trees = { ...state.trees, [tree.id]: tree };
+      const trees = { ...state.trees, [tree._id]: tree };
       return { ...state, trees, addingTree: false };
     case "EDIT_TREE_START": {
       return { ...state, editingTree: true };

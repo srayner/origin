@@ -44,7 +44,7 @@ const TreesPanel = props => {
   const trees = Object.keys(props.trees).map((key, index) => {
     return (
       <Tree key={index}>
-        <StyledLink to={"/tree/" + props.trees[key].id}>
+        <StyledLink to={"/tree/" + props.trees[key]._id}>
           {props.trees[key].name}
         </StyledLink>
       </Tree>

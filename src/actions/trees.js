@@ -35,8 +35,8 @@ export function addTreeCancel() {
   return { type: "ADD_TREE_CANCEL" };
 }
 
-export function addTreeEnd(treeName) {
-  const tree = { id: uuidv4(), name: treeName };
+export function addTreeEnd(newTree) {
+  const tree = { _id: uuidv4(), ...newTree };
   api.postTree(tree);
   return {
     type: "ADD_TREE_END",

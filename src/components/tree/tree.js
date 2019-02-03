@@ -31,7 +31,7 @@ class Tree extends React.Component {
   }
 
   treeClick = person => {
-    this.props.history.push("/person/" + person.id);
+    this.props.history.push("/person/" + person._id);
   };
 
   renderTree() {

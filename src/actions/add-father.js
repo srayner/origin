@@ -25,20 +25,21 @@ export function addFatherCancel() {
 export function addFatherEnd(child, father, family) {
   let updatedFamily;
   let updatedChild;
-  const updatedFather = { ...father, id: uuidv4(), treeId: child.treeId };
+  const updatedFather = { ...father, _id: uuidv4(), tree: child.tree };
+  api.postPerson(updatedFather);
   if (family !== null) {
-    updatedFamily = { ...family, father: updatedFather.id };
+    updatedFamily = { ...family, father: updatedFather._id };
     updatedChild = { ...child };
     api.patchFamily(updatedFamily);
   } else {
     updatedFamily = {
-      id: uuidv4(),
-      treeId: child.treeId,
-      father: updatedFather.id,
+      _id: uuidv4(),
+      tree: child.tree,
+      father: updatedFather._id,
       mother: null,
-      children: [child.id]
+      children: [child._id]
     };
-    updatedChild = { ...child, parents: updatedFamily.id };
+    updatedChild = { ...child, parents: updatedFamily._id };
     api.postFamily(updatedFamily);
     api.patchPerson(updatedChild);
   }

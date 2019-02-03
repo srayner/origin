@@ -65,6 +65,14 @@ class Api {
     return axios.post(this.baseUri + "/trees", { ...tree }, this.getOptions());
   }
 
+  postPerson(person) {
+    return axios.post(
+      this.baseUri + "people",
+      { ...person },
+      this.getOptions()
+    );
+  }
+
   postFamily(family) {
     return axios.post(
       this.baseUri + "/families",
@@ -75,7 +83,7 @@ class Api {
 
   patchTree(tree) {
     return axios.patch(
-      this.baseUri + "/trees/" + tree.id,
+      this.baseUri + "/trees/" + tree._id,
       {
         name: tree.name
       },
@@ -85,7 +93,7 @@ class Api {
 
   patchPerson(person) {
     return axios.patch(
-      this.baseUri + "/people/" + person.id,
+      this.baseUri + "/people/" + person._id,
       { ...person },
       this.getOptions()
     );
@@ -93,14 +101,14 @@ class Api {
 
   patchFamily(family) {
     return axios.patch(
-      this.baseUri + "/families/" + family.id,
+      this.baseUri + "/families/" + family._id,
       { ...family },
       this.getOptions()
     );
   }
 
-  deleteTree(treeId) {
-    return axios.delete(this.baseUri + "/trees/" + treeId, this.getOptions());
+  deleteTree(_id) {
+    return axios.delete(this.baseUri + "/trees/" + _id, this.getOptions());
   }
 }
 

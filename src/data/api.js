@@ -31,39 +31,30 @@ class Api {
     });
   }
 
-  async getTree(treeId) {
+  async getTree(_id) {
     let response;
 
     // Tree name
-    response = await axios.get(
-      this.baseUri + "/trees/" + treeId,
-      this.getOptions
-    );
+    response = await axios.get(this.baseUri + "/trees/" + _id, this.getOptions);
     const tree = response.data;
-    tree.id = tree._id;
-    delete tree._id;
 
     // People
     response = await axios.get(
-      this.baseUri + "/people?treeId=" + treeId,
+      this.baseUri + "/people?tree=" + _id,
       this.getOptions
     );
     const people = response.data.reduce(function(acc, cur, i) {
-      cur.id = cur._id;
-      delete cur._id;
-      acc[cur.id] = cur;
+      acc[cur._id] = cur;
       return acc;
     }, {});
 
     // Families
     response = await axios.get(
-      this.baseUri + "/families?treeId=" + treeId,
+      this.baseUri + "/families?tree=" + _id,
       this.getOptions
     );
     const families = response.data.reduce(function(acc, cur, i) {
-      cur.id = cur._id;
-      delete cur._id;
-      acc[cur.id] = cur;
+      acc[cur._id] = cur;
       return acc;
     }, {});
 

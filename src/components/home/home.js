@@ -13,6 +13,7 @@ import Search from "./search";
 import Indexes from "./indexes";
 import { Button } from "../ui/button";
 import GettingStartedPanel from "./getting-started-panel";
+const uuidv4 = require("uuid/v4");
 
 const Container = styled.div`
   margin: 0 auto;
@@ -40,6 +41,7 @@ const FixedCol = styled(Col)`
 class Home extends React.Component {
   componentDidMount() {
     this.props.loadTrees();
+    console.log(uuidv4());
   }
 
   render() {

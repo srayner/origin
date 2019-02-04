@@ -33,7 +33,7 @@ function positionSpouses(person, x, y) {
  * Positions a family node
  */
 function positionFamily(family, x, y, inverted = 1) {
-  console.log("position family " + family.id + " @" + x + ", " + y);
+  console.log("position family " + family._id + " @" + x + ", " + y);
 
   // already positioned?
   if (family.positioned) {

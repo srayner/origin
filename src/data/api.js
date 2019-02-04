@@ -67,7 +67,7 @@ class Api {
 
   postPerson(person) {
     return axios.post(
-      this.baseUri + "people",
+      this.baseUri + "/people",
       { ...person },
       this.getOptions()
     );

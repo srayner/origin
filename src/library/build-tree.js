@@ -60,7 +60,7 @@ function positionFamily(family, x, y, inverted = 1) {
  * Position a person
  */
 function positionPerson(person, x, y) {
-  console.log("positioning person " + person.id + "@" + x + "," + y);
+  console.log("positioning person " + person._id + "@" + x + "," + y);
 
   // already positioned?
   if (person.positioned) {

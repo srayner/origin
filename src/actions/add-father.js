@@ -25,7 +25,12 @@ export function addFatherCancel() {
 export function addFatherEnd(child, father, family) {
   let updatedFamily;
   let updatedChild;
-  const updatedFather = { ...father, _id: uuidv4(), tree: child.tree };
+  const updatedFather = {
+    ...father,
+    _id: uuidv4(),
+    tree: child.tree,
+    spouces: []
+  };
   api.postPerson(updatedFather);
   if (family !== null) {
     updatedFamily = { ...family, father: updatedFather._id };

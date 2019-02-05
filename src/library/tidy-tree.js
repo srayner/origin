@@ -27,16 +27,20 @@ export function pullSpoucesClose() {
   Object.keys(families).forEach(key => {
     const family = families[key];
     const father = people[family.father];
-    if (father.x < family.x) {
-      father.x = family.x - pitchX;
-    } else {
-      father.x = family.x + pitchX;
+    if (father) {
+      if (father.x < family.x) {
+        father.x = family.x - pitchX;
+      } else {
+        father.x = family.x + pitchX;
+      }
     }
     const mother = people[family.mother];
-    if (mother.x < family.x) {
-      mother.x = family.x - pitchX;
-    } else {
-      mother.x = family.x + pitchX;
+    if (mother) {
+      if (mother.x < family.x) {
+        mother.x = family.x - pitchX;
+      } else {
+        mother.x = family.x + pitchX;
+      }
     }
   });
 }

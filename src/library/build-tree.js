@@ -46,9 +46,15 @@ function positionFamily(family, x, y, inverted = 1) {
   family.y = y;
   family.positioned = true;
 
-  // ensure mother and father exist
-  positionPerson(people[family.father], x - pitchX * inverted, y);
-  positionPerson(people[family.mother], x + pitchX * inverted, y);
+  // Position mother and father if they exist.
+  const father = people[family.father];
+  if (father) {
+    positionPerson(father, x - pitchX * inverted, y);
+  }
+  const mother = people[family.mother];
+  if (mother) {
+    positionPerson(mother, x + pitchX * inverted, y);
+  }
 
   // add any potential children
   family.children.forEach((key, index) => {

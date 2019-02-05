@@ -123,8 +123,12 @@ function addLinksToSVG() {
     const family = families[key];
     const father = people[family.father];
     const mother = people[family.mother];
-    addLink(family, father, "father");
-    addLink(family, mother, "mother");
+    if (father) {
+      addLink(family, father, "father");
+    }
+    if (mother) {
+      addLink(family, mother, "mother");
+    }
     family.children.forEach(key => {
       const child = people[key];
       addLink(family, child, "child");

@@ -14,6 +14,11 @@ import {
   addFatherCancel,
   addFatherEnd
 } from "../../actions/add-father";
+import {
+  addMotherStart,
+  addMotherCancel,
+  addMotherEnd
+} from "../../actions/add-mother";
 
 const Container = styled.div`
   position: relative;
@@ -28,6 +33,10 @@ class Person extends React.Component {
   addFather = (child, father) => {
     const family = child.parents ? this.props.families[child.parents] : null;
     this.props.addFatherEnd(child, father, family);
+  };
+  addMother = (child, mother) => {
+    const family = child.parents ? this.props.families[child.parents] : null;
+    this.props.addMotherEnd(child, mother, family);
   };
 
   fullName(person) {
@@ -77,6 +86,17 @@ class Person extends React.Component {
         </Modal>
       );
     }
+    if (this.props.addingRelation == "mother") {
+      modal = (
+        <Modal width="50%" handleClose={this.props.addMotherCancel}>
+          <PersonDetails
+            person={{ gender: "female" }}
+            cancelEditing={this.props.addMotherCancel}
+            endEditing={mother => this.addMother(person, mother)}
+          />
+        </Modal>
+      );
+    }
 
     return (
       <Container>
@@ -103,7 +123,9 @@ class Person extends React.Component {
           <button onClick={() => this.props.addFatherStart()}>
             Add Father
           </button>
-          <button>Add Mother</button>
+          <button onClick={() => this.props.addMotherStart()}>
+            Add Mother
+          </button>
         </DetailContainer>
         {modal}
       </Container>
@@ -139,6 +161,15 @@ const mapDispatchToProps = dispatch => {
     },
     addFatherEnd: (child, father, family) => {
       dispatch(addFatherEnd(child, father, family));
+    },
+    addMotherStart: () => {
+      dispatch(addMotherStart());
+    },
+    addMotherCancel: () => {
+      dispatch(addMotherCancel());
+    },
+    addMotherEnd: (child, mother, family) => {
+      dispatch(addMotherEnd(child, mother, family));
     }
   };
 };

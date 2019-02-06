@@ -9,7 +9,7 @@ const families = (state = {}, action) => {
     case "ADD_SPOUSE_END":
     case "ADD_CHILD_END": {
       const { updatedFamily } = action.payload;
-      return { ...state, [updatedFamily.id]: updatedFamily };
+      return { ...state, [updatedFamily._id]: updatedFamily };
     }
     default:
       return state;

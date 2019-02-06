@@ -9,12 +9,16 @@ const people = (state = {}, action) => {
       return { ...state, [updatedPerson.id]: updatedPerson };
     }
     case "ADD_FATHER_END": {
-      const { updatedChild, updatedFather } = action.payload;
-      return {
+      const { updatedChild, updatedFather, updatedMother } = action.payload;
+      const newState = {
         ...state,
-        [updatedChild.id]: updatedChild,
-        [updatedFather.id]: updatedFather
+        [updatedChild._id]: updatedChild,
+        [updatedFather._id]: updatedFather
       };
+      if (updatedMother) {
+        newState[updatedMother._id] = updatedMother;
+      }
+      return newState;
     }
     default:
       return state;

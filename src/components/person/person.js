@@ -32,11 +32,13 @@ const DetailContainer = styled.div`
 class Person extends React.Component {
   addFather = (child, father) => {
     const family = child.parents ? this.props.families[child.parents] : null;
-    this.props.addFatherEnd(child, father, family);
+    const mother = family.mother ? this.props.people[family.mother] : null;
+    this.props.addFatherEnd(child, father, mother, family);
   };
   addMother = (child, mother) => {
     const family = child.parents ? this.props.families[child.parents] : null;
-    this.props.addMotherEnd(child, mother, family);
+    const father = family.father ? this.props.people[family.father] : null;
+    this.props.addMotherEnd(child, mother, father, family);
   };
 
   fullName(person) {
@@ -159,8 +161,8 @@ const mapDispatchToProps = dispatch => {
     addFatherCancel: () => {
       dispatch(addFatherCancel());
     },
-    addFatherEnd: (child, father, family) => {
-      dispatch(addFatherEnd(child, father, family));
+    addFatherEnd: (child, father, mother, family) => {
+      dispatch(addFatherEnd(child, father, mother, family));
     },
     addMotherStart: () => {
       dispatch(addMotherStart());
@@ -168,8 +170,8 @@ const mapDispatchToProps = dispatch => {
     addMotherCancel: () => {
       dispatch(addMotherCancel());
     },
-    addMotherEnd: (child, mother, family) => {
-      dispatch(addMotherEnd(child, mother, family));
+    addMotherEnd: (child, mother, father, family) => {
+      dispatch(addMotherEnd(child, mother, father, family));
     }
   };
 };

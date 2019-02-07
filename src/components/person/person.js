@@ -32,12 +32,14 @@ const DetailContainer = styled.div`
 class Person extends React.Component {
   addFather = (child, father) => {
     const family = child.parents ? this.props.families[child.parents] : null;
-    const mother = family.mother ? this.props.people[family.mother] : null;
+    const mother =
+      family && family.mother ? this.props.people[family.mother] : null;
     this.props.addFatherEnd(child, father, mother, family);
   };
   addMother = (child, mother) => {
     const family = child.parents ? this.props.families[child.parents] : null;
-    const father = family.father ? this.props.people[family.father] : null;
+    const father =
+      family && family.father ? this.props.people[family.father] : null;
     this.props.addMotherEnd(child, mother, father, family);
   };
 

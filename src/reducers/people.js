@@ -20,6 +20,18 @@ const people = (state = {}, action) => {
       }
       return newState;
     }
+    case "ADD_MOTHER_END": {
+      const { updatedChild, updatedMother, updatedFather } = action.payload;
+      const newState = {
+        ...state,
+        [updatedChild._id]: updatedChild,
+        [updatedMother._id]: updatedMother
+      };
+      if (updatedFather) {
+        newState[updatedFather._id] = updatedFather;
+      }
+      return newState;
+    }
     default:
       return state;
   }

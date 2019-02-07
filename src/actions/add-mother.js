@@ -20,19 +20,25 @@ export function addMotherCancel() {
  *
  * @param {Person} child The person we are adding a mother to.
  * @param {Person} mother The mother we are adding.
+ * @param {Person} father The father if he exists already.
  * @param {Family} family The family representing the relationship.
  */
-export function addMotherEnd(child, mother, family) {
+export function addMotherEnd(child, mother, father, family) {
   let updatedFamily;
   let updatedChild;
+  let updatedFather;
   const updatedMother = {
     ...mother,
     _id: uuidv4(),
     tree: child.tree,
-    spouces: []
+    spouces: family ? [family._id] : []
   };
   api.postPerson(updatedMother);
-  if (family !== null) {
+  if (father) {
+    updatedFather = { ...father, spouces: [family._id] };
+    api.patchPerson(updatedFather);
+  }
+  if (family) {
     updatedFamily = { ...family, mother: updatedMother._id };
     updatedChild = { ...child };
     api.patchFamily(updatedFamily);
@@ -51,6 +57,6 @@ export function addMotherEnd(child, mother, family) {
 
   return {
     type: "ADD_MOTHER_END",
-    payload: { updatedChild, updatedMother, updatedFamily }
+    payload: { updatedChild, updatedMother, updatedFather, updatedFamily }
   };
 }

@@ -20,11 +20,10 @@ export function addFatherCancel() {
  *
  * @param {Person} child The person we are adding a father to.
  * @param {Person} father The father we are adding.
+ * @param {Person} mother The mother if she exists already.
  * @param {Family} family The family representing the relationship.
  */
 export function addFatherEnd(child, father, mother, family) {
-  console.log("family");
-  console.log(family);
   let updatedFamily;
   let updatedChild;
   let updatedMother;
@@ -39,7 +38,7 @@ export function addFatherEnd(child, father, mother, family) {
     updatedMother = { ...mother, spouces: [family._id] };
     api.patchPerson(updatedMother);
   }
-  if (family !== null) {
+  if (family) {
     updatedFamily = { ...family, father: updatedFather._id };
     updatedChild = { ...child };
     api.patchFamily(updatedFamily);

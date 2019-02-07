@@ -19,6 +19,7 @@ import {
   addMotherCancel,
   addMotherEnd
 } from "../../actions/add-mother";
+import AddRelativeButton from "./add-relative-button";
 
 const Container = styled.div`
   position: relative;
@@ -79,7 +80,7 @@ class Person extends React.Component {
         </Modal>
       );
     }
-    if (this.props.addingRelation == "father") {
+    if (this.props.addingRelation === "father") {
       modal = (
         <Modal width="50%" handleClose={this.props.addFatherCancel}>
           <PersonDetails
@@ -90,7 +91,7 @@ class Person extends React.Component {
         </Modal>
       );
     }
-    if (this.props.addingRelation == "mother") {
+    if (this.props.addingRelation === "mother") {
       modal = (
         <Modal width="50%" handleClose={this.props.addMotherCancel}>
           <PersonDetails
@@ -124,12 +125,16 @@ class Person extends React.Component {
             mother={mother}
             children={children}
           />
-          <button onClick={() => this.props.addFatherStart()}>
-            Add Father
-          </button>
-          <button onClick={() => this.props.addMotherStart()}>
-            Add Mother
-          </button>
+          <AddRelativeButton
+            gender="male"
+            caption="Add Father"
+            onClick={() => this.props.addFatherStart()}
+          />
+          <AddRelativeButton
+            gender="female"
+            caption="Add Mother"
+            onClick={() => this.props.addMotherStart()}
+          />
         </DetailContainer>
         {modal}
       </Container>

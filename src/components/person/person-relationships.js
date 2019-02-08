@@ -1,5 +1,6 @@
 import React from "react";
 import { fullName } from "../../library/person";
+import PersonButton from "./person-button";
 
 const PersonRelationships = props => {
   const father = fullName(props.father);
@@ -11,6 +12,7 @@ const PersonRelationships = props => {
   return (
     <div>
       <div>
+        <PersonButton gender="male" caption={father} />
         Father: <span>{father}</span>
       </div>
       <div>

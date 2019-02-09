@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { fullName } from "../../library/person";
 
 const Container = styled.button`
   border-radius: 0;
@@ -24,12 +25,14 @@ const Span = styled.span`
 `;
 
 const PersonButton = props => {
-  const gender = props.gender === "male" ? "male" : "female";
+  const { person } = props;
+  const gender = person.gender === "male" ? "male" : "female";
   const imgSrc = "/" + gender + ".png";
+  const name = fullName(person);
   return (
     <Container>
       <img src={imgSrc} height="32" />
-      <Span>{props.caption}</Span>
+      <Span>{name}</Span>
     </Container>
   );
 };

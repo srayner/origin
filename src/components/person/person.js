@@ -20,6 +20,8 @@ import {
   addMotherEnd
 } from "../../actions/add-mother";
 import AddRelativeButton from "./add-relative-button";
+import FamilyPanel from "./family-panel";
+import FactsPanel from "./facts-panel";
 
 const Container = styled.div`
   position: relative;
@@ -27,7 +29,8 @@ const Container = styled.div`
 `;
 
 const DetailContainer = styled.div`
-  margin: 10px 15px;
+  display: flex;
+  margin: 0;
 `;
 
 class Person extends React.Component {
@@ -117,9 +120,8 @@ class Person extends React.Component {
         <PersonTitle person={person} />
         <PersonMenu />
         <DetailContainer>
-          <div>
-            <LifeStory person={person} />
-          </div>
+          <FactsPanel person={person} />
+          <FamilyPanel />
           <PersonRelationships
             father={father}
             mother={mother}

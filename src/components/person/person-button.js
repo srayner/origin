@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { fullName } from "../../library/person";
 
 const Container = styled.button`
-  border-radius: 0;
+  border-radius: 3px;
   border: 1px solid #a9a9a9;
   background: white;
   color: black;
@@ -20,6 +20,10 @@ const Container = styled.button`
   display: flex;
   align-items: center;
   cursor: pointer;
+  transition: box-shadow 0.2s;
+  &:hover {
+    box-shadow: 0 0 0 3px #5e6770;
+  }
   &:focus {
     outline: none;
   }

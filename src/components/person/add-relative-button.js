@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Container = styled.button`
-  border-radius: 0;
+  border-radius: 3px;
   border: 1px dashed #a9a9a9;
   background: none;
   color: black;
@@ -14,9 +14,10 @@ const Container = styled.button`
   display: flex;
   align-items: center;
   cursor: pointer;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s, background-color 0.3s;
   &:hover {
     border-color: #0079a3;
+    background-color: white;
   }
   &:focus {
     outline: none;

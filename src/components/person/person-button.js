@@ -10,8 +10,13 @@ const Container = styled.button`
   font-size: 16px;
   font-weight: 600;
   padding: 5px;
-  width: 240px;
+  width: ${props => {
+    return props.child ? "220px" : "240px";
+  }};
   margin: 5px;
+  margin-left: ${props => {
+    return props.child ? "25px" : "5px";
+  }};
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -30,7 +35,7 @@ const PersonButton = props => {
   const imgSrc = "/" + gender + ".png";
   const name = fullName(person);
   return (
-    <Container>
+    <Container child={props.child}>
       <img src={imgSrc} height="32" />
       <Span>{name}</Span>
     </Container>

@@ -63,7 +63,6 @@ class FamilyPanel extends React.Component {
   }
 
   renderMother() {
-    console.log(this.props);
     const { parents } = this.props.person;
     if (parents && this.props.families[parents].mother) {
       const mother = this.props.people[this.props.families[parents].mother];
@@ -78,10 +77,40 @@ class FamilyPanel extends React.Component {
     );
   }
 
+  renderSpoucesAndChildren() {
+    const { spouces } = this.props.person;
+    return spouces.map(familyKey => {
+      const family = this.props.families[familyKey];
+      let spouce;
+      const spouceGender =
+        this.props.person.gender === "male" ? "female" : "male";
+      const spouceKey = spouceGender === "male" ? family.father : family.mother;
+      const children = family.children.map(childKey => {
+        const child = this.props.people[childKey];
+        return <PersonButton child person={child} />;
+      });
+      if (spouceKey) {
+        spouce = <PersonButton person={this.props.people[spouceKey]} />;
+      }
+      if (children && !spouceKey) {
+        spouce = (
+          <AddRelativeButton gender={spouceGender} caption="Add spouce" />
+        );
+      }
+      return (
+        <div>
+          {spouce}
+          {children}
+        </div>
+      );
+    });
+  }
+
   render() {
     const { person } = this.props;
     const father = this.renderFather();
     const mother = this.renderMother();
+    const spoucesAndChildren = this.renderSpoucesAndChildren();
     let modal = null;
     if (this.props.addingRelation === "father") {
       modal = (
@@ -112,6 +141,7 @@ class FamilyPanel extends React.Component {
         {father}
         {mother}
         <SubHeader>Spouces &amp; Children</SubHeader>
+        {spoucesAndChildren}
         {modal}
       </Container>
     );

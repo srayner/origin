@@ -14,6 +14,10 @@ const Container = styled.button`
   display: flex;
   align-items: center;
   cursor: pointer;
+  transition: border-color 0.3s;
+  &:hover {
+    border-color: #0079a3;
+  }
   &:focus {
     outline: none;
   }

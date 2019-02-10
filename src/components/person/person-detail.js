@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Text from "../ui/text";
 import Label from "../ui/label";
 import VerticalText from "../ui/vertical-text";
 import Radio from "../ui/radio";

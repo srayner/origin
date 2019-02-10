@@ -15,7 +15,6 @@ export function cancelEditing() {
 
 export function endEditing(updatedPerson) {
   api.patchPerson(updatedPerson);
-  console.log(updatedPerson);
   return {
     type: "PERSON_EDIT_END",
     payload: { updatedPerson }

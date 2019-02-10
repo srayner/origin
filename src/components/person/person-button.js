@@ -36,7 +36,7 @@ const PersonButton = props => {
   const name = fullName(person);
   return (
     <Container child={props.child}>
-      <img src={imgSrc} height="32" />
+      <img src={imgSrc} height="32" alt={gender} />
       <Span>{name}</Span>
     </Container>
   );

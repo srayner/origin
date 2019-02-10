@@ -9,6 +9,7 @@ import { startEditing, cancelEditing, endEditing } from "../../actions/person";
 import Modal from "../ui/modal";
 import FamilyPanel from "./family-panel";
 import FactsPanel from "./facts-panel";
+import { loadTreeForPerson } from "../../actions/trees";
 
 const Container = styled.div`
   position: relative;
@@ -21,8 +22,15 @@ const DetailContainer = styled.div`
 `;
 
 class Person extends React.Component {
+  componentDidMount() {
+    this.props.loadTreeForPerson(this.props.match.params.personId);
+  }
+
   render() {
     const person = this.props.people[this.props.match.params.personId];
+    if (!person) {
+      return null;
+    }
     let modal = null;
     if (this.props.editingPerson) {
       modal = (
@@ -68,6 +76,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    loadTreeForPerson: personId => {
+      dispatch(loadTreeForPerson(personId));
+    },
     startEditing: person => {
       dispatch(startEditing(person));
     },

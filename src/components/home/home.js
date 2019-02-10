@@ -41,7 +41,6 @@ const FixedCol = styled(Col)`
 class Home extends React.Component {
   componentDidMount() {
     this.props.loadTrees();
-    console.log(uuidv4());
   }
 
   render() {

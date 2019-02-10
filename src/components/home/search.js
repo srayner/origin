@@ -4,7 +4,6 @@ import PanelHeader from "../ui/panel-header";
 import VerticalText from "../ui/vertical-text";
 import FormRow from "../ui/form-row";
 import { PrimaryButton } from "../ui/button";
-import styled from "styled-components";
 
 const Search = props => {
   return (

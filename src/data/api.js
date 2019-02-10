@@ -61,6 +61,15 @@ class Api {
     return { tree, people, families };
   }
 
+  async getTreeForPerson(_id) {
+    const response = await axios.get(
+      this.baseUri + "/people/" + _id,
+      this.getOptions()
+    );
+    const person = response.data;
+    return this.getTree(person.tree);
+  }
+
   postTree(tree) {
     return axios.post(this.baseUri + "/trees", { ...tree }, this.getOptions());
   }

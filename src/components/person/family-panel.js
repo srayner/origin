@@ -5,7 +5,7 @@ import PersonButton from "./person-button";
 import AddRelativeButton from "./add-relative-button";
 import PersonDetail from "./person-detail";
 import Modal from "../ui/modal";
-
+import { NavLink } from "react-router-dom";
 import {
   addFatherStart,
   addFatherCancel,
@@ -33,6 +33,10 @@ const SubHeader = styled.h3`
   font-weight: 400;
 `;
 
+const Link = styled(NavLink)`
+  text-decoration: none;
+`;
+
 class FamilyPanel extends React.Component {
   addFather = (child, father) => {
     const family = child.parents ? this.props.families[child.parents] : null;
@@ -51,7 +55,11 @@ class FamilyPanel extends React.Component {
     const { parents } = this.props.person;
     if (parents && this.props.families[parents].father) {
       const father = this.props.people[this.props.families[parents].father];
-      return <PersonButton person={father} />;
+      return (
+        <Link to={father._id}>
+          <PersonButton person={father} />
+        </Link>
+      );
     }
     return (
       <AddRelativeButton
@@ -66,7 +74,11 @@ class FamilyPanel extends React.Component {
     const { parents } = this.props.person;
     if (parents && this.props.families[parents].mother) {
       const mother = this.props.people[this.props.families[parents].mother];
-      return <PersonButton person={mother} />;
+      return (
+        <Link to={mother._id}>
+          <PersonButton person={mother} />
+        </Link>
+      );
     }
     return (
       <AddRelativeButton
@@ -81,25 +93,34 @@ class FamilyPanel extends React.Component {
     const { spouces } = this.props.person;
     return spouces.map(familyKey => {
       const family = this.props.families[familyKey];
-      let spouce;
       const spouceGender =
         this.props.person.gender === "male" ? "female" : "male";
       const spouceKey = spouceGender === "male" ? family.father : family.mother;
       const children = family.children.map(childKey => {
         const child = this.props.people[childKey];
-        return <PersonButton child person={child} />;
+        return (
+          <Link to={child._id}>
+            <PersonButton child person={child} />
+          </Link>
+        );
       });
+      let spouceComponent = null;
       if (spouceKey) {
-        spouce = <PersonButton person={this.props.people[spouceKey]} />;
+        const spouce = this.props.people[spouceKey];
+        spouceComponent = (
+          <Link to={spouce._id}>
+            <PersonButton person={spouce} />
+          </Link>
+        );
       }
       if (children && !spouceKey) {
-        spouce = (
+        spouceComponent = (
           <AddRelativeButton gender={spouceGender} caption="Add spouce" />
         );
       }
       return (
         <div>
-          {spouce}
+          {spouceComponent}
           {children}
         </div>
       );
@@ -168,7 +189,6 @@ const mapDispatchToProps = dispatch => {
       dispatch(addFatherEnd(child, father, mother, family));
     },
     addMotherStart: () => {
-      console.log("fired");
       dispatch(addMotherStart());
     },
     addMotherCancel: () => {

@@ -42,7 +42,6 @@ class Tree extends React.Component {
   componentDidMount() {
     const { treeId } = this.props.match.params;
     this.props.loadTree(treeId);
-    console.log(treeId);
 
     var zoom = d3
       .zoom()

@@ -4,7 +4,6 @@ import Panel from "../ui/panel";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import BlackButton from "../ui/black-button";
-import Link from "../ui/link";
 import { NavLink } from "react-router-dom";
 
 const Icon = styled(FontAwesomeIcon)`

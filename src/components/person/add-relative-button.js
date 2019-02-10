@@ -28,7 +28,7 @@ const AddRelativeButton = props => {
   const imgSrc = "/" + gender + ".png";
   return (
     <Container onClick={props.onClick}>
-      <img src={imgSrc} height="32" />
+      <img src={imgSrc} height="32" alt={gender} />
       <Span>{props.caption}</Span>
     </Container>
   );

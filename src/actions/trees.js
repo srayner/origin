@@ -16,6 +16,17 @@ export function loadTree(treeId) {
   };
 }
 
+export function loadTreeForPerson(personId) {
+  return dispatch => {
+    api.getTreeForPerson(personId).then(data => {
+      dispatch({
+        type: "LOAD_TREE_END",
+        payload: data
+      });
+    });
+  };
+}
+
 export function loadTrees() {
   return dispatch => {
     api.indexTrees().then(trees => {

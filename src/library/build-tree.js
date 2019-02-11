@@ -18,7 +18,7 @@ export default function buildTree(tree) {
  * Position spouses
  */
 function positionSpouses(person, x, y) {
-  person.spouces.forEach((key, index) => {
+  person.spouses.forEach((key, index) => {
     if (index % 2 === 0) {
       const inversion = person.gender === "male" ? 1 : -1;
       positionFamily(families[key], x + pitchX, y, inversion); // to the right of person

@@ -25,7 +25,7 @@ export const people = {
     surname: "Appleton",
     gender: "male",
     parents: null,
-    spouces: ["f1"],
+    spouses: ["f1"],
     birth: {
       year: 1874,
       month: "Jun",
@@ -43,7 +43,7 @@ export const people = {
     surname: "Keys",
     gender: "female",
     parents: null,
-    spouces: ["f1"],
+    spouses: ["f1"],
     birth: {
       year: 1876,
       month: "May",
@@ -61,7 +61,7 @@ export const people = {
     surname: "Fletcher",
     gender: "male",
     parents: null,
-    spouces: ["f2"],
+    spouses: ["f2"],
     birth: {
       year: 1874,
       month: "Jun",
@@ -79,7 +79,7 @@ export const people = {
     surname: "Baynes",
     gender: "female",
     parents: null,
-    spouces: ["f2"],
+    spouses: ["f2"],
     birth: {
       year: 1874,
       month: "Jun",
@@ -97,7 +97,7 @@ export const people = {
     surname: "Coats",
     gender: "male",
     parents: null,
-    spouces: ["f3"],
+    spouses: ["f3"],
     birth: {
       year: 1874,
       month: "Jun",
@@ -115,7 +115,7 @@ export const people = {
     surname: "James",
     gender: "female",
     parents: null,
-    spouces: ["f3"],
+    spouses: ["f3"],
     birth: {
       year: 1874,
       month: "Jun",
@@ -133,7 +133,7 @@ export const people = {
     surname: "Appleton",
     gender: "male",
     parents: "f1",
-    spouces: ["f4"],
+    spouses: ["f4"],
     birth: {
       year: 1874,
       month: "Jun",
@@ -151,7 +151,7 @@ export const people = {
     surname: "Fletcher",
     gender: "female",
     parents: "f2",
-    spouces: ["f4"],
+    spouses: ["f4"],
     birth: {
       year: 1874,
       month: "Jun",
@@ -169,7 +169,7 @@ export const people = {
     surname: "Akred",
     gender: "male",
     parents: null,
-    spouces: ["f5"],
+    spouses: ["f5"],
     birth: {
       year: 1874,
       month: "Jun",
@@ -187,7 +187,7 @@ export const people = {
     surname: "Coats",
     gender: "female",
     parents: "f3",
-    spouces: ["f5"],
+    spouses: ["f5"],
     birth: {
       year: 1874,
       month: "Jun",
@@ -205,7 +205,7 @@ export const people = {
     surname: "Coats",
     gender: "female",
     parents: "f3",
-    spouces: [],
+    spouses: [],
     birth: {
       year: 1874,
       month: "Jun",
@@ -223,7 +223,7 @@ export const people = {
     surname: "Coats",
     gender: "male",
     parents: "f3",
-    spouces: ["f6"],
+    spouses: ["f6"],
     birth: {
       year: 1874,
       month: "Jun",
@@ -241,7 +241,7 @@ export const people = {
     surname: "Appleton",
     gender: "female",
     parents: "f4",
-    spouces: ["f6", "f7"],
+    spouses: ["f6", "f7"],
     birth: {
       year: 1874,
       month: "Jun",
@@ -259,7 +259,7 @@ export const people = {
     surname: "Swanson",
     gender: "male",
     parents: null,
-    spouces: ["f7"],
+    spouses: ["f7"],
     birth: {
       year: 1874,
       month: "Jun",
@@ -277,7 +277,7 @@ export const people = {
     surname: "Akred",
     gender: "male",
     parents: "f5",
-    spouces: [],
+    spouses: [],
     birth: {
       year: 1874,
       month: "Jun",
@@ -295,7 +295,7 @@ export const people = {
     surname: "Coats",
     gender: "female",
     parents: "f6",
-    spouces: [],
+    spouses: [],
     birth: {
       year: 1874,
       month: "Jun",
@@ -313,7 +313,7 @@ export const people = {
     surname: "Swanson",
     gender: "male",
     parents: "f7",
-    spouces: [],
+    spouses: [],
     birth: {
       year: 1874,
       month: "Jun",
@@ -332,7 +332,7 @@ export const people = {
     surname: "Appleton",
     gender: "male",
     parents: "f1",
-    spouces: [],
+    spouses: [],
     birth: {
       year: 1874,
       month: "Jun",
@@ -351,7 +351,7 @@ export const people = {
     surname: "Appleton",
     gender: "male",
     parents: "f1",
-    spouces: [],
+    spouses: [],
     birth: {
       year: 1874,
       month: "Jun",

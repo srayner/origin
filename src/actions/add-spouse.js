@@ -28,7 +28,7 @@ export function addSpouseEnd(person, spouse) {
     ...spouse,
     _id: uuidv4(),
     tree: person.tree,
-    spouces: [newFamilyId]
+    spouses: [newFamilyId]
   };
   api.postPerson(updatedSpouse);
   const updatedFamily = {

@@ -31,11 +31,11 @@ export function addFatherEnd(child, father, mother, family) {
     ...father,
     _id: uuidv4(),
     tree: child.tree,
-    spouces: family ? [family._id] : []
+    spouses: family ? [family._id] : []
   };
   api.postPerson(updatedFather);
   if (mother) {
-    updatedMother = { ...mother, spouces: [family._id] };
+    updatedMother = { ...mother, spouses: [family._id] };
     api.patchPerson(updatedMother);
   }
   if (family) {

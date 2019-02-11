@@ -33,119 +33,119 @@
           name: "John",
           gender: "male",
           parents: null,
-          spouces: ["f1"]
+          spouses: ["f1"]
         },
         p2: {
           id: "p2",
           name: "Sarah",
           gender: "female",
           parents: null,
-          spouces: ["f1"]
+          spouses: ["f1"]
         },
         p3: {
           id: "p3",
           name: "William",
           gender: "male",
           parents: null,
-          spouces: ["f2"]
+          spouses: ["f2"]
         },
         p4: {
           id: "p4",
           name: "Joanne",
           gender: "female",
           parents: null,
-          spouces: ["f2"]
+          spouses: ["f2"]
         },
         p5: {
           id: "p5",
           name: "Henry",
           gender: "male",
           parents: null,
-          spouces: ["f3"]
+          spouses: ["f3"]
         },
         p6: {
           id: "p6",
           name: "Amberlyn",
           gender: "female",
           parents: null,
-          spouces: ["f3"]
+          spouses: ["f3"]
         },
         p7: {
           id: "p7",
           name: "Lucus",
           gender: "male",
           parents: "f1",
-          spouces: ["f4"]
+          spouses: ["f4"]
         },
         p8: {
           id: "p8",
           name: "Caroline",
           gender: "female",
           parents: "f2",
-          spouces: ["f4"]
+          spouses: ["f4"]
         },
         p9: {
           id: "p9",
           name: "Wilfred",
           gender: "male",
           parents: null,
-          spouces: ["f5"]
+          spouses: ["f5"]
         },
         p10: {
           id: "p10",
           name: "Anne",
           gender: "female",
           parents: "f3",
-          spouces: ["f5"]
+          spouses: ["f5"]
         },
         p11: {
           id: "p11",
           name: "Sharlene",
           gender: "female",
           parents: "f3",
-          spouces: []
+          spouses: []
         },
         p12: {
           id: "p12",
           name: "Charles",
           gender: "male",
           parents: "f3",
-          spouces: ["f6"]
+          spouses: ["f6"]
         },
         p13: {
           id: "p13",
           name: "Jayne",
           gender: "female",
           parents: "f4",
-          spouces: ["f6", "f7"]
+          spouses: ["f6", "f7"]
         },
         p14: {
           id: "p14",
           name: "Frederick",
           gender: "male",
           parents: null,
-          spouces: ["f7"]
+          spouses: ["f7"]
         },
         p15: {
           id: "p15",
           name: "Jonathon",
           gender: "male",
           parents: "f5",
-          spouces: []
+          spouses: []
         },
         p16: {
           id: "p16",
           name: "Alexandra",
           gender: "female",
           parents: "f6",
-          spouces: []
+          spouses: []
         },
         p17: {
           id: "p17",
           name: "Stephen",
           gender: "male",
           parents: "f7",
-          spouces: []
+          spouses: []
         }
       };
 
@@ -155,11 +155,11 @@
       // Main.
       positionPerson(people["p1"], 0, 0); // Positioning one person should ripple through and position all people.
       spreadNodes(); // Adjusts x and y values so that nodes don't colide.
-      pullSpoucesClose();
+      pullSpousesClose();
       addLinksToSVG(); // Add all links to SVG
       addNodesToSVG(); // Adds all nodes to the SVG
 
-      function pullSpoucesClose() {
+      function pullSpousesClose() {
         Object.keys(families).map(key => {
           const family = families[key];
           const father = people[family.father];
@@ -181,7 +181,7 @@
        * Position spouses
        */
       function positionSpouses(person, x, y) {
-        person.spouces.map((key, index) => {
+        person.spouses.map((key, index) => {
           if (index % 2 === 0) {
             const inversion = person.gender === "male" ? 1 : -1;
             positionFamily(families[key], x + pitchX, y, inversion); // to the right of person
@@ -424,7 +424,7 @@
 
       function shiftPerson(person) {
         person.x += pitchX;
-        person.spouces.map(key => {
+        person.spouses.map(key => {
           const family = families[key];
           family.x += pitchX;
         });

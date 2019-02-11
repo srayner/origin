@@ -8,7 +8,7 @@ export default function tidy(tree) {
   pitchX = tree.pitchX;
   if (people !== undefined) {
     spreadNodes();
-    pullSpoucesClose();
+    pullSpousesClose();
   }
 }
 /*
@@ -23,7 +23,7 @@ export function spreadNodes() {
   });
 }
 
-export function pullSpoucesClose() {
+export function pullSpousesClose() {
   Object.keys(families).forEach(key => {
     const family = families[key];
     const father = people[family.father];

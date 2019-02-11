@@ -99,13 +99,13 @@ class FamilyPanel extends React.Component {
     );
   }
 
-  renderSpoucesAndChildren() {
-    const { spouces } = this.props.person;
-    return spouces.map(familyKey => {
+  renderSpousesAndChildren() {
+    const { spouses } = this.props.person;
+    return spouses.map(familyKey => {
       const family = this.props.families[familyKey];
-      const spouceGender =
+      const spouseGender =
         this.props.person.gender === "male" ? "female" : "male";
-      const spouceKey = spouceGender === "male" ? family.father : family.mother;
+      const spouseKey = spouseGender === "male" ? family.father : family.mother;
       const children = family.children.map(childKey => {
         const child = this.props.people[childKey];
         return (
@@ -114,23 +114,23 @@ class FamilyPanel extends React.Component {
           </Link>
         );
       });
-      let spouceComponent = null;
-      if (spouceKey) {
-        const spouce = this.props.people[spouceKey];
-        spouceComponent = (
-          <Link to={spouce._id}>
-            <PersonButton person={spouce} />
+      let spouseComponent = null;
+      if (spouseKey) {
+        const spouse = this.props.people[spouseKey];
+        spouseComponent = (
+          <Link to={spouse._id}>
+            <PersonButton person={spouse} />
           </Link>
         );
       }
-      if (children && !spouceKey) {
-        spouceComponent = (
-          <AddRelativeButton gender={spouceGender} caption="Add spouce" />
+      if (children && !spouseKey) {
+        spouseComponent = (
+          <AddRelativeButton gender={spouseGender} caption="Add spouse" />
         );
       }
       return (
         <div>
-          {spouceComponent}
+          {spouseComponent}
           {children}
         </div>
       );
@@ -141,7 +141,7 @@ class FamilyPanel extends React.Component {
     const { person } = this.props;
     const father = this.renderFather();
     const mother = this.renderMother();
-    const spoucesAndChildren = this.renderSpoucesAndChildren();
+    const spousesAndChildren = this.renderSpousesAndChildren();
     let modal = null;
     if (this.props.addingRelation === "father") {
       modal = (
@@ -182,11 +182,11 @@ class FamilyPanel extends React.Component {
         <SubHeader>Parents</SubHeader>
         {father}
         {mother}
-        <SubHeader>Spouces &amp; Children</SubHeader>
-        {spoucesAndChildren}
+        <SubHeader>Spouses &amp; Children</SubHeader>
+        {spousesAndChildren}
         <AddRelativeButton
           gender={person.gender === "male" ? "female" : "male"}
-          caption="Add spouce"
+          caption="Add spouse"
           onClick={() => this.props.addSpouseStart()}
         />
         {modal}

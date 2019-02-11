@@ -32,6 +32,14 @@ const people = (state = {}, action) => {
       }
       return newState;
     }
+    case "ADD_SPOUSE_END": {
+      const { updatedPerson, updatedSpouse } = action.payload;
+      return {
+        ...state,
+        [updatedPerson._id]: updatedPerson,
+        [updatedSpouse._id]: updatedSpouse
+      };
+    }
     default:
       return state;
   }

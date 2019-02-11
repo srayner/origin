@@ -16,6 +16,11 @@ import {
   addMotherCancel,
   addMotherEnd
 } from "../../actions/add-mother";
+import {
+  addSpouseStart,
+  addSpouseCancel,
+  addSpouseEnd
+} from "../../actions/add-spouse";
 
 const Container = styled.div`
   margin: 0;
@@ -44,11 +49,16 @@ class FamilyPanel extends React.Component {
       family && family.mother ? this.props.people[family.mother] : null;
     this.props.addFatherEnd(child, father, mother, family);
   };
+
   addMother = (child, mother) => {
     const family = child.parents ? this.props.families[child.parents] : null;
     const father =
       family && family.father ? this.props.people[family.father] : null;
     this.props.addMotherEnd(child, mother, father, family);
+  };
+
+  addSpouse = (person, spouse) => {
+    this.props.addSpouseEnd(person, spouse);
   };
 
   renderFather() {
@@ -155,6 +165,17 @@ class FamilyPanel extends React.Component {
         </Modal>
       );
     }
+    if (this.props.addingRelation === "spouse") {
+      modal = (
+        <Modal width="50%" handleClose={this.props.addSpouseCancel}>
+          <PersonDetail
+            person={{ gender: person.gender === "male" ? "female" : "male" }}
+            cancelEditing={this.props.addSpouseCancel}
+            endEditing={spouse => this.addSpouse(person, spouse)}
+          />
+        </Modal>
+      );
+    }
     return (
       <Container>
         <Header>Family</Header>
@@ -163,6 +184,11 @@ class FamilyPanel extends React.Component {
         {mother}
         <SubHeader>Spouces &amp; Children</SubHeader>
         {spoucesAndChildren}
+        <AddRelativeButton
+          gender={person.gender === "male" ? "female" : "male"}
+          caption="Add spouce"
+          onClick={() => this.props.addSpouseStart()}
+        />
         {modal}
       </Container>
     );
@@ -196,6 +222,15 @@ const mapDispatchToProps = dispatch => {
     },
     addMotherEnd: (child, mother, father, family) => {
       dispatch(addMotherEnd(child, mother, father, family));
+    },
+    addSpouseStart: () => {
+      dispatch(addSpouseStart());
+    },
+    addSpouseCancel: () => {
+      dispatch(addSpouseCancel());
+    },
+    addSpouseEnd: (person, spouse) => {
+      dispatch(addSpouseEnd(person, spouse));
     }
   };
 };

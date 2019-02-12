@@ -76,6 +76,11 @@ class PersonDetail extends React.Component {
     return this.validDay(day) && this.validMonth(month) && this.validYear(year);
   };
 
+  onChangeParents = event => {
+    const parents = event.target.value;
+    this.setState({ parents });
+  };
+
   validDay = day => {
     return day >= 1 && day <= 31;
   };
@@ -103,10 +108,38 @@ class PersonDetail extends React.Component {
     return year >= 1 && year <= currentYear;
   };
 
+  renderParentOptions() {
+    console.log(this.props);
+    const parentOptions = this.props.parentOptions.map(option => {
+      return (
+        <Radio
+          name="parents"
+          value={option.value}
+          checked={this.state.parents === option.value}
+          onChange={this.onChangeParents}
+        >
+          {option.text}
+        </Radio>
+      );
+    });
+    if (this.props.parentOptions.length > 0) {
+      return (
+        <FormRow>
+          <VerticleContainer>
+            <Label>Parents</Label>
+            {parentOptions}
+          </VerticleContainer>
+        </FormRow>
+      );
+    }
+    return null;
+  }
+
   render() {
     const { person } = this.props;
     const birth = dateAsText(person.birth);
     const death = dateAsText(person.death);
+    const parentOptions = this.renderParentOptions();
     return (
       <div>
         <FormRow>
@@ -177,6 +210,7 @@ class PersonDetail extends React.Component {
             onChange={this.onChangeDeathPlace}
           />
         </FormRow>
+        {parentOptions}
         <ButtonGroup>
           <PrimaryButton
             onClick={() => {

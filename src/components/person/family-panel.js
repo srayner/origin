@@ -108,6 +108,26 @@ class FamilyPanel extends React.Component {
     );
   }
 
+  getParentOptions() {
+    const { spouses } = this.props.person;
+    return spouses.map(familyKey => {
+      const family = this.props.families[familyKey];
+      const father = this.props.people[family.father];
+      const mother = this.props.people[family.mother];
+      return {
+        value: familyKey,
+        text:
+          father.forenames +
+          " " +
+          father.surname +
+          " and " +
+          mother.forenames +
+          " " +
+          mother.surname
+      };
+    });
+  }
+
   renderSpousesAndChildren() {
     const { spouses } = this.props.person;
     return spouses.map(familyKey => {
@@ -190,6 +210,7 @@ class FamilyPanel extends React.Component {
         <Modal width="50%" handleClose={this.props.addChildCancel}>
           <PersonDetail
             person={{}}
+            parentOptions={this.getParentOptions()}
             cancelEditing={this.props.addChildCancel}
             endEditing={(family, child) => this.addChild(family, child)}
           />

@@ -21,6 +21,11 @@ import {
   addSpouseCancel,
   addSpouseEnd
 } from "../../actions/add-spouse";
+import {
+  addChildStart,
+  addChildCancel,
+  addChildEnd
+} from "../../actions/add-child";
 
 const Container = styled.div`
   margin: 0;
@@ -59,6 +64,10 @@ class FamilyPanel extends React.Component {
 
   addSpouse = (person, spouse) => {
     this.props.addSpouseEnd(person, spouse);
+  };
+
+  addChild = (family, child) => {
+    this.props.addChildEnd(family, child);
   };
 
   renderFather() {
@@ -176,6 +185,17 @@ class FamilyPanel extends React.Component {
         </Modal>
       );
     }
+    if (this.props.addingRelation === "child") {
+      modal = (
+        <Modal width="50%" handleClose={this.props.addChildCancel}>
+          <PersonDetail
+            person={{}}
+            cancelEditing={this.props.addChildCancel}
+            endEditing={(family, child) => this.addChild(family, child)}
+          />
+        </Modal>
+      );
+    }
     return (
       <Container>
         <Header>Family</Header>
@@ -188,6 +208,11 @@ class FamilyPanel extends React.Component {
           gender={person.gender === "male" ? "female" : "male"}
           caption="Add spouse"
           onClick={() => this.props.addSpouseStart()}
+        />
+        <AddRelativeButton
+          gender={"male"}
+          caption="Add child"
+          onClick={() => this.props.addChildStart()}
         />
         {modal}
       </Container>
@@ -231,6 +256,15 @@ const mapDispatchToProps = dispatch => {
     },
     addSpouseEnd: (person, spouse) => {
       dispatch(addSpouseEnd(person, spouse));
+    },
+    addChildStart: () => {
+      dispatch(addChildStart());
+    },
+    addChildCancel: () => {
+      dispatch(addChildCancel());
+    },
+    addChildEnd: (family, child) => {
+      dispatch(addChildEnd(family, child));
     }
   };
 };

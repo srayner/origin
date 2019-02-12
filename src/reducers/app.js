@@ -47,12 +47,17 @@ const app = (state = initialState, action) => {
     case "ADD_SPOUSE_START": {
       return { ...state, addingRelation: "spouse" };
     }
+    case "ADD_CHILD_START": {
+      return { ...state, addingRelation: "child" };
+    }
     case "ADD_FATHER_CANCEL":
     case "ADD_FATHER_END":
     case "ADD_MOTHER_CANCEL":
     case "ADD_MOTHER_END":
     case "ADD_SPOUSE_CANCEL":
-    case "ADD_SPOUSE_END": {
+    case "ADD_SPOUSE_END":
+    case "ADD_CHILD_CANCEL":
+    case "ADD_CHILD_END": {
       return { ...state, addingRelation: false };
     }
     default:

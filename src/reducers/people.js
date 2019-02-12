@@ -40,6 +40,13 @@ const people = (state = {}, action) => {
         [updatedSpouse._id]: updatedSpouse
       };
     }
+    case "ADD_CHILD_END": {
+      const { updatedPerson } = action.payload;
+      return {
+        ...state,
+        [updatedPerson._id]: updatedPerson
+      };
+    }
     default:
       return state;
   }

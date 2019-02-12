@@ -109,20 +109,20 @@ class PersonDetail extends React.Component {
   };
 
   renderParentOptions() {
-    console.log(this.props);
-    const parentOptions = this.props.parentOptions.map(option => {
-      return (
-        <Radio
-          name="parents"
-          value={option.value}
-          checked={this.state.parents === option.value}
-          onChange={this.onChangeParents}
-        >
-          {option.text}
-        </Radio>
-      );
-    });
-    if (this.props.parentOptions.length > 0) {
+    if (this.props.parentOptions && this.props.parentOptions.length > 0) {
+      const parentOptions = this.props.parentOptions.map(option => {
+        return (
+          <Radio
+            name="parents"
+            value={option.value}
+            checked={this.state.parents === option.value}
+            onChange={this.onChangeParents}
+          >
+            {option.text}
+          </Radio>
+        );
+      });
+
       return (
         <FormRow>
           <VerticleContainer>

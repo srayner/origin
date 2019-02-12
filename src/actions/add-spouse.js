@@ -22,7 +22,6 @@ export function addSpouseCancel() {
  * @param {Person} spouse The spouse we are adding.
  */
 export function addSpouseEnd(person, spouse) {
-  console.log(person);
   const newFamilyId = uuidv4();
   const updatedSpouse = {
     ...spouse,
@@ -33,16 +32,17 @@ export function addSpouseEnd(person, spouse) {
   api.postPerson(updatedSpouse);
   const updatedFamily = {
     _id: newFamilyId,
-    father: person.gender === "male" ? person._id : spouse._id,
-    mother: person.gender === "male" ? spouse._id : person._id,
+    tree: person.tree,
+    father: person.gender === "male" ? person._id : updatedSpouse._id,
+    mother: person.gender === "male" ? updatedSpouse._id : person._id,
     children: []
   };
   api.postFamily(updatedFamily);
   const updatedPerson = {
     ...person,
-    spouses: [...person.spouses, updatedSpouse._id]
+    spouses: [...person.spouses, newFamilyId]
   };
-  api.postPerson(updatedPerson);
+  api.patchPerson(updatedPerson);
   return {
     type: "ADD_SPOUSE_END",
     payload: { updatedPerson, updatedSpouse, updatedFamily }

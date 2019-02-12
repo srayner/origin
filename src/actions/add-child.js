@@ -25,14 +25,16 @@ export function addChildEnd(family, child) {
   const newPersonId = uuidv4();
   const updatedPerson = {
     ...child,
-    _id: newPersonId
+    _id: newPersonId,
+    tree: family.tree,
+    spouses: []
   };
   api.postPerson(updatedPerson);
   const updatedFamily = {
     ...family,
     children: [...family.children, newPersonId]
   };
-  api.patchFamily(family);
+  api.patchFamily(updatedFamily);
   return {
     type: "ADD_CHILD_END",
     payload: { updatedPerson, updatedFamily }

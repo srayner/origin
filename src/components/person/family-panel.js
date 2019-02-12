@@ -66,7 +66,8 @@ class FamilyPanel extends React.Component {
     this.props.addSpouseEnd(person, spouse);
   };
 
-  addChild = (family, child) => {
+  addChild = child => {
+    const family = this.props.families[child.parents];
     this.props.addChildEnd(family, child);
   };
 
@@ -212,7 +213,7 @@ class FamilyPanel extends React.Component {
             person={{}}
             parentOptions={this.getParentOptions()}
             cancelEditing={this.props.addChildCancel}
-            endEditing={(family, child) => this.addChild(family, child)}
+            endEditing={child => this.addChild(child)}
           />
         </Modal>
       );

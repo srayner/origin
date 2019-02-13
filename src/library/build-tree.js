@@ -75,6 +75,9 @@ function positionPerson(person, x, y) {
   }
 
   // position person
+  while (positionOccupied(x, y)) {
+    x = x + pitchX;
+  }
   person.x = x;
   person.y = y;
   person.positioned = true;
@@ -86,4 +89,21 @@ function positionPerson(person, x, y) {
 
   // position any potential spouses.
   positionSpouses(person, x, y);
+}
+
+function positionOccupied(x, y) {
+  let result = false;
+  Object.keys(people).forEach(key => {
+    const person = people[key];
+    if (person.positioned && person.x === x && person.y === y) {
+      result = true;
+    }
+  });
+  Object.keys(families).forEach(key => {
+    const family = families[key];
+    if (family.positioned && family.x === x && family.y === y) {
+      result = true;
+    }
+  });
+  return result;
 }

@@ -50,7 +50,6 @@ export function deletePersonEnd(person, families) {
   api.deletePerson(person._id);
   return {
     type: "DELETE_PERSON_END",
-    person,
-    updatedFamilies
+    payload: { person, updatedFamilies }
   };
 }

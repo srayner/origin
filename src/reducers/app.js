@@ -2,7 +2,8 @@ const initialState = {
   trees: {},
   addingTree: false,
   addingRelation: false,
-  editingTree: false
+  editingTree: false,
+  deletingPerson: null
 };
 
 const app = (state = initialState, action) => {
@@ -59,6 +60,14 @@ const app = (state = initialState, action) => {
     case "ADD_CHILD_CANCEL":
     case "ADD_CHILD_END": {
       return { ...state, addingRelation: false };
+    }
+    case "DELETE_PERSON_START": {
+      const { personId } = action.payload;
+      return { ...state, deletingPerson: personId };
+    }
+    case "DELETE_PERSON_CANCEL":
+    case "DELETE_PERSON_END": {
+      return { ...state, deletingPerson: null };
     }
     default:
       return state;

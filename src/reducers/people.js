@@ -47,6 +47,12 @@ const people = (state = {}, action) => {
         [updatedPerson._id]: updatedPerson
       };
     }
+    case "PERSON_DELETE_END": {
+      const { person } = action.payload;
+      let newState = { ...state };
+      delete newState[person._id];
+      return newState;
+    }
     default:
       return state;
   }

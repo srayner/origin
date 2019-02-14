@@ -11,6 +11,14 @@ const families = (state = {}, action) => {
       const { updatedFamily } = action.payload;
       return { ...state, [updatedFamily._id]: updatedFamily };
     }
+    case "DELETE_PERSON_END": {
+      const { updatedFamilies } = action.payload;
+      let newState = { ...state };
+      updatedFamilies.forEach(family => {
+        newState[family._id] = family;
+      });
+      return newState;
+    }
     default:
       return state;
   }

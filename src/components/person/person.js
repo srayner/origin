@@ -10,6 +10,12 @@ import Modal from "../ui/modal";
 import FamilyPanel from "./family-panel";
 import FactsPanel from "./facts-panel";
 import { loadTreeForPerson } from "../../actions/trees";
+import {
+  deletePersonStart,
+  deletePersonCancel,
+  deletePersonEnd
+} from "../../actions/delete-person";
+import { pseudoRandomBytes } from "crypto";
 
 const Container = styled.div`
   position: relative;
@@ -43,16 +49,34 @@ class Person extends React.Component {
         </Modal>
       );
     }
+    if (this.props.deletingPerson) {
+      modal = (
+        <Modal width="50%" handleClose={this.props.deletePersonCancel}>
+          <p>
+            Are you sure you want to delete {person.forenames} {person.surname}?
+          </p>
+        </Modal>
+      );
+    }
     return (
       <Container>
         <FloatingButton
           top="10px"
-          right="10px"
+          right="80px"
           onClick={() => {
             this.props.startEditing({ ...person });
           }}
         >
           Edit
+        </FloatingButton>
+        <FloatingButton
+          top="10px"
+          right="10px"
+          onClick={() => {
+            this.props.deletePersonStart(person._id);
+          }}
+        >
+          Delete
         </FloatingButton>
         <PersonTitle person={person} />
         <PersonMenu />
@@ -68,6 +92,7 @@ class Person extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    deletingPerson: state.app.deletingPerson,
     editingPerson: state.person.person,
     people: state.people,
     families: state.families
@@ -87,6 +112,15 @@ const mapDispatchToProps = dispatch => {
     },
     endEditing: updatedPerson => {
       dispatch(endEditing(updatedPerson));
+    },
+    deletePersonStart: personId => {
+      dispatch(deletePersonStart(personId));
+    },
+    deletePersonCancel: () => {
+      dispatch(deletePersonCancel());
+    },
+    deletePersonEnd: (person, families) => {
+      dispatch(deletePersonEnd(person, families));
     }
   };
 };

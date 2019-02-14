@@ -67,6 +67,15 @@ class Person extends React.Component {
       <Container>
         <FloatingButton
           top="10px"
+          left="10px"
+          onClick={() => {
+            this.props.history.push("/tree/" + person.tree);
+          }}
+        >
+          Show Tree
+        </FloatingButton>
+        <FloatingButton
+          top="10px"
           right="80px"
           onClick={() => {
             this.props.startEditing({ ...person });

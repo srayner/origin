@@ -24,6 +24,7 @@ const Container = styled.div`
 
 const DetailContainer = styled.div`
   display: flex;
+  justify-content: center;
   margin: 0;
 `;
 

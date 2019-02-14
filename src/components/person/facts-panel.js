@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { dateAsText } from "../../library/person";
-import Panel from "../ui/panel";
 
 const Container = styled.div`
   margin: 0;
@@ -22,9 +21,13 @@ const List = styled.ul`
 `;
 
 const Item = styled.li`
-  margin: 0;
-  padding: 0;
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid #a9a9a9;
+  border-radius: 3px;
+  background-color: white;
   list-style: none;
+  width: 240px;
 `;
 
 const Seperator = styled.span`
@@ -33,6 +36,8 @@ const Seperator = styled.span`
 
 const Title = styled.h3`
   margin: 0;
+  font-size: 16px;
+  font-weight: 600;
 `;
 
 const FactsPanel = props => {
@@ -51,12 +56,10 @@ const FactsPanel = props => {
   const items = events.map(event => {
     return (
       <Item>
-        <Panel>
-          <Title>{event.title}</Title>
-          <span>{event.date}</span>
-          <Seperator>&#9642;</Seperator>
-          <span>{event.location}</span>
-        </Panel>
+        <Title>{event.title}</Title>
+        <span>{event.date}</span>
+        <Seperator>&#9642;</Seperator>
+        <span>{event.location}</span>
       </Item>
     );
   });

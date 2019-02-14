@@ -15,7 +15,7 @@ import {
   deletePersonCancel,
   deletePersonEnd
 } from "../../actions/delete-person";
-import { pseudoRandomBytes } from "crypto";
+import DeletePerson from "./delete-person";
 
 const Container = styled.div`
   position: relative;
@@ -52,9 +52,13 @@ class Person extends React.Component {
     if (this.props.deletingPerson) {
       modal = (
         <Modal width="50%" handleClose={this.props.deletePersonCancel}>
-          <p>
-            Are you sure you want to delete {person.forenames} {person.surname}?
-          </p>
+          <DeletePerson
+            person={person}
+            submit={() =>
+              this.props.deletePersonEnd(person, this.props.families)
+            }
+            cancel={this.props.deletePersonCancel}
+          />
         </Modal>
       );
     }

@@ -3,6 +3,8 @@ import Label from "../ui/label";
 import Text from "../ui/text";
 import { Button, PrimaryButton } from "../ui/button";
 import Modal from "../ui/modal";
+import FormRow from "../ui/form-row";
+import VerticalText from "../ui/vertical-text";
 
 class TreeModal extends React.Component {
   state = { ...this.props.tree };
@@ -20,8 +22,13 @@ class TreeModal extends React.Component {
     return (
       <Modal handleClose={handleClose}>
         <h1>{heading}</h1>
-        <Label>Tree Name</Label>
-        <Text value={this.state.name} onChange={this.onNameChange} />
+        <FormRow>
+          <VerticalText
+            caption="Tree Name"
+            value={this.state.name}
+            onChange={this.onNameChange}
+          />
+        </FormRow>
         <PrimaryButton onClick={this.onSubmit}>OK</PrimaryButton>
         <Button onClick={handleClose}>Cancel</Button>
       </Modal>

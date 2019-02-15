@@ -6,7 +6,7 @@ const people = (state = {}, action) => {
     }
     case "PERSON_EDIT_END": {
       const { updatedPerson } = action.payload;
-      return { ...state, [updatedPerson.id]: updatedPerson };
+      return { ...state, [updatedPerson._id]: updatedPerson };
     }
     case "ADD_FATHER_END": {
       const { updatedChild, updatedFather, updatedMother } = action.payload;

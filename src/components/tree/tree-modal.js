@@ -1,6 +1,4 @@
 import React from "react";
-import Label from "../ui/label";
-import Text from "../ui/text";
 import { Button, PrimaryButton } from "../ui/button";
 import Modal from "../ui/modal";
 import FormRow from "../ui/form-row";

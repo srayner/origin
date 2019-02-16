@@ -28,6 +28,8 @@ const Item = styled.li`
   background-color: white;
   list-style: none;
   width: 240px;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
 `;
 
 const Seperator = styled.span`
@@ -54,11 +56,13 @@ const FactsPanel = props => {
   };
   const events = [birth, death];
   const items = events.map(event => {
+    const seperator =
+      event.date && event.location ? <Seperator>&#9642;</Seperator> : null;
     return (
       <Item>
         <Title>{event.title}</Title>
         <span>{event.date}</span>
-        <Seperator>&#9642;</Seperator>
+        {seperator}
         <span>{event.location}</span>
       </Item>
     );

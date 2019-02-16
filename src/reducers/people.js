@@ -8,6 +8,10 @@ const people = (state = {}, action) => {
       const { updatedPerson } = action.payload;
       return { ...state, [updatedPerson._id]: updatedPerson };
     }
+    case "ADD_PERSON_END": {
+      const { updatedPerson } = action.payload;
+      return { ...state, [updatedPerson._id]: updatedPerson };
+    }
     case "ADD_FATHER_END": {
       const { updatedChild, updatedFather, updatedMother } = action.payload;
       const newState = {

@@ -7,11 +7,12 @@ import { dateAsText } from "../../library/person";
 import { Button, PrimaryButton } from "../ui/button";
 import ButtonGroup from "../ui/button-group";
 import FormRow from "../ui/form-row";
+import ErrorMessage from "../ui/error-message";
 
 const VerticleContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 20px 5px;
+  margin: 10px 5px;
 `;
 
 class PersonDetail extends React.Component {
@@ -78,7 +79,7 @@ class PersonDetail extends React.Component {
 
   onChangeParents = event => {
     const parents = event.target.value;
-    this.setState({ parents });
+    this.setState({ parents, error: false });
   };
 
   validDay = day => {
@@ -135,11 +136,23 @@ class PersonDetail extends React.Component {
     return null;
   }
 
+  submit = event => {
+    if (!this.state.parents) {
+      this.setState({ error: true });
+      return;
+    }
+
+    this.props.endEditing({ ...this.state });
+  };
+
   render() {
     const { person } = this.props;
     const birth = dateAsText(person.birth);
     const death = dateAsText(person.death);
     const parentOptions = this.renderParentOptions();
+    const error = this.state.error ? (
+      <ErrorMessage>You must select parents for this child.</ErrorMessage>
+    ) : null;
     return (
       <div>
         <FormRow>
@@ -211,14 +224,9 @@ class PersonDetail extends React.Component {
           />
         </FormRow>
         {parentOptions}
+        {error}
         <ButtonGroup>
-          <PrimaryButton
-            onClick={() => {
-              this.props.endEditing({ ...this.state });
-            }}
-          >
-            OK
-          </PrimaryButton>
+          <PrimaryButton onClick={this.submit}>OK</PrimaryButton>
           <Button
             onClick={() => {
               this.props.cancelEditing();

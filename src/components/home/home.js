@@ -69,7 +69,7 @@ class Home extends React.Component {
             <TreesPanel trees={trees} onNewTree={addTreeStart} />
           </Col>
           <FixedCol>
-            <Search />
+            <Search history={this.props.history} />
             <Indexes />
           </FixedCol>
         </Row>

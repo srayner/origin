@@ -21,6 +21,20 @@ class Api {
     };
   };
 
+  async search(query) {
+    const response = await axios.get(
+      this.baseUri + "/birth-indexes",
+      { params: query },
+      this.getOptions()
+    );
+
+    if (response.data && response.data.error) {
+      return [];
+    }
+
+    return response.data;
+  }
+
   async indexTrees() {
     const response = await axios.get(
       this.baseUri + "/trees",

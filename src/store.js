@@ -4,13 +4,15 @@ import app from "./reducers/app";
 import people from "./reducers/people";
 import families from "./reducers/families";
 import person from "./reducers/person";
+import search from "./reducers/search";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // eslint-disable-line
 const rootReducer = combineReducers({
   app,
   families,
   people,
-  person
+  person,
+  search
 });
 const store = createStore(
   rootReducer,

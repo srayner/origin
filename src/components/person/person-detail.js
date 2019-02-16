@@ -137,7 +137,7 @@ class PersonDetail extends React.Component {
   }
 
   submit = event => {
-    if (!this.state.parents) {
+    if (this.props.parentOptions && !this.state.parents) {
       this.setState({ error: true });
       return;
     }

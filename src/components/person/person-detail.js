@@ -40,9 +40,20 @@ class PersonDetail extends React.Component {
     this.setState({ status });
   };
 
+  onChangeBirthDate = event => {
+    const birthDate = event.target.value;
+    console.log(birthDate);
+    this.setState({ birthDate });
+  };
+
   onChangeBirthPlace = event => {
     const birthPlace = event.target.value;
     this.setState({ birthPlace });
+  };
+
+  onChangeDeathDate = event => {
+    const deathDate = event.target.value;
+    this.setState({ deathDate });
   };
 
   onChangeDeathPlace = event => {
@@ -50,63 +61,9 @@ class PersonDetail extends React.Component {
     this.setState({ deathPlace });
   };
 
-  onChangeBirthDate = event => {
-    const values = event.target.value.split(" ");
-    let day, month, year;
-    switch (values.length) {
-      case 1:
-        day = null;
-        month = null;
-        year = values[0];
-        break;
-      case 2:
-        day = null;
-        month = values[0];
-        year = values[1];
-        break;
-      case 3:
-        day = values[0];
-        month = values[1];
-        year = values[2];
-        break;
-      default:
-        day = null;
-        month = null;
-        year = null;
-    }
-    return this.validDay(day) && this.validMonth(month) && this.validYear(year);
-  };
-
   onChangeParents = event => {
     const parents = event.target.value;
     this.setState({ parents, error: false });
-  };
-
-  validDay = day => {
-    return day >= 1 && day <= 31;
-  };
-
-  validMonth = month => {
-    const months = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec"
-    ];
-    return months.indexOf(month) !== -1;
-  };
-
-  validYear = year => {
-    const currentYear = new Date().getFullYear();
-    return year >= 1 && year <= currentYear;
   };
 
   renderParentOptions() {
@@ -136,19 +93,29 @@ class PersonDetail extends React.Component {
     return null;
   }
 
+  buildDateObject(dateString) {
+    const parts = dateString.split(" ");
+    return {
+      day: parts[0],
+      month: parts[1],
+      year: parts[2]
+    };
+  }
+
   submit = event => {
     if (this.props.parentOptions && !this.state.parents) {
       this.setState({ error: true });
       return;
     }
-
-    this.props.endEditing({ ...this.state });
+    let person = { ...this.state };
+    console.log(person);
+    person.birth = this.buildDateObject(person.birthDate);
+    person.death = this.buildDateObject(person.deathDate);
+    this.props.endEditing(person);
   };
 
   render() {
     const { person } = this.props;
-    const birth = dateAsText(person.birth);
-    const death = dateAsText(person.death);
     const parentOptions = this.renderParentOptions();
     const error = this.state.error ? (
       <ErrorMessage>You must select parents for this child.</ErrorMessage>
@@ -208,18 +175,26 @@ class PersonDetail extends React.Component {
           </VerticleContainer>
         </FormRow>
         <FormRow>
-          <VerticalText caption="Birth Date" value={birth} />
+          <VerticalText
+            caption="Birth Date"
+            value={this.state.birthDate}
+            onChange={this.onChangeBirthDate}
+          />
           <VerticalText
             caption="Birth Place"
-            value={person.birthPlace}
+            value={person.birthDate}
             onChange={this.onChangeBirthPlace}
           />
         </FormRow>
         <FormRow>
-          <VerticalText caption="Death Date" value={death} />
+          <VerticalText
+            caption="Death Date"
+            value={this.state.deathDate}
+            onChange={this.onChangeDeathDate}
+          />
           <VerticalText
             caption="Death Place"
-            value={person.deathPlace}
+            value={person.deathDate}
             onChange={this.onChangeDeathPlace}
           />
         </FormRow>

@@ -1,7 +1,12 @@
 import React from "react";
+import styled from "styled-components";
 import { connect } from "react-redux";
 import { loadSearchResults } from "../../actions/search";
 import Result from "./result";
+
+const Header = styled.h1`
+  text-align: center;
+`;
 
 class Results extends React.Component {
   componentDidMount() {
@@ -18,12 +23,12 @@ class Results extends React.Component {
     }
 
     const rows = searchResults.map((result, index) => {
-      return <Result key={index} result={result} />;
+      return <Result index={index} result={result} />;
     });
 
     return (
       <div>
-        <h1>Search Results</h1>
+        <Header>Search Results</Header>
         {rows}
       </div>
     );

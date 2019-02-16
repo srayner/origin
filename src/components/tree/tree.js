@@ -14,6 +14,11 @@ import {
 import TreeModal from "./tree-modal";
 import { ThemeProvider } from "styled-components";
 import theme from "../../data/theme";
+import {
+  addPersonStart,
+  addPersonCancel,
+  addPersonEnd
+} from "../../actions/add-person";
 
 const Svg = styled.svg`
   position: absolute;
@@ -120,6 +125,7 @@ class Tree extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    addingPerson: state.app.addingPerson,
     editingTree: state.app.editingTree,
     tree: state.app.tree,
     people: state.app.people,
@@ -132,7 +138,10 @@ const mapDispatchToProps = dispatch => {
     loadTree: treeId => dispatch(loadTree(treeId)),
     editTreeStart: () => dispatch(editTreeStart()),
     editTreeCancel: () => dispatch(editTreeCancel()),
-    editTreeEnd: tree => dispatch(editTreeEnd(tree))
+    editTreeEnd: tree => dispatch(editTreeEnd(tree)),
+    addPersonStart: () => dispatch(addPersonStart()),
+    addPersonCancel: () => dispatch(addPersonCancel()),
+    addPersonEnd: person => dispatch(addPersonStart(person))
   };
 };
 

@@ -1,5 +1,6 @@
 const initialState = {
   trees: {},
+  addingPerson: false,
   addingTree: false,
   addingRelation: false,
   editingTree: false,
@@ -38,6 +39,13 @@ const app = (state = initialState, action) => {
       const { tree } = action.payload;
       const trees = { ...state.trees, [tree.id]: tree };
       return { ...state, trees, editingTree: false };
+    }
+    case "ADD_PERSON_START": {
+      return { ...state, addingPerson: true };
+    }
+    case "ADD_PERSON_CANCEL":
+    case "ADD_PERSON_END": {
+      return { ...state, addingPerson: false };
     }
     case "ADD_FATHER_START": {
       return { ...state, addingRelation: "father" };

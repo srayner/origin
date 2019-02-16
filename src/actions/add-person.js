@@ -13,9 +13,15 @@ export function addPersonCancel() {
   };
 }
 
-export function addPersonEnd(person) {
-  updatedPerson = { ...person, _id: uuidv4() };
-  api.postFamily(person);
+export function addPersonEnd(person, treeId) {
+  const updatedPerson = {
+    ...person,
+    _id: uuidv4(),
+    tree: treeId,
+    parents: null,
+    spouses: []
+  };
+  api.postPerson(updatedPerson);
   return {
     type: "ADD_PERSON_END",
     payload: { updatedPerson }

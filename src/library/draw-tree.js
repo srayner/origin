@@ -29,7 +29,6 @@ function mouseOut(d, i) {
 function addNodesToSVG(clickHandler) {
   const node = d3.select("g.nodes");
   node.selectAll("*").remove();
-  console.log(node);
   if (!people) {
     return;
   }

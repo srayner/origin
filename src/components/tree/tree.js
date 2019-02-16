@@ -11,6 +11,7 @@ import {
   editTreeCancel,
   editTreeEnd
 } from "../../actions/trees";
+import Modal from "../ui/modal";
 import TreeModal from "./tree-modal";
 import { ThemeProvider } from "styled-components";
 import theme from "../../data/theme";
@@ -19,6 +20,7 @@ import {
   addPersonCancel,
   addPersonEnd
 } from "../../actions/add-person";
+import PersonDetail from "../person/person-detail";
 
 const Svg = styled.svg`
   position: absolute;
@@ -73,11 +75,13 @@ class Tree extends React.Component {
     d3.select("#tree-container")
       .append("g")
       .attr("class", "nodes");
-
-    this.renderTree();
   }
 
   componentDidUpdate() {
+    const { addingPerson } = this.props;
+    if (!addingPerson && Object.keys(this.props.people).length === 0) {
+      this.props.addPersonStart();
+    }
     this.renderTree();
   }
 
@@ -92,6 +96,19 @@ class Tree extends React.Component {
           handleClose={this.props.editTreeCancel}
           tree={this.props.tree}
         />
+      );
+    }
+    if (this.props.addingPerson) {
+      modal = (
+        <Modal width="50%" handleClose={this.props.addPersonCancel}>
+          <PersonDetail
+            person={{ gender: "male" }}
+            cancelEditing={this.props.addPersonCancel}
+            endEditing={person =>
+              this.props.addPersonEnd(person, this.props.tree._id)
+            }
+          />
+        </Modal>
       );
     }
     return (
@@ -141,7 +158,7 @@ const mapDispatchToProps = dispatch => {
     editTreeEnd: tree => dispatch(editTreeEnd(tree)),
     addPersonStart: () => dispatch(addPersonStart()),
     addPersonCancel: () => dispatch(addPersonCancel()),
-    addPersonEnd: person => dispatch(addPersonStart(person))
+    addPersonEnd: (person, treeId) => dispatch(addPersonEnd(person, treeId))
   };
 };
 

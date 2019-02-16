@@ -78,8 +78,9 @@ class Tree extends React.Component {
   }
 
   componentDidUpdate() {
-    const { addingPerson } = this.props;
-    if (!addingPerson && Object.keys(this.props.people).length === 0) {
+    const { addingPerson, people } = this.props;
+    console.log(people);
+    if (!addingPerson && Object.keys(people).length === 0) {
       this.props.addPersonStart();
     }
     this.renderTree();
@@ -145,8 +146,8 @@ const mapStateToProps = state => {
     addingPerson: state.app.addingPerson,
     editingTree: state.app.editingTree,
     tree: state.app.tree,
-    people: state.app.people,
-    families: state.app.families
+    people: state.people,
+    families: state.families
   };
 };
 

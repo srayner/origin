@@ -35,6 +35,17 @@ const StyledLink = styled(NavLink)`
   }
 `;
 
+const Logout = styled.span`
+  display: inline-block;
+  margin: 4px 0 0 0;
+  padding: 10px;
+  color: ${props => props.theme.ash};
+  :hover {
+    color: white;
+    cursor: pointer;
+  }
+`;
+
 const Menu = props => {
   return (
     <ThemeProvider theme={theme}>
@@ -51,13 +62,13 @@ const Menu = props => {
           <StyledLink to="/profile">Profile</StyledLink>
         </Item>
         <Item>
-          <span
+          <Logout
             onClick={() => {
               props.logout();
             }}
           >
             Logout
-          </span>
+          </Logout>
         </Item>
       </Container>
     </ThemeProvider>

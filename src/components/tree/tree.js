@@ -78,8 +78,10 @@ class Tree extends React.Component {
   }
 
   componentDidUpdate() {
-    const { addingPerson, people } = this.props;
-    console.log(people);
+    const { token, addingPerson, people } = this.props;
+    if (!token) {
+      this.props.history.push("/login");
+    }
     if (!addingPerson && Object.keys(people).length === 0) {
       this.props.addPersonStart();
     }
@@ -143,6 +145,7 @@ class Tree extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    token: state.app.token,
     addingPerson: state.app.addingPerson,
     editingTree: state.app.editingTree,
     tree: state.app.tree,

@@ -14,6 +14,7 @@ class AuthForm extends React.Component {
   };
 
   handleSubmit = event => {
+    console.log(this.state);
     event.preventDefault();
     this.props.onSubmit(this.state);
   };
@@ -23,12 +24,18 @@ class AuthForm extends React.Component {
       <div>
         <form>
           <FormRow>
-            <VerticalText caption="Email" />
+            <VerticalText
+              onChange={event => this.handleChange(event, "email")}
+            />
           </FormRow>
           <FormRow>
-            <VerticalText type="password" caption="Password" />
+            <VerticalText
+              onChange={event => this.handleChange(event, "password")}
+              type="password"
+              caption="Password"
+            />
           </FormRow>
-          <PrimaryButton>Login</PrimaryButton>
+          <PrimaryButton onClick={this.handleSubmit}>Login</PrimaryButton>
         </form>
       </div>
     );

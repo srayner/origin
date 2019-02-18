@@ -1,13 +1,26 @@
 import React from "react";
 import AuthForm from "./auth-form";
+import { signUp } from "../../actions/user";
+import { connect } from "react-redux";
 
-const SignUp = props => {
-  return (
-    <div>
-      <h1>Sign Up</h1>
-      <AuthForm />
-    </div>
-  );
+class SignUp extends React.Component {
+  render() {
+    return (
+      <div>
+        <h1>Sign Up</h1>
+        <AuthForm onSubmit={this.props.onSubmit} />
+      </div>
+    );
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onSubmit: data => dispatch(signUp(data))
+  };
 };
 
-export default SignUp;
+export default connect(
+  null,
+  mapDispatchToProps
+)(SignUp);

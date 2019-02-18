@@ -13,6 +13,7 @@ const app = (state = initialState, action) => {
       const { token } = action.payload;
       return { ...state, token };
     }
+    case "LOGIN_FAILED":
     case "LOGOUT": {
       return { ...state, token: null };
     }

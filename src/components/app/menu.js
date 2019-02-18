@@ -50,6 +50,15 @@ const Menu = props => {
         <Item>
           <StyledLink to="/profile">Profile</StyledLink>
         </Item>
+        <Item>
+          <span
+            onClick={() => {
+              props.logout();
+            }}
+          >
+            Logout
+          </span>
+        </Item>
       </Container>
     </ThemeProvider>
   );

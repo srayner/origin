@@ -13,6 +13,7 @@ import logo from "../../resources/tree.png";
 import theme from "../../data/theme";
 import { ThemeProvider } from "styled-components";
 import { connect } from "react-redux";
+import { logout } from "../../actions/user";
 
 const Container = styled.div`
   font-family: "Roboto", sans-serif;
@@ -53,7 +54,7 @@ class App extends Component {
           <Heading>
             <F>De</F>scent
           </Heading>
-          <Menu />
+          <Menu logout={this.props.logout} />
         </TitleBar>
       );
     }
@@ -81,7 +82,12 @@ const mapStateToProps = state => {
   };
 };
 
+const mapDispatchToProps = dispatch => {
+  return {
+    logout: () => dispatch(logout())
+  };
+};
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(App);

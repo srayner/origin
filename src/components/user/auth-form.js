@@ -26,7 +26,7 @@ class AuthForm extends React.Component {
             <VerticalText caption="Email" />
           </FormRow>
           <FormRow>
-            <VerticalText caption="Password" />
+            <VerticalText type="password" caption="Password" />
           </FormRow>
           <PrimaryButton>Login</PrimaryButton>
         </form>

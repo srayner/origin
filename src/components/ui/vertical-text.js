@@ -15,7 +15,7 @@ const VerticalText = props => {
   return (
     <Container grow={props.grow}>
       <Label>{props.caption}</Label>
-      <Text value={props.value} onChange={props.onChange} />
+      <Text type={props.type} value={props.value} onChange={props.onChange} />
     </Container>
   );
 };

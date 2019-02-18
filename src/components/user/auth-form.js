@@ -4,6 +4,20 @@ import VerticalText from "../ui/vertical-text";
 import { PrimaryButton } from "../ui/button";
 
 class AuthForm extends React.Component {
+  state = {
+    email: "",
+    password: ""
+  };
+
+  handleChange = (event, field) => {
+    this.setState({ [field]: event.target.value });
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+    this.props.onSubmit(this.state);
+  };
+
   render() {
     return (
       <div>

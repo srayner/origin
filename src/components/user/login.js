@@ -1,6 +1,7 @@
 import React from "react";
 import AuthForm from "./auth-form";
 import styled from "styled-components";
+import { Redirect } from "react-router-dom";
 import { login } from "../../actions/user";
 import { connect } from "react-redux";
 
@@ -23,6 +24,10 @@ const Title = styled.h1`
 
 class Login extends React.Component {
   render() {
+    const { redirect } = this.props;
+    if (redirect) {
+      return <Redirect to={redirect} />;
+    }
     return (
       <Panel>
         <Title>Login</Title>
@@ -32,6 +37,12 @@ class Login extends React.Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    redirect: state.app.redirect
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     onSubmit: data => dispatch(login(data))
@@ -39,6 +50,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Login);

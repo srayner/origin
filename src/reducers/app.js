@@ -10,8 +10,8 @@ const initialState = {
 const app = (state = initialState, action) => {
   switch (action.type) {
     case "LOGIN_SUCCESS": {
-      const { token } = action.payload;
-      return { ...state, token };
+      const { token, redirect } = action.payload;
+      return { ...state, token, redirect };
     }
     case "LOGIN_FAILED":
     case "LOGOUT": {

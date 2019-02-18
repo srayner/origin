@@ -8,15 +8,23 @@ export function signUp(data) {
 
 export function login(data) {
   return dispatch => {
-    return api.login(data).then(response => {
-      console.log(response.data);
-      const token = response.data.token;
-      localStorage.setItem("token", token);
-      return dispatch({
-        type: "LOGIN",
-        payload: { token }
+    api
+      .login(data)
+      .then(response => {
+        console.log(response);
+        const token = response.data.token;
+        localStorage.setItem("token", token);
+        dispatch({
+          type: "LOGIN_SUCCESS",
+          payload: { token }
+        });
+      })
+      .catch(error => {
+        console.log(error);
+        dispatch({
+          type: "LOGIN_FAILED"
+        });
       });
-    });
   };
 }
 

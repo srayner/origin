@@ -26,6 +26,7 @@ class AuthForm extends React.Component {
           <FormRow>
             <VerticalText
               onChange={event => this.handleChange(event, "email")}
+              caption="Email"
             />
           </FormRow>
           <FormRow>

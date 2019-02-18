@@ -12,6 +12,7 @@ import Menu from "./menu";
 import logo from "../../resources/tree.png";
 import theme from "../../data/theme";
 import { ThemeProvider } from "styled-components";
+import { connect } from "react-redux";
 
 const Container = styled.div`
   font-family: "Roboto", sans-serif;
@@ -44,18 +45,24 @@ const Logo = styled.img`
 
 class App extends Component {
   render() {
+    let titleBar = null;
+    if (this.props.token) {
+      titleBar = (
+        <TitleBar>
+          <Logo src={logo} />
+          <Heading>
+            <F>De</F>scent
+          </Heading>
+          <Menu />
+        </TitleBar>
+      );
+    }
+
     return (
       <Router>
         <Container>
-          <ThemeProvider theme={theme}>
-            <TitleBar>
-              <Logo src={logo} />
-              <Heading>
-                <F>De</F>scent
-              </Heading>
-              <Menu />
-            </TitleBar>
-          </ThemeProvider>
+          <ThemeProvider theme={theme} />
+          {titleBar}
           <Route path="/" exact component={Home} />
           <Route path="/sign-up" exact component={SignUp} />
           <Route path="/login" exact component={Login} />
@@ -69,4 +76,13 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    token: state.app.token
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(App);

@@ -9,6 +9,13 @@ const initialState = {
 
 const app = (state = initialState, action) => {
   switch (action.type) {
+    case "LOGIN_SUCCESS": {
+      const { token } = action.payload;
+      return { ...state, token };
+    }
+    case "LOGOUT": {
+      return { ...state, token: null };
+    }
     case "LOAD_TREE_END": {
       const { tree, people, families } = action.payload;
       return { ...state, tree, people, families };

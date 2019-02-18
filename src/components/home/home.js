@@ -13,6 +13,7 @@ import Search from "./search";
 import Indexes from "./indexes";
 import { Button } from "../ui/button";
 import GettingStartedPanel from "./getting-started-panel";
+import { Redirect } from "react-router-dom";
 
 const Container = styled.div`
   margin: 0 auto;
@@ -44,12 +45,18 @@ class Home extends React.Component {
 
   render() {
     const {
+      token,
       trees,
       addingTree,
       addTreeStart,
       addTreeCancel,
       addTreeEnd
     } = this.props;
+
+    if (!token) {
+      return <Redirect to="/login" />;
+    }
+
     let modal = null;
     if (addingTree) {
       modal = (
@@ -84,6 +91,7 @@ class Home extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    token: state.app.token,
     addingTree: state.app.addingTree,
     trees: state.app.trees
   };

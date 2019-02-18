@@ -15,7 +15,7 @@ const app = (state = initialState, action) => {
     }
     case "LOGIN_FAILED":
     case "LOGOUT": {
-      return { ...state, token: null };
+      return { ...state, token: null, redirect: null };
     }
     case "LOAD_TREE_END": {
       const { tree, people, families } = action.payload;

@@ -21,6 +21,14 @@ class Api {
     };
   };
 
+  signup(data) {
+    return axios.post(this.baseUri + "/user/signup", data, this.getOptions());
+  }
+
+  login(data) {
+    return axios.post(this.baseUri + "/user/login", data, this.getOptions());
+  }
+
   async search(query) {
     const response = await axios.get(
       this.baseUri + "/birth-indexes",

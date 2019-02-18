@@ -1,7 +1,13 @@
 import React from "react";
+import AuthForm from "./auth-form";
 
 const SignUp = props => {
-  return <h1>Sign Up</h1>;
+  return (
+    <div>
+      <h1>Sign Up</h1>
+      <AuthForm />
+    </div>
+  );
 };
 
 export default SignUp;

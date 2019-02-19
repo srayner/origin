@@ -94,6 +94,9 @@ class PersonDetail extends React.Component {
   }
 
   buildDateObject(dateString) {
+    if (!dateString) {
+      return null;
+    }
     const parts = dateString.split(" ");
     return {
       day: parts[0],

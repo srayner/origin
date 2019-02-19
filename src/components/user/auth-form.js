@@ -30,7 +30,13 @@ class AuthForm extends React.Component {
     this.props.onSubmit(this.state);
   };
 
+  renderSignUpLink() {
+    return <StyledLink to="/sign-up">Don't have an account? Signup</StyledLink>;
+  }
+
   render() {
+    const signUpLink =
+      this.props.formType === "login" ? this.renderSignUpLink() : null;
     return (
       <div>
         <form>
@@ -48,7 +54,7 @@ class AuthForm extends React.Component {
             />
           </FormRow>
           <PrimaryButton onClick={this.handleSubmit}>Login</PrimaryButton>
-          <StyledLink to="/sign-up">Don't have an account? Signup</StyledLink>
+          {signUpLink}
         </form>
       </div>
     );

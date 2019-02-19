@@ -8,7 +8,7 @@ class SignUp extends React.Component {
     return (
       <div>
         <h1>Sign Up</h1>
-        <AuthForm onSubmit={this.props.onSubmit} />
+        <AuthForm formType="signup" onSubmit={this.props.onSubmit} />
       </div>
     );
   }

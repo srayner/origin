@@ -31,7 +31,7 @@ class Login extends React.Component {
     return (
       <Panel>
         <Title>Login</Title>
-        <AuthForm onSubmit={this.props.onSubmit} />
+        <AuthForm formType="login" onSubmit={this.props.onSubmit} />
       </Panel>
     );
   }

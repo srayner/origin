@@ -35,8 +35,9 @@ class AuthForm extends React.Component {
   }
 
   render() {
-    const signUpLink =
-      this.props.formType === "login" ? this.renderSignUpLink() : null;
+    const { formType } = this.props;
+    const submitCaption = formType == "login" ? "Login" : "Sing Up";
+    const signUpLink = formType === "login" ? this.renderSignUpLink() : null;
     return (
       <div>
         <form>
@@ -53,7 +54,9 @@ class AuthForm extends React.Component {
               caption="Password"
             />
           </FormRow>
-          <PrimaryButton onClick={this.handleSubmit}>Login</PrimaryButton>
+          <PrimaryButton onClick={this.handleSubmit}>
+            {submitCaption}
+          </PrimaryButton>
           {signUpLink}
         </form>
       </div>

@@ -2,6 +2,17 @@ import React from "react";
 import FormRow from "../ui/form-row";
 import VerticalText from "../ui/vertical-text";
 import { PrimaryButton } from "../ui/button";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+
+const StyledLink = styled(Link)`
+  color: steelblue;
+  text-decoration: none;
+  &:visited {
+    color: steelblue;
+    text-decoration: none;
+  }
+`;
 
 class AuthForm extends React.Component {
   state = {
@@ -37,6 +48,7 @@ class AuthForm extends React.Component {
             />
           </FormRow>
           <PrimaryButton onClick={this.handleSubmit}>Login</PrimaryButton>
+          <StyledLink to="/signup">Don't have an account? Signup</StyledLink>
         </form>
       </div>
     );

@@ -11,7 +11,7 @@ const Panel = styled.div`
   border-radius: 5px;
   margin: 0;
   padding: 20px;
-  width: 300px;
+  width: 320px;
   position: absolute;
   top: 50%;
   left: 50%;

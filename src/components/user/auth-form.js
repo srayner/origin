@@ -48,7 +48,7 @@ class AuthForm extends React.Component {
             />
           </FormRow>
           <PrimaryButton onClick={this.handleSubmit}>Login</PrimaryButton>
-          <StyledLink to="/signup">Don't have an account? Signup</StyledLink>
+          <StyledLink to="/sign-up">Don't have an account? Signup</StyledLink>
         </form>
       </div>
     );

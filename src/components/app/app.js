@@ -52,7 +52,7 @@ class App extends Component {
         <TitleBar>
           <Logo src={logo} />
           <Heading>
-            <F>De</F>scent
+            <F>Origin</F> Genealogy
           </Heading>
           <Menu logout={this.props.logout} />
         </TitleBar>

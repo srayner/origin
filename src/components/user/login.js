@@ -20,6 +20,13 @@ const Panel = styled.div`
 `;
 
 const Title = styled.h1`
+  margin: 5px;
+  text-align: center;
+`;
+
+const Heading = styled.h1`
+  margin-top: 40px;
+  color: #a0a0a0;
   text-align: center;
 `;
 
@@ -30,10 +37,13 @@ class Login extends React.Component {
       return <Redirect to={redirect} />;
     }
     return (
-      <Panel>
-        <Title>Origin Genealogy</Title>
-        <AuthForm formType="login" onSubmit={this.props.onSubmit} />
-      </Panel>
+      <div>
+        <Heading>Origin Genealogy</Heading>
+        <Panel>
+          <Title>Login</Title>
+          <AuthForm formType="login" onSubmit={this.props.onSubmit} />
+        </Panel>
+      </div>
     );
   }
 }

@@ -57,13 +57,16 @@ class Api {
     let response;
 
     // Tree name
-    response = await axios.get(this.baseUri + "/trees/" + _id, this.getOptions);
+    response = await axios.get(
+      this.baseUri + "/trees/" + _id,
+      this.getOptions()
+    );
     const tree = response.data;
 
     // People
     response = await axios.get(
       this.baseUri + "/people?tree=" + _id,
-      this.getOptions
+      this.getOptions()
     );
     const people = response.data.reduce(function(acc, cur, i) {
       acc[cur._id] = cur;

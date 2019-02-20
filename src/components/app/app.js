@@ -13,7 +13,7 @@ import logo from "../../resources/tree.png";
 import theme from "../../data/theme";
 import { ThemeProvider } from "styled-components";
 import { connect } from "react-redux";
-import { logout } from "../../actions/user";
+import { logout, loadLoginFromLocalStorage } from "../../actions/user";
 
 const Container = styled.div`
   font-family: "Roboto", sans-serif;
@@ -45,6 +45,10 @@ const Logo = styled.img`
 `;
 
 class App extends Component {
+  componentDidMount() {
+    this.props.loadLoginFromLocalStorage();
+  }
+
   render() {
     let titleBar = null;
     if (this.props.token) {
@@ -84,7 +88,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    logout: () => dispatch(logout())
+    logout: () => dispatch(logout()),
+    loadLoginFromLocalStorage: () => dispatch(loadLoginFromLocalStorage())
   };
 };
 export default connect(

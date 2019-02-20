@@ -13,6 +13,10 @@ const app = (state = initialState, action) => {
       const { token, redirect } = action.payload;
       return { ...state, token, redirect };
     }
+    case "LOGIN_FROM_LOCAL": {
+      const { token, redirect } = action.payload;
+      return { ...state, token, redirect };
+    }
     case "LOGIN_FAILED":
     case "LOGOUT": {
       return { ...state, token: null, redirect: null };

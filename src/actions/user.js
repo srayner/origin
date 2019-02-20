@@ -34,3 +34,14 @@ export function logout() {
     type: "LOGOUT"
   };
 }
+
+export function loadLoginFromLocalStorage() {
+  const token = localStorage.getItem("token");
+  if (token) {
+    return {
+      type: "LOGIN_FROM_LOCAL",
+      payload: { token, redirect: "/" }
+    };
+  }
+  return { type: "NULL" };
+}

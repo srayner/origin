@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 
 const Panel = styled.div`
   background-color: white;
-  border: 1px solid #777;
+  border: none;
   border-radius: 5px;
   margin: 0;
   padding: 20px;
@@ -16,6 +16,7 @@ const Panel = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 `;
 
 const Title = styled.h1`
@@ -30,7 +31,7 @@ class Login extends React.Component {
     }
     return (
       <Panel>
-        <Title>Login</Title>
+        <Title>Origin Genealogy</Title>
         <AuthForm formType="login" onSubmit={this.props.onSubmit} />
       </Panel>
     );

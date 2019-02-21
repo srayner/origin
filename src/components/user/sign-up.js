@@ -1,14 +1,30 @@
 import React from "react";
+import styled from "styled-components";
 import AuthForm from "./auth-form";
 import { signUp } from "../../actions/user";
 import { connect } from "react-redux";
+import AuthPanel from "../ui/auth-panel";
+
+const Title = styled.h1`
+  margin: 5px;
+  text-align: center;
+`;
+
+const Heading = styled.h1`
+  margin-top: 40px;
+  color: #a0a0a0;
+  text-align: center;
+`;
 
 class SignUp extends React.Component {
   render() {
     return (
       <div>
-        <h1>Sign Up</h1>
-        <AuthForm formType="signup" onSubmit={this.props.onSubmit} />
+        <Heading>Origin Genealogy</Heading>
+        <AuthPanel>
+          <Title>Sign Up</Title>
+          <AuthForm formType="signup" onSubmit={this.props.onSubmit} />
+        </AuthPanel>
       </div>
     );
   }

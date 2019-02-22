@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "../home/home";
 import SignUp from "../user/sign-up";
+import Verify from "../user/verify";
 import Login from "../user/login";
 import Person from "../person/person";
 import Tree from "../tree/tree";
@@ -69,6 +70,7 @@ class App extends Component {
           <ThemeProvider theme={theme}>{titleBar}</ThemeProvider>
           <Route path="/" exact component={Home} />
           <Route path="/sign-up" exact component={SignUp} />
+          <Route path="/verify" exact component={Verify} />
           <Route path="/login" exact component={Login} />
           <Route path="/person/:personId" exact component={Person} />
           <Route path="/tree/:treeId" exact component={Tree} />

@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import Panel from "../ui/panel";
-import Label from "../ui/label";
-import Text from "../ui/text";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import FormRow from "../ui/form-row";
+import VerticleText from "../ui/vertical-text";
 
 const Container = styled.div`
   margin: 0;
@@ -23,18 +23,15 @@ class Profile extends React.Component {
       <Container>
         <h1>Your profile</h1>
         <Panel>
-          <div>
-            <Label>Display Name</Label>
-            <Text value="Steve Rayner" />
-          </div>
-          <div>
-            <Label>Initials</Label>
-            <Text value="S R" />
-          </div>
-          <div>
-            <Label>Email</Label>
-            <Text value="myname@mydomain.com" />
-          </div>
+          <FormRow>
+            <VerticleText caption="Display Name" value="Steve Rayner" />
+          </FormRow>
+          <FormRow>
+            <VerticleText caption="Initials" value="S R" />
+          </FormRow>
+          <FormRow>
+            <VerticleText caption="Email" value="myname@mydomain.com" />
+          </FormRow>
         </Panel>
       </Container>
     );

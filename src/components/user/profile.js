@@ -5,10 +5,11 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import FormRow from "../ui/form-row";
 import VerticleText from "../ui/vertical-text";
+import ProfileTitle from "./profile-title";
 
 const Container = styled.div`
   margin: 0;
-  padding: 10px;
+  padding: 0;
   background-color: #eee;
 `;
 
@@ -18,10 +19,9 @@ class Profile extends React.Component {
     if (!token) {
       return <Redirect to="/login" />;
     }
-    console.log("Componnet rendered");
     return (
       <Container>
-        <h1>Your profile</h1>
+        <ProfileTitle />
         <Panel>
           <FormRow>
             <VerticleText caption="Display Name" value="Steve Rayner" />

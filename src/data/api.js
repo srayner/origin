@@ -149,6 +149,13 @@ class Api {
   deletePerson(_id) {
     return axios.delete(this.baseUri + "/people/" + _id, this.getOptions());
   }
+
+  exportTree(treeId) {
+    return axios.get(
+      this.baseUri + "/tree/export/" + treeId,
+      this.getOptions()
+    );
+  }
 }
 
 const api = new Api();

@@ -14,6 +14,7 @@ import Indexes from "./indexes";
 import { Button } from "../ui/button";
 import GettingStartedPanel from "./getting-started-panel";
 import { Redirect } from "react-router-dom";
+import { exportTree } from "../../actions/export";
 
 const Container = styled.div`
   margin: 0 auto;
@@ -82,7 +83,7 @@ class Home extends React.Component {
         </Row>
 
         <Button>Import</Button>
-        <Button>Export</Button>
+        <Button onClick={() => this.props.exportTree()}>Export</Button>
         {modal}
       </Container>
     );
@@ -110,6 +111,9 @@ const mapDispatchToProps = dispatch => {
     },
     addTreeEnd: treeName => {
       dispatch(addTreeEnd(treeName));
+    },
+    exportTree: treeId => {
+      dispatch(exportTree("c471e7bb-44fb-4165-a824-7fc0437a51c4"));
     }
   };
 };

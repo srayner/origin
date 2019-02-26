@@ -75,7 +75,11 @@ class Home extends React.Component {
         <Row>
           <Col>
             <GettingStartedPanel />
-            <TreesPanel trees={trees} onNewTree={addTreeStart} />
+            <TreesPanel
+              trees={trees}
+              onNewTree={addTreeStart}
+              onExportTree={this.props.exportTree}
+            />
           </Col>
           <FixedCol>
             <Search history={this.props.history} />
@@ -112,7 +116,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(addTreeEnd(treeName));
     },
     exportTree: treeId => {
-      dispatch(exportTree("c471e7bb-44fb-4165-a824-7fc0437a51c4"));
+      dispatch(exportTree(treeId));
     },
     exportGedCom: () => {
       buildGedCom();

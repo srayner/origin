@@ -30,6 +30,8 @@ const Tree = styled.li`
   margin: 0;
   padding: 5px;
   list-style: none;
+  display: flex;
+  justify-content: space-between;
   &:nth-child(odd) {
     background-color: #f0f0f0;
   }
@@ -40,13 +42,21 @@ const StyledLink = styled(NavLink)`
   text-decoration: none;
 `;
 
+const ExportLink = styled.span`
+  cursor: pointer;
+  color: #777;
+  &:hover {
+    color: #000;
+  }
+`;
+
 const TreesPanel = props => {
   const trees = Object.keys(props.trees).map((key, index) => {
+    const id = props.trees[key]._id;
     return (
       <Tree key={index}>
-        <StyledLink to={"/tree/" + props.trees[key]._id}>
-          {props.trees[key].name}
-        </StyledLink>
+        <StyledLink to={"/tree/" + id}>{props.trees[key].name}</StyledLink>
+        <ExportLink onClick={() => props.onExportTree(id)}>export</ExportLink>
       </Tree>
     );
   });

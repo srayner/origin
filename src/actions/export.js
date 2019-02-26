@@ -7,12 +7,12 @@ export function exportTree(treeId) {
       console.log(data);
       const { people, families } = data;
       const gedCom = buildGedCom({}, people, families);
-      const blob = new Blob(gedCom, { type: "text/plain" });
+      const blob = new Blob([gedCom], { type: "text/plain" });
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.setAttribute("hidden", "");
       a.setAttribute("href", url);
-      a.setAttribute("download", "download.json");
+      a.setAttribute("download", "download.ged");
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);

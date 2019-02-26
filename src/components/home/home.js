@@ -15,6 +15,7 @@ import { Button } from "../ui/button";
 import GettingStartedPanel from "./getting-started-panel";
 import { Redirect } from "react-router-dom";
 import { exportTree } from "../../actions/export";
+import { buildGedCom } from "../../library/gedcom-output";
 
 const Container = styled.div`
   margin: 0 auto;
@@ -83,7 +84,7 @@ class Home extends React.Component {
         </Row>
 
         <Button>Import</Button>
-        <Button onClick={() => this.props.exportTree()}>Export</Button>
+        <Button onClick={() => this.props.exportGedCom()}>Export</Button>
         {modal}
       </Container>
     );
@@ -114,6 +115,9 @@ const mapDispatchToProps = dispatch => {
     },
     exportTree: treeId => {
       dispatch(exportTree("c471e7bb-44fb-4165-a824-7fc0437a51c4"));
+    },
+    exportGedCom: () => {
+      buildGedCom();
     }
   };
 };

@@ -82,8 +82,6 @@ class Home extends React.Component {
             <Indexes />
           </FixedCol>
         </Row>
-
-        <Button>Import</Button>
         <Button onClick={() => this.props.exportTree()}>Export</Button>
         {modal}
       </Container>

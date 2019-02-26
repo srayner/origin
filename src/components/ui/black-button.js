@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const BlackButton = styled.button`
+  margin 0 5px;
   padding: 5px 10px;
   border: none;
   border-radius: 3px;

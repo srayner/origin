@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Panel from "../ui/panel";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faFileImport } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import BlackButton from "../ui/black-button";
 import { NavLink } from "react-router-dom";
@@ -12,12 +12,13 @@ const Icon = styled(FontAwesomeIcon)`
 
 const HeaderRow = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
 `;
 
 const Header = styled.h2`
   font-size: 20px;
   margin: 5px;
+  margin-right: auto;
 `;
 
 const Trees = styled.ul`
@@ -53,6 +54,14 @@ const TreesPanel = props => {
     <Panel>
       <HeaderRow>
         <Header>Trees</Header>
+        <BlackButton
+          onClick={() => {
+            props.onNewTree();
+          }}
+        >
+          <Icon icon={faFileImport} />
+          Import
+        </BlackButton>
         <BlackButton
           onClick={() => {
             props.onNewTree();

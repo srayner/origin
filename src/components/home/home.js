@@ -84,7 +84,7 @@ class Home extends React.Component {
         </Row>
 
         <Button>Import</Button>
-        <Button onClick={() => this.props.exportGedCom()}>Export</Button>
+        <Button onClick={() => this.props.exportTree()}>Export</Button>
         {modal}
       </Container>
     );

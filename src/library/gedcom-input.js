@@ -1,8 +1,20 @@
+import api from "../data/api";
 const uuidv4 = require("uuid/v4");
 
 export function importTree(content) {
+  const tree = {
+    _id: uuidv4(),
+    name: "Imported tree"
+  };
+  //api.postTree(tree);
+
+  let peopleMap = {};
+
+  let importedPeople = [];
+
   let currentPerson = null;
   const lines = content.split("\n");
+
   lines.forEach(line => {
     const [level, key, value] = line.split(" ");
     console.log(level, key, value);
@@ -11,7 +23,8 @@ export function importTree(content) {
       currentPerson = null;
     }
     if (level === "0" && value === "INDI") {
-      currentPerson = createNewPerson();
+      currentPerson = createNewPerson(tree._id, key);
+      peopleMap[key] = currentPerson;
     }
     if (level === "1" && key === "NAME") {
       setPersonName(currentPerson, value);
@@ -21,9 +34,10 @@ export function importTree(content) {
     }
   });
 
-  function createNewPerson() {
+  function createNewPerson(treeId) {
     return {
-      _id: uuidv4()
+      _id: uuidv4(),
+      tree: treeId
     };
   }
 

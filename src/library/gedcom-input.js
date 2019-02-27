@@ -3,8 +3,9 @@ const uuidv4 = require("uuid/v4");
 export function importTree(content) {
   let currentPerson = null;
   const lines = content.split("\n");
-  lines.array.forEach(line => {
-    const { level, key, value } = line.split(" ");
+  lines.forEach(line => {
+    const [level, key, value] = line.split(" ");
+    console.log(level, key, value);
     if (level === "0" && currentPerson) {
       savePerson(currentPerson);
       currentPerson = null;
@@ -12,10 +13,10 @@ export function importTree(content) {
     if (level === "0" && value === "INDI") {
       currentPerson = createNewPerson();
     }
-    if (level === "1" && KEY === "NAME") {
+    if (level === "1" && key === "NAME") {
       setPersonName(currentPerson, value);
     }
-    if (level === "1" && KEY === "SEX") {
+    if (level === "1" && key === "SEX") {
       setPersonGender(currentPerson, value);
     }
   });

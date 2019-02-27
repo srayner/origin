@@ -5,7 +5,6 @@ import VerticalText from "../ui/vertical-text";
 import FormRow from "../ui/form-row";
 import { PrimaryButton } from "../ui/button";
 import { connect } from "react-redux";
-import { dispatch } from "rxjs/internal/observable/pairs";
 import { queryUpdate } from "../../actions/search";
 
 class Search extends React.Component {

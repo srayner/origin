@@ -20,8 +20,12 @@ export function buildGedCom(user, people, families) {
     const wife = identityMap[family.mother];
     const identity = `@F${f}@`;
     lines.push(`0 ${identity} FAM`);
-    lines.push(`1 HUSB ${husb}`);
-    lines.push(`1 WIFE ${wife}`);
+    if (husb) {
+      lines.push(`1 HUSB ${husb}`);
+    }
+    if (wife) {
+      lines.push(`1 WIFE ${wife}`);
+    }
     family.children.forEach(key => {
       const chil = identityMap[key];
       lines.push(`1 CHIL ${chil}`);

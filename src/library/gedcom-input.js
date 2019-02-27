@@ -44,15 +44,16 @@ export function importTree(content) {
       setPersonGender(currentPerson, value);
     }
     if (level === "1" && key === "HUSB") {
-      setFamilyFather(currentFamily, peopleMap.value);
+      setFamilyFather(currentFamily, peopleMap[value]);
     }
     if (level === "1" && key === "WIFE") {
-      setFamilyMother(currentFamily, peopleMap.value);
+      setFamilyMother(currentFamily, peopleMap[value]);
     }
     if (level === "1" && key === "CHIL") {
-      setFamilyChild(currentFamily, peopleMap.value);
+      setFamilyChild(currentFamily, peopleMap[value]);
     }
   });
+
   function createNewPerson(treeId) {
     return {
       _id: uuidv4(),
@@ -95,7 +96,7 @@ export function importTree(content) {
   }
 
   function setFamilyChild(family, child) {
-    family.child.push(child._id);
+    family.children.push(child._id);
   }
 
   function savePerson(person) {

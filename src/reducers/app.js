@@ -4,11 +4,19 @@ const initialState = {
   addingTree: false,
   addingRelation: false,
   editingTree: false,
-  deletingPerson: null
+  deletingPerson: null,
+  importing: false
 };
 
 const app = (state = initialState, action) => {
   switch (action.type) {
+    case "IMPORT_FILE_START": {
+      return { ...state, importing: true };
+    }
+    case "IMPORT_FILE_CANCEL":
+    case "IMPORT_FILE_END": {
+      return { ...state, importing: false };
+    }
     case "LOGIN_SUCCESS": {
       const { token, redirect } = action.payload;
       return { ...state, token, redirect };

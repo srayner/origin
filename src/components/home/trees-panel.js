@@ -66,7 +66,7 @@ const TreesPanel = props => {
         <Header>Trees</Header>
         <BlackButton
           onClick={() => {
-            props.onNewTree();
+            props.onImportTree();
           }}
         >
           <Icon icon={faFileImport} />

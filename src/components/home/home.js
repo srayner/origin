@@ -11,11 +11,12 @@ import {
 import TreeModal from "../tree/tree-modal";
 import Search from "./search";
 import Indexes from "./indexes";
-import { Button } from "../ui/button";
 import GettingStartedPanel from "./getting-started-panel";
 import { Redirect } from "react-router-dom";
 import { exportTree } from "../../actions/export";
 import { buildGedCom } from "../../library/gedcom-output";
+import { importFileStart, importFileCancel } from "../../actions/import";
+import FileImport from "./file-import";
 
 const Container = styled.div`
   margin: 0 auto;
@@ -52,7 +53,8 @@ class Home extends React.Component {
       addingTree,
       addTreeStart,
       addTreeCancel,
-      addTreeEnd
+      addTreeEnd,
+      importFileStart
     } = this.props;
 
     if (!token) {
@@ -69,6 +71,9 @@ class Home extends React.Component {
         />
       );
     }
+    if (this.props.importing) {
+      modal = <FileImport handleClose={this.props.importFileCancel} />;
+    }
 
     return (
       <Container>
@@ -78,6 +83,7 @@ class Home extends React.Component {
             <TreesPanel
               trees={trees}
               onNewTree={addTreeStart}
+              onImportTree={importFileStart}
               onExportTree={this.props.exportTree}
             />
           </Col>
@@ -96,7 +102,8 @@ const mapStateToProps = state => {
   return {
     token: state.app.token,
     addingTree: state.app.addingTree,
-    trees: state.app.trees
+    trees: state.app.trees,
+    importing: state.app.importing
   };
 };
 
@@ -119,6 +126,12 @@ const mapDispatchToProps = dispatch => {
     },
     exportGedCom: () => {
       buildGedCom();
+    },
+    importFileStart: () => {
+      dispatch(importFileStart());
+    },
+    importFileCancel: () => {
+      dispatch(importFileCancel());
     }
   };
 };

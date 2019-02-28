@@ -1,3 +1,5 @@
+import { importTree } from "../library/gedcom-input";
+
 export function importFileStart() {
   return {
     type: "IMPORT_FILE_START"
@@ -10,7 +12,8 @@ export function importFileCancel() {
   };
 }
 
-export function importFileEnd() {
+export function importFileEnd(content) {
+  console.log("here");
   return {
     type: "IMPORT_FILE_END"
   };

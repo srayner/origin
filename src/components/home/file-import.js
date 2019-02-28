@@ -1,13 +1,12 @@
 import React from "react";
 import Modal from "../ui/modal";
-import { importTree } from "../../library/gedcom-input";
 
 const FileImport = props => {
   let fileReader;
 
   const handleFileRead = event => {
     const content = fileReader.result;
-    importTree(content);
+    props.handleImport(content);
   };
 
   const handleFileChosen = event => {

@@ -15,7 +15,11 @@ import GettingStartedPanel from "./getting-started-panel";
 import { Redirect } from "react-router-dom";
 import { exportTree } from "../../actions/export";
 import { buildGedCom } from "../../library/gedcom-output";
-import { importFileStart, importFileCancel } from "../../actions/import";
+import {
+  importFileStart,
+  importFileCancel,
+  importFileEnd
+} from "../../actions/import";
 import FileImport from "./file-import";
 
 const Container = styled.div`
@@ -72,7 +76,12 @@ class Home extends React.Component {
       );
     }
     if (this.props.importing) {
-      modal = <FileImport handleClose={this.props.importFileCancel} />;
+      modal = (
+        <FileImport
+          handleClose={this.props.importFileCancel}
+          handleImport={this.props.importFileEnd}
+        />
+      );
     }
 
     return (
@@ -132,6 +141,9 @@ const mapDispatchToProps = dispatch => {
     },
     importFileCancel: () => {
       dispatch(importFileCancel());
+    },
+    importFileEnd: content => {
+      dispatch(importFileEnd(content));
     }
   };
 };

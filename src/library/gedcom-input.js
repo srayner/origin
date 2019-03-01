@@ -15,7 +15,10 @@ export function importTree(content) {
   const lines = content.split("\n");
 
   lines.forEach(line => {
-    const [level, key, value] = line.split(" ");
+    const array = line.split(" ");
+    const level = array.shift();
+    const key = array.shift();
+    const value = array.join(" ");
     if (level === "0" && value === "INDI") {
       currentPerson = createNewPerson(tree._id, key);
       peopleMap[key] = currentPerson;
@@ -72,8 +75,9 @@ export function importTree(content) {
   function setPersonName(person, name) {
     const filtered = name.replace(/\//g, "");
     const parts = filtered.split(" ");
+    console.log(parts);
     person.surname = parts.pop();
-    person.fornames = parts.join(" ");
+    person.forenames = parts.join(" ");
   }
 
   function setPersonGender(person, gender) {

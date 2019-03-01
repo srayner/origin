@@ -1,5 +1,4 @@
 import api from "../data/api";
-import { start } from "pretty-error";
 const uuidv4 = require("uuid/v4");
 
 export function importTree(content) {
@@ -10,9 +9,6 @@ export function importTree(content) {
 
   let peopleMap = {};
   let familyMap = {};
-
-  const importedPeople = [];
-  const importedFamilies = [];
 
   let currentPerson = null;
   let currentFamily = null;
@@ -47,17 +43,19 @@ export function importTree(content) {
 
   // Persist the imported data.
   api.postTree(tree);
-  importedPeople.forEach(person => {
-    api.postPerson(person);
+  Object.keys(peopleMap).forEach(key => {
+    api.postPerson(peopleMap[key]);
   });
-  importFamilies.forEach(family => {
-    api.postFamily(family);
+  Object.keys(familyMap).forEach(key => {
+    api.postFamily(familyMap[key]);
   });
 
   function createNewPerson(treeId) {
     return {
       _id: uuidv4(),
-      tree: treeId
+      tree: treeId,
+      parents: null,
+      spouses: []
     };
   }
 
@@ -88,13 +86,14 @@ export function importTree(content) {
   }
 
   function setFamilyFather(family, father) {
+    console.log(father);
     family.father = father._id;
     father.spouses.push(family._id);
   }
 
   function setFamilyMother(family, mother) {
     family.mother = mother._id;
-    mother.spouces.push(family._id);
+    mother.spouses.push(family._id);
   }
 
   function setFamilyChild(family, child) {

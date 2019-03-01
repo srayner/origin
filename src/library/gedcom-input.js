@@ -20,15 +20,6 @@ export function importTree(content) {
 
   lines.forEach(line => {
     const [level, key, value] = line.split(" ");
-    console.log(level, key, value);
-    if (level === "0" && currentPerson) {
-      savePerson(currentPerson);
-      currentPerson = null;
-    }
-    if (level === "0" && currentFamily) {
-      saveFamily(currentFamily);
-      currentFamily = null;
-    }
     if (level === "0" && value === "INDI") {
       currentPerson = createNewPerson(tree._id, key);
       peopleMap[key] = currentPerson;
@@ -55,13 +46,13 @@ export function importTree(content) {
   });
 
   // Persist the imported data.
-  //  api.postTree(tree);
-  //  importedPeople.forEach(person => {
-  //    api.postPerson(person);
-  //  });
-  //  importFamilies.forEach(family => {
-  //    api.postFamily(family);
-  //  });
+  api.postTree(tree);
+  importedPeople.forEach(person => {
+    api.postPerson(person);
+  });
+  importFamilies.forEach(family => {
+    api.postFamily(family);
+  });
 
   function createNewPerson(treeId) {
     return {
@@ -109,13 +100,5 @@ export function importTree(content) {
   function setFamilyChild(family, child) {
     family.children.push(child._id);
     child.parents = family._id;
-  }
-
-  function savePerson(person) {
-    console.log(person);
-  }
-
-  function saveFamily(family) {
-    console.log(family);
   }
 }

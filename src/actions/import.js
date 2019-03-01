@@ -13,7 +13,7 @@ export function importFileCancel() {
 }
 
 export function importFileEnd(content) {
-  console.log("here");
+  importTree(content);
   return {
     type: "IMPORT_FILE_END"
   };

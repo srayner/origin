@@ -7,12 +7,12 @@ export function importTree(content) {
     _id: uuidv4(),
     name: "Imported tree"
   };
-  //api.postTree(tree);
 
   let peopleMap = {};
   let familyMap = {};
 
-  let importedPeople = [];
+  const importedPeople = [];
+  const importedFamilies = [];
 
   let currentPerson = null;
   let currentFamily = null;
@@ -54,6 +54,15 @@ export function importTree(content) {
     }
   });
 
+  // Persist the imported data.
+  //  api.postTree(tree);
+  //  importedPeople.forEach(person => {
+  //    api.postPerson(person);
+  //  });
+  //  importFamilies.forEach(family => {
+  //    api.postFamily(family);
+  //  });
+
   function createNewPerson(treeId) {
     return {
       _id: uuidv4(),
@@ -89,14 +98,17 @@ export function importTree(content) {
 
   function setFamilyFather(family, father) {
     family.father = father._id;
+    father.spouses.push(family._id);
   }
 
   function setFamilyMother(family, mother) {
     family.mother = mother._id;
+    mother.spouces.push(family._id);
   }
 
   function setFamilyChild(family, child) {
     family.children.push(child._id);
+    child.parents = family._id;
   }
 
   function savePerson(person) {

@@ -5,7 +5,8 @@ const initialState = {
   addingRelation: false,
   editingTree: false,
   deletingPerson: null,
-  importing: false
+  importing: false,
+  user: null
 };
 
 const app = (state = initialState, action) => {
@@ -18,8 +19,8 @@ const app = (state = initialState, action) => {
       return { ...state, importing: false };
     }
     case "LOGIN_SUCCESS": {
-      const { token, redirect } = action.payload;
-      return { ...state, token, redirect };
+      const { token, user, redirect } = action.payload;
+      return { ...state, token, user, redirect };
     }
     case "LOGIN_FROM_LOCAL": {
       const { token, redirect } = action.payload;

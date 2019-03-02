@@ -20,7 +20,7 @@ export function login(data) {
         localStorage.setItem("token", token);
         dispatch({
           type: "LOGIN_SUCCESS",
-          payload: { token, redirect: "/" }
+          payload: { token, user, redirect: "/" }
         });
       })
       .catch(error => {

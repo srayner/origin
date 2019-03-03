@@ -30,7 +30,7 @@ class Profile extends React.Component {
             <VerticleText caption="Initials" value="S R" />
           </FormRow>
           <FormRow>
-            <VerticleText caption="Email" value="myname@mydomain.com" />
+            <VerticleText caption="Email" value={this.props.email} />
           </FormRow>
         </Panel>
       </Container>
@@ -40,7 +40,8 @@ class Profile extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    token: state.app.token
+    token: state.app.token,
+    email: state.app.user.email
   };
 };
 

@@ -12,10 +12,13 @@ const families = (state = {}, action) => {
       return { ...state, [updatedFamily._id]: updatedFamily };
     }
     case "DELETE_PERSON_END": {
-      const { updatedFamilies } = action.payload;
+      const { updatedFamilies, deletedFamilies } = action.payload;
       let newState = { ...state };
       updatedFamilies.forEach(family => {
         newState[family._id] = family;
+      });
+      deletedFamilies.forEach(familyId => {
+        delete newState[familyId];
       });
       return newState;
     }

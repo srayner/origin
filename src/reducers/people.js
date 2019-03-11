@@ -52,9 +52,12 @@ const people = (state = {}, action) => {
       };
     }
     case "PERSON_DELETE_END": {
-      const { person } = action.payload;
+      const { person, updatedPeople } = action.payload;
       let newState = { ...state };
       delete newState[person._id];
+      updatedPeople.forEach(updatedPerson => {
+        newState[updatedPerson._id] = updatedPerson;
+      });
       return newState;
     }
     default:

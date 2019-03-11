@@ -56,7 +56,11 @@ class Person extends React.Component {
           <DeletePerson
             person={person}
             submit={() =>
-              this.props.deletePersonEnd(person, this.props.families)
+              this.props.deletePersonEnd(
+                person,
+                this.props.people,
+                this.props.families
+              )
             }
             cancel={this.props.deletePersonCancel}
           />
@@ -133,8 +137,8 @@ const mapDispatchToProps = dispatch => {
     deletePersonCancel: () => {
       dispatch(deletePersonCancel());
     },
-    deletePersonEnd: (person, families) => {
-      dispatch(deletePersonEnd(person, families));
+    deletePersonEnd: (person, people, families) => {
+      dispatch(deletePersonEnd(person, people, families));
     }
   };
 };

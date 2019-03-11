@@ -147,6 +147,10 @@ class Api {
     return axios.delete(this.baseUri + "/trees/" + _id, this.getOptions());
   }
 
+  deleteFamily(_id) {
+    return axios.delete(this.baseUri + "/families/" + _id, this.getOptions());
+  }
+
   deletePerson(_id) {
     return axios.delete(this.baseUri + "/people/" + _id, this.getOptions());
   }

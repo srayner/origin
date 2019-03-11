@@ -1,9 +1,10 @@
 import axios from "axios";
 
 class Api {
-  baseUri = "http://localhost:8001";
+  baseUri = process.env.REACT_APP_ORIGIN_API;
 
   getHeaders = () => {
+    console.log(process.env);
     const headers = {
       "Content-Type": "application/json"
     };

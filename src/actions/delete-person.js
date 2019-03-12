@@ -47,11 +47,9 @@ export function deletePersonEnd(person, people, families) {
         person.gender == "male"
           ? people[spouseFamily.mother]
           : people[spouseFamily.father];
-      console.log(spouse);
-      const updatedSpouses = spouse.spouses.splice(
-        spouse.spouses.indexOf(spouseFamily._id),
-        1
-      );
+      const updatedSpouses = spouse.spouses.filter(familyId => {
+        return familyId !== spouseFamily._id;
+      });
       const updatedSpouse = { ...spouse, spouses: updatedSpouses };
       api.patchPerson(updatedSpouse);
       updatedPeople.push(updatedSpouse);

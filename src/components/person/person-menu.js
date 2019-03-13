@@ -8,16 +8,24 @@ const Container = styled.div`
 `;
 
 const Button = styled.div`
+  color: grey;
   border: 0;
   border-bottom: 3px solid transparent;
   padding: 10px;
+  &:hover {
+    color: black;
+    cursor: pointer;
+  }
+  &.active {
+    border-bottom-color: ${props => props.theme.dandilion};
+  }
 `;
 
 const PersonMenu = props => {
   return (
     <Container>
       <Button>Life Story</Button>
-      <Button>Facts</Button>
+      <Button className="active">Facts</Button>
       <Button>Gallery</Button>
     </Container>
   );

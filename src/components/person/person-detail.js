@@ -8,6 +8,7 @@ import { Button, PrimaryButton } from "../ui/button";
 import ButtonGroup from "../ui/button-group";
 import FormRow from "../ui/form-row";
 import ErrorMessage from "../ui/error-message";
+import { lookLikeDate, looksLikeDate } from "../../library/date";
 
 const VerticleContainer = styled.div`
   display: flex;
@@ -43,6 +44,7 @@ class PersonDetail extends React.Component {
   onChangeBirthDate = event => {
     const birthDate = event.target.value;
     console.log(birthDate);
+    looksLikeDate(birthDate);
     this.setState({ birthDate });
   };
 

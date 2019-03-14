@@ -4,7 +4,6 @@ class Api {
   baseUri = process.env.REACT_APP_ORIGIN_API;
 
   getHeaders = () => {
-    console.log(process.env);
     const headers = {
       "Content-Type": "application/json"
     };

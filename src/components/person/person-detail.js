@@ -3,12 +3,11 @@ import styled from "styled-components";
 import Label from "../ui/label";
 import VerticalText from "../ui/vertical-text";
 import Radio from "../ui/radio";
-import { dateAsText } from "../../library/person";
 import { Button, PrimaryButton } from "../ui/button";
 import ButtonGroup from "../ui/button-group";
 import FormRow from "../ui/form-row";
 import ErrorMessage from "../ui/error-message";
-import { lookLikeDate, looksLikeDate } from "../../library/date";
+import { looksLikeDate } from "../../library/date";
 
 const VerticleContainer = styled.div`
   display: flex;

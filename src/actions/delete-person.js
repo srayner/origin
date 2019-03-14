@@ -44,7 +44,7 @@ export function deletePersonEnd(person, people, families) {
     const spouseFamily = families[key];
     if (spouseFamily.children.length === 0) {
       const spouse =
-        person.gender == "male"
+        person.gender === "male"
           ? people[spouseFamily.mother]
           : people[spouseFamily.father];
       const updatedSpouses = spouse.spouses.filter(familyId => {

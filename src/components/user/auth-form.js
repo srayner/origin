@@ -36,7 +36,7 @@ class AuthForm extends React.Component {
 
   render() {
     const { formType } = this.props;
-    const submitCaption = formType == "login" ? "Login" : "Sign Up";
+    const submitCaption = formType === "login" ? "Login" : "Sign Up";
     const signUpLink = formType === "login" ? this.renderSignUpLink() : null;
     return (
       <div>

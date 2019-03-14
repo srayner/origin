@@ -4,7 +4,6 @@ import { buildGedCom } from "../library/gedcom-output";
 export function exportTree(treeId) {
   return dispatch => {
     api.getTree(treeId).then(data => {
-      console.log(data);
       const { people, families } = data;
       const gedCom = buildGedCom({}, people, families);
       const blob = new Blob([gedCom], { type: "text/plain" });

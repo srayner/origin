@@ -3,7 +3,7 @@ import { buildGedCom } from "../library/gedcom-output";
 
 export function exportTree(treeId) {
   return dispatch => {
-    const data = api.getTree(treeId).then(data => {
+    api.getTree(treeId).then(data => {
       console.log(data);
       const { people, families } = data;
       const gedCom = buildGedCom({}, people, families);

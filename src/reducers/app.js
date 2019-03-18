@@ -6,7 +6,8 @@ const initialState = {
   editingTree: false,
   deletingPerson: null,
   importing: false,
-  user: null
+  user: null,
+  detailPane: "facts"
 };
 
 const app = (state = initialState, action) => {
@@ -97,6 +98,10 @@ const app = (state = initialState, action) => {
     case "DELETE_PERSON_CANCEL":
     case "DELETE_PERSON_END": {
       return { ...state, deletingPerson: null };
+    }
+    case "NAVIGATE_DETAIL": {
+      const { detailPane } = action.payload;
+      return { ...state, detailPane };
     }
     default:
       return state;

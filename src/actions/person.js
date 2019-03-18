@@ -20,3 +20,10 @@ export function endEditing(updatedPerson) {
     payload: { updatedPerson }
   };
 }
+
+export function navigateDetail(detailPane) {
+  return {
+    type: "NAVIGATE_DETAIL",
+    payload: { detailPane }
+  };
+}

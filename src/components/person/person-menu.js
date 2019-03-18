@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { navigateDetail } from "../../actions/person";
+import { connect } from "react-redux";
 
 const Container = styled.div`
   background-color: #dedede;
@@ -21,14 +23,60 @@ const Button = styled.div`
   }
 `;
 
-const PersonMenu = props => {
-  return (
-    <Container>
-      <Button>Life Story</Button>
-      <Button className="active">Facts</Button>
-      <Button>Gallery</Button>
-    </Container>
-  );
+class PersonMenu extends React.Component {
+  onClick = event => {
+    const detailPane = event.target.getAttribute("value");
+    this.props.navigateDetail(detailPane);
+  };
+
+  render() {
+    const active = this.props.detailPane;
+    return (
+      <Container>
+        <Button
+          onClick={this.onClick}
+          key="1"
+          value="life-story"
+          className={active === "life-story" ? "active" : ""}
+        >
+          Life Story
+        </Button>
+        <Button
+          onClick={this.onClick}
+          key="2"
+          value="facts"
+          className={active === "facts" ? "active" : ""}
+        >
+          Facts
+        </Button>
+        <Button
+          onClick={this.onClick}
+          key="3"
+          value="gallery"
+          className={active === "gallery" ? "active" : ""}
+        >
+          Gallery
+        </Button>
+      </Container>
+    );
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    detailPane: state.app.detailPane
+  };
 };
 
-export default PersonMenu;
+const mapDispatchToProps = dispatch => {
+  return {
+    navigateDetail: detailPane => {
+      dispatch(navigateDetail(detailPane));
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PersonMenu);

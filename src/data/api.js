@@ -25,6 +25,10 @@ class Api {
     return axios.post(this.baseUri + "/user/signup", data, this.getOptions());
   }
 
+  verify(data) {
+    return axios.post(this.baseUri + "/user/verify", data, this.getOptions());
+  }
+
   login(data) {
     return axios.post(this.baseUri + "/user/login", data, this.getOptions());
   }
@@ -48,9 +52,7 @@ class Api {
       this.baseUri + "/trees",
       this.getOptions()
     );
-    return response.data.map(tree => {
-      return tree;
-    });
+    return response.data;
   }
 
   async getTree(_id) {

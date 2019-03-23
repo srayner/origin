@@ -30,12 +30,19 @@ export function loadTreeForPerson(personId) {
 
 export function loadTrees() {
   return dispatch => {
-    api.indexTrees().then(trees => {
-      dispatch({
-        type: "LOAD_TREES_END",
-        payload: { trees }
+    api
+      .indexTrees()
+      .then(trees => {
+        dispatch({
+          type: "LOAD_TREES_END",
+          payload: { trees }
+        });
+      })
+      .catch(err => {
+        if (err.response && err.response.status === 401) {
+          // do something.
+        }
       });
-    });
   };
 }
 

@@ -6,6 +6,7 @@ import families from "./reducers/families";
 import person from "./reducers/person";
 import search from "./reducers/search";
 import { loadState, saveState } from "./data/local-storage";
+import throttle from "lodash/throttle";
 
 const persistedState = loadState();
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // eslint-disable-line
@@ -22,8 +23,10 @@ const store = createStore(
   composeEnhancers(applyMiddleware(thunk))
 );
 
-store.subscribe(() => {
-  saveState(store.getState());
-});
+store.subscribe(
+  throttle(() => {
+    saveState(store.getState());
+  }, 1000)
+);
 
 export default store;

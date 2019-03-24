@@ -1,13 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
-
-function verify() {
-  return null;
-}
+import queryString from "query-string";
+import { verify } from "../../actions/user";
 
 class Verify extends React.Component {
+  componentDidMount() {
+    const token = queryString.parse(this.props.location.search).token;
+    if (token) {
+      this.props.verify(token);
+    }
+  }
+
   render() {
-    console.log("verfiy", this.props.location);
     return (
       <div>
         <h1>Verify account</h1>

@@ -6,6 +6,12 @@ export function signUp(data) {
   };
 }
 
+export function verify(token) {
+  return dispatch => {
+    return api.verify({ token }).then(response => {});
+  };
+}
+
 export function login(data) {
   return dispatch => {
     api

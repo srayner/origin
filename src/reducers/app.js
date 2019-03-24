@@ -7,7 +7,10 @@ const initialState = {
   deletingPerson: null,
   importing: false,
   user: null,
-  detailPane: "facts"
+  detailPane: "facts",
+  accessToken: null,
+  refreshToken: null,
+  verifyState: null
 };
 
 const app = (state = initialState, action) => {
@@ -102,6 +105,18 @@ const app = (state = initialState, action) => {
     case "NAVIGATE_DETAIL": {
       const { detailPane } = action.payload;
       return { ...state, detailPane };
+    }
+    case "VERIFY_SUCCESS": {
+      const { accessToken, refreshToken } = action.payload;
+      return { ...state, accessToken, refreshToken, verifyState: "success" };
+    }
+    case "VERIFY_FAILED": {
+      return {
+        ...state,
+        accessToken: null,
+        refreshToken: null,
+        verifyState: "failure"
+      };
     }
     default:
       return state;

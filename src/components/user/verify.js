@@ -12,13 +12,25 @@ class Verify extends React.Component {
   }
 
   render() {
+    let message = "Sorry, your account could not be verified.";
+    if (this.props.verifyState == "success") {
+      message =
+        "Your account was sucessfully verify and you are now logged in.";
+    }
     return (
       <div>
         <h1>Verify account</h1>
+        <p>{message}</p>
       </div>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    verifyState: state.app.verifyState
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -27,6 +39,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Verify);

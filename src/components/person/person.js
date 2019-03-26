@@ -33,12 +33,29 @@ class Person extends React.Component {
     this.props.loadTreeForPerson(this.props.match.params.personId);
   }
 
+  renderFactsPanel(person) {
+    switch (this.props.detailPane) {
+      case "facts": {
+        return (
+          <React.Fragment>
+            <FactsPanel person={person} />
+            <FamilyPanel person={person} />
+          </React.Fragment>
+        );
+      }
+      default: {
+        return null;
+      }
+    }
+  }
+
   render() {
     console.log(this.props);
     const person = this.props.people[this.props.match.params.personId];
     if (!person) {
       return null;
     }
+    const detailPane = this.renderFactsPanel(person);
     let modal = null;
     if (this.props.editingPerson) {
       modal = (
@@ -99,10 +116,7 @@ class Person extends React.Component {
         </FloatingButton>
         <PersonTitle person={person} />
         <PersonMenu />
-        <DetailContainer>
-          <FactsPanel person={person} />
-          <FamilyPanel person={person} />
-        </DetailContainer>
+        <DetailContainer>{detailPane}</DetailContainer>
         {modal}
       </Container>
     );
@@ -114,7 +128,8 @@ const mapStateToProps = state => {
     deletingPerson: state.app.deletingPerson,
     editingPerson: state.person.person,
     people: state.people,
-    families: state.families
+    families: state.families,
+    detailPane: state.app.detailPane
   };
 };
 

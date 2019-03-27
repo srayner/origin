@@ -32,7 +32,13 @@ const Input = styled.input`
 
 class UploadPanel extends React.Component {
   fileInputRef = React.createRef();
-  state = { hightlight: false };
+  state = {
+    hightlight: false,
+    files: [],
+    uploading: false,
+    uploadProgress: {},
+    successfullUploaded: false
+  };
 
   openFileDialog = () => {
     if (this.props.disabled) return;

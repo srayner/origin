@@ -3,9 +3,9 @@ import axios from "axios";
 class Api {
   baseUri = process.env.REACT_APP_ORIGIN_API;
 
-  getHeaders = () => {
+  getHeaders = (contentType = null) => {
     const headers = {
-      "Content-Type": "application/json"
+      "Content-Type": contentType || "application/json"
     };
     const token = localStorage.getItem("token");
     if (token) {
@@ -14,10 +14,10 @@ class Api {
     return headers;
   };
 
-  getOptions = () => {
+  getOptions = (contentType = null) => {
     return {
       mode: "no-cors",
-      headers: this.getHeaders()
+      headers: this.getHeaders(contentType)
     };
   };
 
@@ -31,6 +31,13 @@ class Api {
 
   login(data) {
     return axios.post(this.baseUri + "/user/login", data, this.getOptions());
+  }
+
+  postMedia(file) {
+    const options = this.getOptions("multipart/form-data");
+    const data = new FormData();
+    data.append("media", file);
+    return axios.post(this.baseUrl + "/media", data, options);
   }
 
   async search(query) {

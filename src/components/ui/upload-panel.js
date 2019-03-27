@@ -18,6 +18,7 @@ const DashedPanel = styled.div`
   &:hover {
     color: #0079a3;
     border-color: #0079a3;
+    cursor: pointer;
   }
 `;
 
@@ -25,13 +26,76 @@ const Caption = styled.div`
   font-size: 12px;
 `;
 
-const UploadPanel = props => {
-  return (
-    <DashedPanel>
-      <FontAwesomeIcon icon={faImages} />
-      <Caption>Upload media</Caption>
-    </DashedPanel>
-  );
-};
+const Input = styled.input`
+  display: none;
+`;
+
+class UploadPanel extends React.Component {
+  fileInputRef = React.createRef();
+  state = { hightlight: false };
+
+  openFileDialog = () => {
+    if (this.props.disabled) return;
+    this.fileInputRef.current.click();
+  };
+
+  onDragOver = event => {
+    event.preventDefault();
+    if (this.props.disabled) return;
+    this.setState({ hightlight: true });
+  };
+
+  onDragLeave = () => {
+    this.setState({ hightlight: false });
+  };
+
+  onDrop = event => {
+    event.preventDefault();
+    if (this.props.disabled) return;
+    const files = event.dataTransfer.files;
+    if (this.props.onFilesAdded) {
+      const array = this.fileListToArray(files);
+      this.props.onFilesAdded(array);
+    }
+    this.setState({ hightlight: false });
+  };
+
+  onFilesAdded = event => {
+    if (this.props.disabled) return;
+    const files = event.target.files;
+    if (this.props.onFilesAdded) {
+      const array = this.fileListToArray(files);
+      this.props.onFilesAdded(array);
+    }
+  };
+
+  fileListToArray = list => {
+    const array = [];
+    for (var i = 0; i < list.length; i++) {
+      array.push(list.item(i));
+    }
+    return array;
+  };
+
+  render() {
+    return (
+      <DashedPanel
+        onDragOver={this.onDragOver}
+        onDragLeave={this.onDragLeave}
+        onDrop={this.onDrop}
+        onClick={this.openFileDialog}
+      >
+        <FontAwesomeIcon icon={faImages} />
+        <Caption>Upload media</Caption>
+        <Input
+          ref={this.fileInputRef}
+          type="file"
+          multiple
+          onChange={this.onFilesAdded}
+        />
+      </DashedPanel>
+    );
+  }
+}
 
 export default UploadPanel;

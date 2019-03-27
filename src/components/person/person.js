@@ -16,6 +16,7 @@ import {
   deletePersonEnd
 } from "../../actions/delete-person";
 import DeletePerson from "./delete-person";
+import UploadPanel from "../ui/upload-panel";
 
 const Container = styled.div`
   position: relative;
@@ -40,6 +41,13 @@ class Person extends React.Component {
           <React.Fragment>
             <FactsPanel person={person} />
             <FamilyPanel person={person} />
+          </React.Fragment>
+        );
+      }
+      case "gallery": {
+        return (
+          <React.Fragment>
+            <UploadPanel />
           </React.Fragment>
         );
       }

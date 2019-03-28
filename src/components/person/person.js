@@ -17,6 +17,7 @@ import {
 } from "../../actions/delete-person";
 import DeletePerson from "./delete-person";
 import UploadPanel from "../ui/upload-panel";
+import { upload } from "../../actions/media";
 
 const Container = styled.div`
   position: relative;
@@ -47,7 +48,7 @@ class Person extends React.Component {
       case "gallery": {
         return (
           <React.Fragment>
-            <UploadPanel />
+            <UploadPanel onFilesAdded={this.props.upload} />
           </React.Fragment>
         );
       }
@@ -162,6 +163,9 @@ const mapDispatchToProps = dispatch => {
     },
     deletePersonEnd: (person, people, families) => {
       dispatch(deletePersonEnd(person, people, families));
+    },
+    upload: files => {
+      dispatch(upload(files));
     }
   };
 };

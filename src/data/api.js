@@ -37,7 +37,7 @@ class Api {
     const options = this.getOptions("multipart/form-data");
     const data = new FormData();
     data.append("media", file);
-    return axios.post(this.baseUrl + "/media", data, options);
+    return axios.post(this.baseUri + "/media", data, options);
   }
 
   async search(query) {

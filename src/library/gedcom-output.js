@@ -34,7 +34,6 @@ export function buildGedCom(user, people, families) {
   });
   lines.push("0 TRLR");
   const gedcom = lines.join("\n");
-  console.log(gedcom);
   return gedcom;
 }
 

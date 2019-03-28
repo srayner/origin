@@ -33,7 +33,6 @@ const DataTitle = styled.dt`
 `;
 
 const Result = props => {
-  console.log(props);
   const { result } = props;
   return (
     <Container index={props.index}>

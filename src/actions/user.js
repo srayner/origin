@@ -30,12 +30,9 @@ export function login(data) {
     api
       .login(data)
       .then(response => {
-        console.log(response);
         const token = response.data.token;
         const arr = token.split(".");
         const user = JSON.parse(atob(arr[1]));
-        console.log(user);
-        console.log(arr);
         localStorage.setItem("token", token);
         dispatch({
           type: "LOGIN_SUCCESS",
@@ -43,7 +40,6 @@ export function login(data) {
         });
       })
       .catch(error => {
-        console.log(error);
         dispatch({
           type: "LOGIN_FAILED"
         });

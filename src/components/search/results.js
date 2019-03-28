@@ -16,8 +16,6 @@ class Results extends React.Component {
 
   render() {
     const { searchResults } = this.props;
-
-    console.log(searchResults);
     if (!searchResults || searchResults.length === 0) {
       return <p>Sorry your search returned no results.</p>;
     }

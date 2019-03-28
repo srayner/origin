@@ -143,7 +143,6 @@ class Api {
   }
 
   patchFamily(family) {
-    console.log(family);
     return axios.patch(
       this.baseUri + "/families/" + family._id,
       { ...family },

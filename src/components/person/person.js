@@ -58,7 +58,6 @@ class Person extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     const person = this.props.people[this.props.match.params.personId];
     if (!person) {
       return null;

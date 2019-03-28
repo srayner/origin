@@ -42,7 +42,6 @@ class PersonDetail extends React.Component {
 
   onChangeBirthDate = event => {
     const birthDate = event.target.value;
-    console.log(birthDate);
     looksLikeDate(birthDate);
     this.setState({ birthDate });
   };
@@ -112,7 +111,6 @@ class PersonDetail extends React.Component {
       return;
     }
     let person = { ...this.state };
-    console.log(person);
     person.birth = this.buildDateObject(person.birthDate);
     person.death = this.buildDateObject(person.deathDate);
     this.props.endEditing(person);

@@ -75,7 +75,6 @@ export function importTree(content) {
   function setPersonName(person, name) {
     const filtered = name.replace(/\//g, "");
     const parts = filtered.split(" ");
-    console.log(parts);
     person.surname = parts.pop();
     person.forenames = parts.join(" ");
   }
@@ -90,7 +89,6 @@ export function importTree(content) {
   }
 
   function setFamilyFather(family, father) {
-    console.log(father);
     family.father = father._id;
     father.spouses.push(family._id);
   }

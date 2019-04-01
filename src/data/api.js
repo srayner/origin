@@ -33,6 +33,14 @@ class Api {
     return axios.post(this.baseUri + "/user/login", data, this.getOptions());
   }
 
+  async indexMedia(personId) {
+    const response = await axios.get(
+      this.baseUri + "/media?personId=" + personId,
+      this.getOptions()
+    );
+    return response.data;
+  }
+
   postMedia(file) {
     const options = this.getOptions("multipart/form-data");
     const data = new FormData();

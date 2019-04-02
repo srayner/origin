@@ -17,7 +17,7 @@ import {
 } from "../../actions/delete-person";
 import DeletePerson from "./delete-person";
 import UploadPanel from "../ui/upload-panel";
-import { upload } from "../../actions/media";
+import { loadMediaForPerson, upload } from "../../actions/media";
 
 const Container = styled.div`
   position: relative;
@@ -32,7 +32,9 @@ const DetailContainer = styled.div`
 
 class Person extends React.Component {
   componentDidMount() {
-    this.props.loadTreeForPerson(this.props.match.params.personId);
+    const personId = this.props.match.params.personId;
+    this.props.loadTreeForPerson(personId);
+    this.props.loadMediaForPerson(personId);
   }
 
   renderFactsPanel(person) {
@@ -145,6 +147,9 @@ const mapDispatchToProps = dispatch => {
   return {
     loadTreeForPerson: personId => {
       dispatch(loadTreeForPerson(personId));
+    },
+    loadMediaForPerson: personId => {
+      dispatch(loadMediaForPerson(personId));
     },
     startEditing: person => {
       dispatch(startEditing(person));

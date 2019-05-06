@@ -51,15 +51,18 @@ const ExportLink = styled.span`
 `;
 
 const TreesPanel = props => {
-  const trees = Object.keys(props.trees).map((key, index) => {
-    const id = props.trees[key]._id;
-    return (
-      <Tree key={index}>
-        <StyledLink to={"/tree/" + id}>{props.trees[key].name}</StyledLink>
-        <ExportLink onClick={() => props.onExportTree(id)}>export</ExportLink>
-      </Tree>
-    );
-  });
+  let trees = null;
+  if (props.trees) {
+    trees = Object.keys(props.trees).map((key, index) => {
+      const id = props.trees[key]._id;
+      return (
+        <Tree key={index}>
+          <StyledLink to={"/tree/" + id}>{props.trees[key].name}</StyledLink>
+          <ExportLink onClick={() => props.onExportTree(id)}>export</ExportLink>
+        </Tree>
+      );
+    });
+  }
   return (
     <Panel>
       <HeaderRow>

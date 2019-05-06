@@ -10,7 +10,8 @@ const initialState = {
   detailPane: "facts",
   accessToken: null,
   refreshToken: null,
-  verifyState: null
+  verifyState: null,
+  message: null
 };
 
 const app = (state = initialState, action) => {
@@ -24,15 +25,18 @@ const app = (state = initialState, action) => {
     }
     case "LOGIN_SUCCESS": {
       const { token, user, redirect } = action.payload;
-      return { ...state, token, user, redirect };
+      return { ...state, message: null, token, user, redirect };
     }
     case "LOGIN_FROM_LOCAL": {
       const { token, redirect } = action.payload;
       return { ...state, token, redirect };
     }
-    case "LOGIN_FAILED":
+    case "LOGIN_FAILED": {
+      const { message } = action.payload;
+      return { ...state, message, token: null, redirect: null };
+    }
     case "LOGOUT": {
-      return { ...state, token: null, redirect: null };
+      return { ...state, message: null, token: null, redirect: null };
     }
     case "LOAD_TREE_END": {
       const { tree, people, families } = action.payload;

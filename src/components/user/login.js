@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { Redirect } from "react-router-dom";
 import { login } from "../../actions/user";
 import { connect } from "react-redux";
+import ErrorMessage from "../ui/error-message";
 
 const Panel = styled.div`
   background-color: white;
@@ -32,15 +33,19 @@ const Heading = styled.h1`
 
 class Login extends React.Component {
   render() {
-    const { redirect } = this.props;
+    const { redirect, message } = this.props;
     if (redirect) {
       return <Redirect to={redirect} />;
     }
+    const errorMessage = message ? (
+      <ErrorMessage>{message}</ErrorMessage>
+    ) : null;
     return (
       <div>
         <Heading>Origin Genealogy</Heading>
         <Panel>
           <Title>Login</Title>
+          {errorMessage}
           <AuthForm formType="login" onSubmit={this.props.onSubmit} />
         </Panel>
       </div>
@@ -50,7 +55,8 @@ class Login extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    redirect: state.app.redirect
+    redirect: state.app.redirect,
+    message: state.app.message
   };
 };
 

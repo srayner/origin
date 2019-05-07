@@ -33,10 +33,15 @@ class AuthForm extends React.Component {
     return <StyledLink to="/sign-up">Don't have an account? Signup</StyledLink>;
   }
 
+  renderLoginLink() {
+    return <StyledLink to="/login">Already have an account? Login</StyledLink>;
+  }
+
   render() {
     const { formType } = this.props;
     const submitCaption = formType === "login" ? "Login" : "Sign Up";
-    const signUpLink = formType === "login" ? this.renderSignUpLink() : null;
+    const alternateLink =
+      formType === "login" ? this.renderSignUpLink() : this.renderLoginLink();
     return (
       <div>
         <form>
@@ -56,7 +61,7 @@ class AuthForm extends React.Component {
           <PrimaryButton onClick={this.handleSubmit}>
             {submitCaption}
           </PrimaryButton>
-          {signUpLink}
+          {alternateLink}
         </form>
       </div>
     );

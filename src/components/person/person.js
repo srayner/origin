@@ -50,7 +50,7 @@ class Person extends React.Component {
       case "gallery": {
         return (
           <React.Fragment>
-            <UploadPanel onFilesAdded={this.props.upload} />
+            <UploadPanel person={person} onFilesAdded={this.props.upload} />
           </React.Fragment>
         );
       }
@@ -169,8 +169,8 @@ const mapDispatchToProps = dispatch => {
     deletePersonEnd: (person, people, families) => {
       dispatch(deletePersonEnd(person, people, families));
     },
-    upload: files => {
-      dispatch(upload(files));
+    upload: (personId, files) => {
+      dispatch(upload(personId, files));
     }
   };
 };

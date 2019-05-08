@@ -20,10 +20,10 @@ export function loadMediaForPerson(personId) {
   };
 }
 
-export function upload(files) {
+export function upload(personId, files) {
   files.forEach(file => {
     getBase64(file).then(data => {
-      const media = { name: file.name, type: file.type, data };
+      const media = { personId, name: file.name, type: file.type, data };
       api.postMedia(media);
     });
   });

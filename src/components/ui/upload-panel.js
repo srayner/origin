@@ -71,7 +71,8 @@ class UploadPanel extends React.Component {
     const files = event.target.files;
     if (this.props.onFilesAdded) {
       const array = this.fileListToArray(files);
-      this.props.onFilesAdded(array);
+      const personId = this.props.person._id;
+      this.props.onFilesAdded(personId, array);
     }
   };
 

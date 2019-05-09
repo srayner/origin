@@ -1,3 +1,5 @@
+![Lines Badge](./coverage/badge-lines.svg)
+
 # Origin Genealogy
 
 A family tree application written using React and D3.
@@ -15,4 +17,3 @@ yarn install
 # Start the application
 
 yarn start
-

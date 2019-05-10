@@ -1,3 +1,5 @@
+![Lines Badge](./coverage/badge-branches.svg)
+![Lines Badge](./coverage/badge-functions.svg)
 ![Lines Badge](./coverage/badge-lines.svg)
 
 # Origin Genealogy
